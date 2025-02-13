@@ -10,7 +10,7 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 
 ## Integrantes
 
-* Nome completo do aluno 1
+* Allan Junio de Souza Muniz
 * Gabriel Henrique Medice Marçal
 * Nome completo do aluno 3
 * Nome completo do aluno 4
