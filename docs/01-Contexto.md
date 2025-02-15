@@ -36,17 +36,17 @@ O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estat�
 
 Nossa empresa tem um público bastante diversificado, pois oferecemos uma solução de planejamento financeiro pensada para todas as idades, que pode ser configurada de acordo com o perfil do usuário. Alguns dos principais perfis de usuários são:
 
-> -Estudantes universitários: (Estão em um momento da vida de foco e conquista, e para alinhar tudo precisam de um melhor planejamento financeiro.)
+Estudantes universitários: (Estão em um momento da vida de foco e conquista, e para alinhar tudo precisam de um melhor planejamento financeiro.)
 
-> -Jovens profissionais e recém-formados: (Estão iniciando suas carreiras e precisam aprender a administrar salário, contas e investimentos para garantir uma base financeira sólida.)
+Jovens profissionais e recém-formados: (Estão iniciando suas carreiras e precisam aprender a administrar salário, contas e investimentos para garantir uma base financeira sólida.)
 
-> -Empreendedores e autônomos: (Têm rendimentos variáveis e precisam de um planejamento flexível para organizar despesas, investimentos e capital de giro.)
+Empreendedores e autônomos: (Têm rendimentos variáveis e precisam de um planejamento flexível para organizar despesas, investimentos e capital de giro.)
 
-> -Famílias e casais: (Precisam equilibrar despesas familiares, economizar para objetivos de longo prazo e garantir a segurança financeira do lar.)
+Famílias e casais: (Precisam equilibrar despesas familiares, economizar para objetivos de longo prazo e garantir a segurança financeira do lar.)
 
-> -Aposentados: (Buscam estabilidade financeira para manter o padrão de vida e planejar investimentos que garantam uma aposentadoria tranquila.)
+Aposentados: (Buscam estabilidade financeira para manter o padrão de vida e planejar investimentos que garantam uma aposentadoria tranquila.)
 
-> -Pessoas endividadas ou buscando reeducação financeira: (Precisam de um suporte para sair do endividamento, reorganizar suas finanças e criar hábitos financeiros saudáveis.)
+Pessoas endividadas ou buscando reeducação financeira: (Precisam de um suporte para sair do endividamento, reorganizar suas finanças e criar hábitos financeiros saudáveis.)
 
 
 > **Links úteis**:
