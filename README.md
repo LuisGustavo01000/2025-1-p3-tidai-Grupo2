@@ -12,14 +12,15 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 
 * Allan Junio de Souza Muniz
 * Gabriel Henrique Medice Marçal
-* Nome completo do aluno 3
+* Thiago Guilherme Marques Soares
 * Nome completo do aluno 4
 * Nome completo do aluno 5
 * Nome completo do aluno 6
 
 ## Professor
 
-* Nome completo do(a) professor(a)
+* Kleber Jacques Ferreira de Souza
+
 
 ## Instruções de utilização
 
