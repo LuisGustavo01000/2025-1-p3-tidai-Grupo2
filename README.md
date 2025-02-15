@@ -13,7 +13,7 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 * Allan Junio de Souza Muniz
 * Gabriel Henrique Medice Marçal
 * Thiago Guilherme Marques Soares
-* Nome completo do aluno 4
+* Luis Gustavo do Nascimento Marinho
 * Nome completo do aluno 5
 * Nome completo do aluno 6
 
