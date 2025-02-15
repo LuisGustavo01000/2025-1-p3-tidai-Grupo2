@@ -76,16 +76,32 @@ Lembre-se de que cada requisito deve corresponder a uma e somente uma caracterí
 > - [O que são requisitos funcionais e requisitos não funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
 > - [Entenda o que são requisitos de software, a diferença entre requisito funcional e não funcional, e como identificar e documentar cada um deles](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
-## Restrições
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
+## Regras de Negócio 
+
+O projeto terá as regras de negócio com os itens apresentados na tabela a seguir.
+
+|ID| Regras de Negócio                                            |
+|--|-------------------------------------------------------|
+|RN - 001| O projeto deverá apresentar telas diferentes de acordo com o perfil de cada usuário |
+|RN - 002| O projeto deverá calcular custos avulsos de acordo com o perfil |
+|RN - 003| O projeto deverá oferecer alternativas financeiras de acordo com o perfil |
+|RN - 004| A aplicação deve ter fluidez em relação ao conteúdo do perfil do usuário |
+|RN - 005| A aprovação da renda do perfil deverá respeitar um limite pré estabelecido no cadastro |
+|RN - 006| A emissão de relatórios mensais dos gastos deve respeitar dados pré-estabelecidos|
+
+
+## Restrições
 
 O projeto está restrito aos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |001| O projeto deverá ser entregue até o final do semestre |
-|002| O custo total do projeto não deve exceder o orçamento definido       |
+|002| O custo total do projeto não deve exceder o orçamento definido |
+|003| A aplicação não deve ultrapassar a LGPD e leis relacionadas a área financeira |
+|004| Os conteúdos da aplicação devem respeitar o perfil de cada usuário  |
+
 
 ## Diagrama de casos de uso
 
