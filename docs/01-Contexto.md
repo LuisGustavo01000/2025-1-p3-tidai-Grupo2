@@ -34,10 +34,20 @@ O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estat�
 
 ## Público-alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+Nossa empresa tem um público bastante diversificado, pois oferecemos uma solução de planejamento financeiro pensada para todas as idades, que pode ser configurada de acordo com o perfil do usuário. Alguns dos principais perfis de usuários são:
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
+Estudantes universitários: (Estão em um momento da vida de foco e conquista, e para alinhar tudo precisam de um melhor planejamento financeiro.)
+
+Jovens profissionais e recém-formados: (Estão iniciando suas carreiras e precisam aprender a administrar salário, contas e investimentos para garantir uma base financeira sólida.)
+
+Empreendedores e autônomos: (Têm rendimentos variáveis e precisam de um planejamento flexível para organizar despesas, investimentos e capital de giro.)
+
+Famílias e casais: (Precisam equilibrar despesas familiares, economizar para objetivos de longo prazo e garantir a segurança financeira do lar.)
+
+Aposentados: (Buscam estabilidade financeira para manter o padrão de vida e planejar investimentos que garantam uma aposentadoria tranquila.)
+
+Pessoas endividadas ou buscando reeducação financeira: (Precisam de um suporte para sair do endividamento, reorganizar suas finanças e criar hábitos financeiros saudáveis.)
+
 
 > **Links úteis**:
 > - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
