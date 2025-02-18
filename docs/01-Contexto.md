@@ -4,7 +4,7 @@ A presente documentação descreve a especificação de um projeto de aplicaçã
 
 ## Problema
 Muitas pessoas enfrentam dificuldades para gerenciar suas finanças pessoais, seja por falta de conhecimento, disciplina ou acesso a ferramentas adequadas. Esse cenário resulta em desafios como endividamento excessivo, falta de planejamento para emergências e dificuldades para construir um patrimônio sólido. A ausência de um controle financeiro estruturado impede que essas pessoas tomem decisões mais assertivas em relação ao seu dinheiro.
-O contexto em que essa aplicação será utilizada é variado, abrangendo indivíduos que buscam melhorar sua vida financeira por meio da tecnologia. A solução será direcionada a um público amplo, incluindo trabalhadores assalariados, autônomos e empreendedores, independentemente do seu nível de conhecimento financeiro. A aplicação poderá ser utilizada em dispositivos móveis e desktops, proporcionando uma experiência acessível e intuitiva para seus usuários.
+O contexto em que essa aplicação será utilizada é variado, abrangendo indivíduos que buscam melhorar sua vida financeira por meio da tecnologia. A solução será direcionada a um público amplo, incluindo trabalhadores assalariados, autônomos e empreendedores, independentemente do seu nível de conhecimento financeiro, proporcionando uma experiência acessível e intuitiva para seus usuários.
 
 
 > **Links úteis**:
