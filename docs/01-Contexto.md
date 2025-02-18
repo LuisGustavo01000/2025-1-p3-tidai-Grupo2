@@ -1,13 +1,11 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+A presente documentação descreve a especificação de um projeto de aplicação voltada para planejamento financeiro pessoal. A solução busca auxiliar usuários em diferentes níveis de conhecimento e organização financeira a gerenciar suas finanças, reduzir dívidas e, eventualmente, realizar investimentos.
 
 ## Problema
-Aqui, a equipe deve fornecer uma descrição detalhada do problema a ser resolvido. Não é o momento adequado para abordar questões técnicas relacionadas ao desenvolvimento da aplicação. O objetivo é compreender e comunicar de maneira precisa qual é o desafio ou necessidade que motiva a criação da aplicação.
+Muitas pessoas enfrentam dificuldades para gerenciar suas finanças pessoais, seja por falta de conhecimento, disciplina ou acesso a ferramentas adequadas. Esse cenário resulta em desafios como endividamento excessivo, falta de planejamento para emergências e dificuldades para construir um patrimônio sólido. A ausência de um controle financeiro estruturado impede que essas pessoas tomem decisões mais assertivas em relação ao seu dinheiro.
+O contexto em que essa aplicação será utilizada é variado, abrangendo indivíduos que buscam melhorar sua vida financeira por meio da tecnologia. A solução será direcionada a um público amplo, incluindo trabalhadores assalariados, autônomos e empreendedores, independentemente do seu nível de conhecimento financeiro. A aplicação poderá ser utilizada em dispositivos móveis e desktops, proporcionando uma experiência acessível e intuitiva para seus usuários.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
-
-O grupo pode optar por fazer uso de ferramentas como Design Thinking, que permite uma visão completa do problema.
 
 > **Links úteis**:
 > - [Objetivos, problema de pesquisa e justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
@@ -16,18 +14,23 @@ O grupo pode optar por fazer uso de ferramentas como Design Thinking, que permit
 
 ## Objetivos
 
-Aqui, você deve descrever os objetivos do trabalho, indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima.
+Desenvolver um software de planejamento financeiro pessoal que auxilie usuários de diferentes perfis a organizarem suas finanças, reduzirem dívidas e, para aqueles mais avançados, realizarem investimentos de forma eficiente.
+Como:
+•	Criar uma interface intuitiva e acessível para que os usuários possam registrar suas receitas, despesas e metas financeiras;
+•	Implementar um sistema de categorização de usuários com base em um questionário inicial para personalizar a experiência e os recursos oferecidos;
+•	Fornecer ferramentas específicas para cada nível de usuário, incluindo planejamento de pagamento de dívidas, orçamento mensal e acompanhamento de investimentos;
 
-Além disso, apresente alguns (pelo menos 3) objetivos específicos, dependendo de onde você pretende concentrar sua prática investigativa ou como deseja aprofundar seu trabalho.
  
 > **Links úteis**:
 > - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+A crescente necessidade de educação financeira torna este projeto relevante, pois muitas pessoas desconhecem práticas básicas de gestão financeira. A falta de conhecimento e planejamento leva ao endividamento, impactando não apenas a vida pessoal, mas também a economia como um todo. Dessa forma, proporcionar uma solução acessível e eficaz pode ajudar os usuários a tomarem melhores decisões e adquirirem hábitos financeiros saudáveis.
+Além disso, com o avanço das tecnologias financeiras e a digitalização dos serviços bancários, há uma demanda crescente por ferramentas que auxiliem no gerenciamento de finanças pessoais. Muitos aplicativos existentes no mercado não oferecem um acompanhamento personalizado, o que pode dificultar o uso para aqueles que estão começando sua jornada de organização financeira.
+Por meio da implementação de um questionário inicial, a aplicação poderá entender melhor o perfil do usuário e oferecer conteúdos e funcionalidades adequadas às suas necessidades. Isso contribui para um aprendizado gradual e eficiente, incentivando o usuário a melhorar sua relação com o dinheiro de maneira prática e intuitiva.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
+
 
 > **Links úteis**:
 > - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
