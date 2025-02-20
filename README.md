@@ -1,12 +1,12 @@
-# Nome do projeto
+# Cash Wise 
 
 `CURSO: Análise e Desenvolvimento de Sistemas`
 
 `DISCIPLINA: Trabalho Interdisciplinar Desenvolvimento de Aplicação Interativa`
 
-`Xº semestre/ANO`
+`3º semestre/2025`
 
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+A presente documentação descreve a especificação de um projeto de aplicação voltada para planejamento financeiro pessoal. A solução busca auxiliar usuários em diferentes níveis de conhecimento e organização financeira a gerenciar suas finanças, reduzir dívidas e, eventualmente, realizar investimentos.
 
 ## Integrantes
 
@@ -14,8 +14,8 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 * Gabriel Henrique Medice Marçal
 * Thiago Guilherme Marques Soares
 * Luis Gustavo do Nascimento Marinho
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* Christiano da Silva Barbosa
+* Kauan Maia Moreira Fernandes
 
 ## Professor
 
