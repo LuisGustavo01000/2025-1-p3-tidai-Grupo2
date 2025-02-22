@@ -225,6 +225,13 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em dispositivos móveis | MÉDIA | 
 |RNF-002| Deve processar as requisições do usuário em no máximo 3 segundos |  BAIXA | 
+|RNF-003| O site deve funcionar corretamente em diferentes navegadores e sistemas operacionais, garantindo que todos os usuários tenham uma experiência consistente | MÉDIA | 
+|RNF-004| O sistema deve garantir a integridade dos dados, prevenindo a perda ou corrupção de informações | MÉDIA | 
+|RNF-005| A interface da aplicação deve ser intuitiva e fácil de usar, independentemente do nível de habilidade do usuário com tecnologia. | ALTA |
+|RNF-006| O código deve ser modular e bem documentado para facilitar futuras manutenções, atualizações e possíveis expansões de funcionalidades, permitindo que desenvolvedores possam facilmente compreender e modificar o sistema. | ALTA |
+|RNF-007| O sistema deve usar os recursos de hardware de forma eficaz, sem desperdício de energia ou capacidade.| ALTA |
+
+
 
 Com base nas histórias de usuários, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
