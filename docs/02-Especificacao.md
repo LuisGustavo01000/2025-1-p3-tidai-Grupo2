@@ -185,13 +185,13 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 Com base na análise das personas, foram identificadas as seguintes histórias de usuários:
 
-| EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE` | PARA ... `MOTIVO/VALOR` |
-|----------------------|----------------------------------|------------------------|
-| João Silva | Receber notificações automáticas sobre dicas de mercado financeiro e o status das minhas organizações e operações financeiras. | Acompanhar meu progresso financeiro de forma fidedigna que me permita tomada de decisão baseadas nos gráficos e estatísticas sobre meus recursos financeiros. |
-| Maria Fernandes | Integrar a gestão das finanças pessoais e empresariais com informações em dashboards intuitivos que ofereçam uma visão robusta. | Traçar estratégias para redução de custos e planejar investimento mais rápida do cenário financeiro. |
-| Lucas Oliveira | Receber conteúdos avançados sobre estratégias de investimentos e gestão tributária. | Análise de relatórios automatizados com sugestões personalizadas para guiar em ações e facilitar o direcionamento nas decisões. |
-| Ana Ribeiro | Interfaces modernas e fáceis de usar, informações sobre investimentos acessíveis e métodos de aplicações personalizadas. | Ganhar experiência e perder medo de tomar decisões financeiras que possam comprometer o cotidiano. |
-| Carla Souza | Receber conteúdos sobre planejamento financeiro para aposentadoria e ferramentas que simulam cenários futuros. | Aprender a analisar renda futura e reduzir/evitar imprevistos financeiros. |
+**EU COMO... PERSONA** | **QUERO/PRECISO... FUNCIONALIDADE** | **PARA... MOTIVO/VALOR**
+--- | --- | ---
+**João Silva** | Receber notificações automáticas sobre dicas de mercado financeiro e status das minhas organizações e operações financeiras. | Acompanhar meu progresso financeiro de forma fidedigna que me permita tomada de decisão baseadas nos gráficos e estatísticas sobre meus recursos financeiros.
+**Maria Fernandes** | Integrar a gestão das finanças pessoais e empresariais em dashboards intuitivos, para oferecer uma visão robusta. | Traçar estratégias para redução de custos e planejar investimentos rápidos do cenário financeiro.
+**Lucas Oliveira** | Receber conteúdos avançados sobre estratégias de investimentos e gestão tributária. | Analisar relatórios automatizados com sugestões personalizadas para guiar em ações e facilitar o direcionamento nas decisões.
+**Ana Ribeiro** | Utilizar interfaces modernas e fáceis de usar, com informações sobre investimentos acessíveis e métodos de aplicações personalizadas. | Ganhar experiência e perder medo de tomar decisões financeiras que possam comprometer o cotidiano.
+**Carla Souza** | Receber conteúdos sobre planejamento financeiro para aposentadoria e ferramentas que simulam cenários futuros. | Aprender a analisar a renda futura e reduzir/evitar imprevistos financeiros.
 
 Apresente aqui as histórias de usuários que são relevantes para o projeto da sua solução. As histórias de usuários consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuários por contexto, para facilitar consultas recorrentes a esta parte do documento.
 
@@ -208,10 +208,16 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 
 ### Requisitos funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+| ID    | Descrição do Requisito                                                                 | Prioridade |
+|-------|-----------------------------------------------------------------------------------------|------------|
+| RF-001| Permitir que o usuário cadastre informações financeiras                                 | ALTA       |
+| RF-002| Emitir um relatório e gráfico dos gastos mensais                                        | MÉDIA      |
+| RF-003| O sistema deve permitir que os usuários façam login utilizando e-mail e senha           | ALTA       |
+| RF-004| Deve haver suporte para recuperação de senha por meio de e-mail.                        | ALTA       |
+| RF-005| O sistema deve permitir que os usuários editem as informações após cadastradas, conforme mudanças na rotina | ALTA       |
+| RF-006| O sistema deve exibir gráficos contendo cálculos estatísticos baseados nas informações cadastradas do usuário | ALTA       |
+| RF-007| O sistema deve mostrar opções de conteúdos financeiros como Mercado de Capitais e investimentos padrão | MÉDIA      |
+| RF-008| O sistema deve sugerir estratégias para investimentos a partir do dinheiro que sobrar ao fim do mês, para que o usuário decida onde investir | ALTA       |
 
 ### Requisitos não funcionais
 
