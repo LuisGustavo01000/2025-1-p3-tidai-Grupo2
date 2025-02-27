@@ -210,14 +210,20 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 
 | ID    | Descrição do Requisito                                                                 | Prioridade |
 |-------|-----------------------------------------------------------------------------------------|------------|
-| RF-001| Permitir que o usuário cadastre informações financeiras                                 | ALTA       |
-| RF-002| Emitir um relatório e gráfico dos gastos mensais                                        | MÉDIA      |
-| RF-003| O sistema deve permitir que os usuários façam login utilizando e-mail e senha           | ALTA       |
-| RF-004| Deve haver suporte para recuperação de senha por meio de e-mail.                        | ALTA       |
-| RF-005| O sistema deve permitir que os usuários editem as informações após cadastradas, conforme mudanças na rotina | ALTA       |
-| RF-006| O sistema deve exibir gráficos contendo cálculos estatísticos baseados nas informações cadastradas do usuário | ALTA       |
-| RF-007| O sistema deve mostrar opções de conteúdos financeiros como Mercado de Capitais e investimentos padrão | MÉDIA      |
-| RF-008| O sistema deve sugerir estratégias para investimentos a partir do dinheiro que sobrar ao fim do mês, para que o usuário decida onde investir | ALTA       |
+
+| RF-001| Gestão de cadastro de usuário     | ALTA       |
+
+| RF-002| Gestão de entrada e saídas de informações | ALTA       |
+
+| RF-003| O sistema deve definir o tipo de perfil financeiro do usuário| MÉDIA      |
+
+| RF-004|  Gestão de gastos mensais  | MÉDIA      |
+
+| RF-005|  Criação de dashboard com informações financeiras do usuário | MÉDIA      |
+
+| RF-006| O sistema deve mostrar opções de conteúdos financeiros como Mercado de Capitais e investimentos padrão | MÉDIA   |
+
+| RF-007| Sugerir estratégias de investimentos | MÉDIA      |
 
 ### Requisitos não funcionais
 
@@ -230,6 +236,8 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 |RNF-005| A interface da aplicação deve ser intuitiva e fácil de usar, independentemente do nível de habilidade do usuário com tecnologia. | ALTA |
 |RNF-006| O código deve ser modular e bem documentado para facilitar futuras manutenções, atualizações e possíveis expansões de funcionalidades, permitindo que desenvolvedores possam facilmente compreender e modificar o sistema. | ALTA |
 |RNF-007| O sistema deve usar os recursos de hardware de forma eficaz, sem desperdício de energia ou capacidade.| ALTA |
+|RNF-008| O sistema deve ser desenvolvido em NodeJs, com banco de dados MySQL e hospedagem Azure | ALTA |
+
 
 
 
@@ -252,20 +260,6 @@ Lembre-se de que cada requisito deve corresponder a uma e somente uma caracterí
 > - [Entenda o que são requisitos de software, a diferença entre requisito funcional e não funcional, e como identificar e documentar cada um deles](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 
-## Regras de Negócio 
-
-O projeto terá as regras de negócio com os itens apresentados na tabela a seguir.
-
-|ID| Regras de Negócio                                            |
-|--|-------------------------------------------------------|
-|RN - 001| O projeto deverá apresentar telas diferentes de acordo com o perfil de cada usuário |
-|RN - 002| O projeto deverá calcular custos avulsos de acordo com o perfil |
-|RN - 003| O projeto deverá oferecer alternativas financeiras de acordo com o perfil |
-|RN - 004| A aplicação deve ter fluidez em relação ao conteúdo do perfil do usuário |
-|RN - 005| A aprovação da renda do perfil deverá respeitar um limite pré estabelecido no cadastro |
-|RN - 006| A emissão de relatórios mensais dos gastos deve respeitar dados pré-estabelecidos|
-
-
 ## Restrições
 
 O projeto está restrito aos itens apresentados na tabela a seguir.
@@ -274,8 +268,6 @@ O projeto está restrito aos itens apresentados na tabela a seguir.
 |--|-------------------------------------------------------|
 |001| O projeto deverá ser entregue até o final do semestre |
 |002| O custo total do projeto não deve exceder o orçamento definido |
-|003| A aplicação não deve ultrapassar a LGPD e leis relacionadas a área financeira |
-|004| Os conteúdos da aplicação devem respeitar o perfil de cada usuário  |
 
 
 ## Diagrama de casos de uso
