@@ -210,19 +210,12 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 
 | ID    | Descrição do Requisito                                                                 | Prioridade |
 |-------|-----------------------------------------------------------------------------------------|------------|
-
 | RF-001| Gestão de cadastro de usuário     | ALTA       |
-
 | RF-002| Gestão de entrada e saídas de informações | ALTA       |
-
 | RF-003| O sistema deve definir o tipo de perfil financeiro do usuário| MÉDIA      |
-
 | RF-004|  Gestão de gastos mensais  | MÉDIA      |
-
 | RF-005|  Criação de dashboard com informações financeiras do usuário | MÉDIA      |
-
 | RF-006| O sistema deve mostrar opções de conteúdos financeiros como Mercado de Capitais e investimentos padrão | MÉDIA   |
-
 | RF-007| Sugerir estratégias de investimentos | MÉDIA      |
 
 ### Requisitos não funcionais
