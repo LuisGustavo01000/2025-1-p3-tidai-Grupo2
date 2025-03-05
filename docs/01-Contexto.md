@@ -1,6 +1,10 @@
 # Introdução
 
-A presente documentação descreve a especificação de um projeto de aplicação voltada para planejamento financeiro pessoal. A solução busca auxiliar usuários em diferentes níveis de conhecimento e organização financeira a gerenciar suas finanças, reduzir dívidas e, eventualmente, realizar investimentos.
+A gestão financeira pessoal é um desafio para muitas pessoas, independentemente do nível de conhecimento ou experiência na área. O descontrole nas finanças pode levar a dificuldades como individualização excessiva, falta de planejamento para emergências e incapacidade de construir um patrimônio sólido ao longo do tempo. Diante desse cenário, os presentes documentos propõem o desenvolvimento de um aplicativo inovador para o planejamento
+
+O objetivo é oferecer uma ferramenta acessível e intuitiva, capaz de auxiliar usuários de diferentes perfis na organização de suas finanças, permitindo um envio eficiente de receitas, despesas e metas financeiras. A solução se destaca ao fornecer uma experiência personalizada, adaptada ao nível de conhecimento e às necessidades individuais de cada usuário. Com recursos que vão desde a reestruturação de dívidas até o planejamento de investimentos, o projeto busca promover a educação financeira e facilitar uma tomada de decisões mais conscientes
+
+Dessa forma, este documento apresenta o planejamento do projeto, abordando sua relevância, os desafios enfrentados pelo público-alvo e as estratégias impostas para criar uma solução eficaz e acessível a todos.
 
 ## Problema
 Muitas pessoas enfrentam dificuldades para gerenciar suas finanças pessoais, seja por falta de conhecimento, disciplina ou acesso a ferramentas adequadas. Esse cenário resulta em desafios como endividamento excessivo, falta de planejamento para emergências e dificuldades para construir um patrimônio sólido. A ausência de um controle financeiro estruturado impede que essas pessoas tomem decisões mais assertivas em relação ao seu dinheiro.
