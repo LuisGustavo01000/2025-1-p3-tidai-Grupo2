@@ -2,9 +2,7 @@
 
 <span style="color:red">Pré-requisitos: <a href="01-Contexto.md"> Documentação de contexto</a></span>
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto.
+Durante o desenvolvimento do projeto, trabalhamos para identificar problemas e definir o escopo, com base na observação e na pesquisa sobre o público-alvo. Nosso principal objetivo foi reunir o máximo de informações possíveis para compreender e solucionar as dificuldades dos usuários. Para isso, realizamos criamos perspectivas sobre o público-alvo e, após nossa análise, criamos personas que representavam seus hábitos e rotinas. Dessa forma, conseguimos visualizar como a Cash Wise poderia impactar a vida dos usuários. Utilizamos ferramentas para estruturar as personas e o draw.io para desenvolver os Casos de Uso. Além disso, o GitHub Projects foi utilizado para o gerenciamento das tarefas. 
 
 ## Personas
 
