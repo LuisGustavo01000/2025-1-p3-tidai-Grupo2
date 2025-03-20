@@ -38,16 +38,28 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 > Nosso projeto tera a seguinte distribuição:
 
 #### Sprint 1
-- _Scrum master_: AlunaX
-- Protótipos: AlunoY
-- Testes: AlunoK
-- Documentação: AlunaZ
+- _Scrum master_: Allan Junio
+- Especificação do projeto: 
+- Personas: grabriel Medice
+- Historias de usuário: Christiano
+- Requisitos funcionais: Christiano
+- Requisitos não funcionais: Allan
+- Restrições: Luis Gustavo
+- Diagrama de casos de uso: Kauan Maia
+- Objetivos: Thiago Marques
+- Introdução: Thiago Marques
+- Problema: Thiago Marques
+- Justificativa: Luis Gustavo
+- Publico alvo: Allan
+
+
 
 #### Sprint 2
 - _Scrum master_: AlunaY
 - Desenvolvedor _front-end_: AlunoX
 - Desenvolvedor _back-end_: AlunoK
 - Testes: AlunaZ
+- Protótipos: Christiano e Allan
 
 ###  Quadro de tarefas
 
@@ -62,7 +74,7 @@ Atualizado em: 23/02/2025
 |Thiago Marques | Introdução |     |semanas  | ✔️    |      |
 |Thiago Marques | Objetivos    |     | semanas | ✔️    |                 |
 |Thiago Marques | Justificativa   |     | semanas | ✔️    |   
-|Allan Junio | Público Alvo  |     | semanas | ✔️    |   |
+|Allan Junio | Público Alvo  |  18/02   | 28/02 | ✔️    | 28/02  |
 |Christiano da Silva|  Histórias de usuário  |     |semanas | ✔️      |                 |
 | Gabriel Henrique| Personas 1  |         | semanas | ✔️      |       |
 | Christiano da Silva| Requisitos Funcionais  |         | semanas | ✔️      |       |
