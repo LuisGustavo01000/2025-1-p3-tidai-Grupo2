@@ -75,7 +75,7 @@ Atualizado em: 23/02/2025
 |Thiago Marques | Objetivos    |  16/02/2025   | 1 semana | ✔️    | 26/02/2025                |
 |Luis Gustavo | Justificativa   |  05/02/2025    | 1 semana | ✔️    | 11/02/2025  |
 |Allan Junio | Público Alvo  |  18/02   | 1 semana | ✔️    | 28/02  |
-|Christiano da Silva|  Histórias de usuário  |     |semanas | ✔️      |                 |
+|Christiano da Silva|  Histórias de usuário  |  18/02/2025   |semanas | ✔️      |      22/02/2025           |
 | Gabriel Henrique| Personas 1  |         | semanas | ✔️      |       |
 | Christiano da Silva| Requisitos Funcionais  |  18/02/2025  | semanas | ✔️      |  22/02/2025     |
 | Christiano da Silva| Requisitos Não Funcionais  |   18/02/2025      |semanas  | ✔️      |    22/02/2025   |
