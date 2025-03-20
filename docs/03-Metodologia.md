@@ -71,9 +71,9 @@ Atualizado em: 23/02/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-|Thiago Marques | Introdução |     |semanas  | ✔️    |      |
-|Thiago Marques | Objetivos    |     | semanas | ✔️    |                 |
-|Thiago Marques | Justificativa   |     | semanas | ✔️    |   
+|Thiago Marques | Introdução |     |16/02  | ✔️    |  26/02    |
+|Thiago Marques | Objetivos    |     | 16/02 | ✔️    | 26/02                |
+|Thiago Marques | Justificativa   |     | 16/02 | ✔️    |  26/02 
 |Allan Junio | Público Alvo  |  18/02   | 28/02 | ✔️    | 28/02  |
 |Christiano da Silva|  Histórias de usuário  |     |semanas | ✔️      |                 |
 | Gabriel Henrique| Personas 1  |         | semanas | ✔️      |       |
