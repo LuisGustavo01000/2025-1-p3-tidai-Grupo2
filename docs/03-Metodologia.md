@@ -61,7 +61,7 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 - Testes: Christiano e Allan
 - Protótipos: Gabriel Henrique, Kauan Maia e Luis Gustavo 
 
-###  Quadro de tarefas
+####  Quadro de tarefas
 
 Divisão das tarefas de acordo com a sprint 
 
