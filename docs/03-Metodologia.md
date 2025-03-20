@@ -55,11 +55,11 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 
 
 #### Sprint 2
-- _Scrum master_: AlunaY
-- Desenvolvedor _front-end_: AlunoX
-- Desenvolvedor _back-end_: AlunoK
-- Testes: AlunaZ
-- Protótipos: Christiano e Allan
+- _Scrum master_: Luis Gustavo
+- Desenvolvedor _front-end_: Gabriel Henrique, Kauan Maia e Luis Gustavo 
+- Desenvolvedor _back-end_: Christiano, Allan e Thiago
+- Testes: Christiano e Allan
+- Protótipos: Gabriel Henrique, Kauan Maia e Luis Gustavo 
 
 ###  Quadro de tarefas
 
