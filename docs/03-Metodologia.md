@@ -80,7 +80,7 @@ Atualizado em: 23/02/2025
 | Christiano da Silva| Requisitos Funcionais  |         | semanas | ✔️      |       |
 | Christiano da Silva| Requisitos Não Funcionais  |         |semanas  | ✔️      |       |
 | Luis Gustavo | Regras de Negócio  |   05/02/2025      | 1 semana | ✔️      |  11/02/2025     |
-| Kauan Maia | Diagrama de Caso de Uso  |        |  semanas | ✔️      |      |
+| Kauan Maia | Diagrama de Caso de Uso  |  20/02/2025      | 1 semana | ✔️      |  23/02/2025    |
 
 
 #### Sprint 2
