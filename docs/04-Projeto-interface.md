@@ -11,8 +11,16 @@ Visão geral da interação do usuário pelas telas do sistema e protótipo inte
 
 Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de navegação do usuário na aplicação. Essa técnica serve para alinhar os caminhos e as possíveis ações que o usuário pode realizar junto com os membros da equipe.
 
-![Exemplo de user flow](images/user_flow.jpg)
-![Exemplo de user flow](images/wireframes/alterarPerfil.png)
+
+![Home](images/wireframes/home.png)
+![Cadastro](images/wireframes/cadastro.png)
+![Login](images/wireframes/login.png)
+![Perfil](images/wireframes/perfil.png)
+![Conteúdo](images/wireframes/conteudo.png)
+![Alterar perfil](images/wireframes/alterarPerfil.png)
+![Dashboard](images/wireframes/Dashboard.png)
+![Perfil adm](images/wireframes/perfilADM.png)
+
 
 
 > **Links úteis**:
