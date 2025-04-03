@@ -12,14 +12,7 @@ Visão geral da interação do usuário pelas telas do sistema e protótipo inte
 Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de navegação do usuário na aplicação. Essa técnica serve para alinhar os caminhos e as possíveis ações que o usuário pode realizar junto com os membros da equipe.
 
 
-![Home](images/wireframes/home.png)
-![Cadastro](images/wireframes/cadastro.png)
-![Login](images/wireframes/login.png)
-![Perfil](images/wireframes/perfil.png)
-![Conteúdo](images/wireframes/conteudo.png)
-![Alterar perfil](images/wireframes/alterarPerfil.png)
-![Dashboard](images/wireframes/Dashboard.png)
-![Perfil adm](images/wireframes/perfilADM.png)
+
 
 
 
@@ -45,7 +38,14 @@ O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, intername
 
 São protótipos usados no design de interface para sugerir a estrutura de um site web e seu relacionamento entre suas páginas. Um wireframe web é uma ilustração que mostra o layout dos elementos fundamentais na interface.
 
-![Exemplo de wireframe](images/wireframe.png)
+![Home](images/wireframes/home.png)
+![Cadastro](images/wireframes/cadastro.png)
+![Login](images/wireframes/login.png)
+![Perfil](images/wireframes/perfil.png)
+![Conteúdo](images/wireframes/conteudo.png)
+![Alterar perfil](images/wireframes/alterarPerfil.png)
+![Dashboard](images/wireframes/Dashboard.png)
+![Perfil adm](images/wireframes/perfilADM.png)
  
 > **Links úteis**:
 > - [Protótipos: baixa, média ou alta fidelidade?](https://medium.com/ladies-that-ux-br/prot%C3%B3tipos-baixa-m%C3%A9dia-ou-alta-fidelidade-71d897559135)
