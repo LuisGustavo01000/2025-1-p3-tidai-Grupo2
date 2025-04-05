@@ -1,66 +1,136 @@
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* === Header === */
+
 header {
+    background-color: #2d3e50;
+    padding: 15px 20px;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #333;
-    color: white;
-    padding: 10px 20px;
 }
-.logo img {
-    height: 40px;
-    border-radius: 50%;
+
+header .logo {
+    flex: 1;
 }
-nav ul {
+
+header .logo .logo-img {
+    width: 120px;
+    height: auto;
+}
+
+header .nav-content {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
-nav a {
-    text-decoration: none;
+
+header nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul li a {
     color: white;
+    text-decoration: none;
+    font-size: 16px;
     padding: 8px 12px;
-    transition: 0.3s;
-}
-nav a:hover, .active {
-    background: #555;
     border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+header nav ul li button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+header nav ul li button:hover {
+    background-color: #45a049;
+}
+
+/* === Layout do Perfil === */
+
+main{
+    margin-bottom: 10%;
 }
 .profile {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
     padding: 20px;
+    flex-wrap: nowrap;
 }
+
 .profile-card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #dddddd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    flex: 1;
+    max-width: 300px;
     text-align: center;
 }
+
+.profile-card button {
+    border-radius: 5px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 .avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    margin-bottom: 10px;
 }
+
 .finance-stats {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    width: 50%;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    flex: 2;
 }
+
 .stat-box {
-    background: white;
+    background: #dddddd;
     padding: 15px;
     text-align: center;
     border-radius: 12px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-size: 16px;
 }
+
+/* === Modal === */
+
 .modal {
     display: none;
     position: fixed;
@@ -69,18 +139,135 @@ nav a:hover, .active {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .modal-content {
-    background: white;
+    position: relative;
     padding: 20px;
+    background: #dddddd;
     border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* === Footer === */
+
+footer {
+    background-color: #2d3e50;
+    color: white;
+    padding: 10px 10px;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
 }
-.close {
-    float: right;
-    cursor: pointer;
-    font-size: 20px;
+
+footer .footer-section {
+    flex: 1;
+    padding: 10px;
+}
+
+footer .footer-section h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+footer .footer-links .link-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+}
+
+footer .footer-links .link-list a {
+    width: 45%;
+    text-decoration: none;
+    text-align: center;
+}
+
+footer .copyright {
+    font-size: 14px;
+    margin-top: 15px;
+    color: #ccc;
+}
+
+/* === Links === */
+
+a {
+    color: white;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #4CAF50;
+    text-decoration: underline !important;
+}
+
+header a:hover {
+    color: white;
+}
+
+/* === Responsivo === */
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    header .logo {
+        display: none;
+    }
+
+    header .nav-content {
+        justify-content: center;
+        width: 100%;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .profile {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-card, .finance-stats {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .finance-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-box {
+        font-size: 14px;
+    }
 }

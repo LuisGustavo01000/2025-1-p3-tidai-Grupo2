@@ -240,6 +240,10 @@ footer {
     background-color: #2d3e50;
     color: white;
     padding: 10px 10px;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 footer .footer-content {

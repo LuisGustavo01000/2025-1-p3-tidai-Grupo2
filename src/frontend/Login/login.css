@@ -118,6 +118,7 @@ header nav ul li button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     width: 300px; 
     margin: auto;
+    margin-bottom: 15%;
 }
 
 .login-container h3 {
@@ -172,6 +173,10 @@ footer {
     background-color: #2d3e50;
     color: white;
     padding: 10px 10px;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 footer .footer-content {

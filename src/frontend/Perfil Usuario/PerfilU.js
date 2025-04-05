@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("modal");
+    const modalContent = document.querySelector(".modal-content");
     const editButton = document.getElementById("editProfile");
     const closeButton = document.querySelector(".close");
     const saveButton = document.getElementById("saveProfile");
@@ -7,12 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const userAge = document.getElementById("user-age");
     const userPeriod = document.getElementById("user-period");
     
+
     editButton.addEventListener("click", () => {
         modal.style.display = "flex";
     });
     
+
     closeButton.addEventListener("click", () => {
         modal.style.display = "none";
+    });
+    
+
+    modal.addEventListener("click", (e) => {
+        if (!modalContent.contains(e.target)) {
+            modal.style.display = "none";
+        }
     });
     
     saveButton.addEventListener("click", () => {
