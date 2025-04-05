@@ -27,7 +27,7 @@ O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema 
 
 O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, internamente, a indicação dos principais elementos de interface — tais como menus e acessos — e funcionalidades, como editar, pesquisar, filtrar e configurar, além da conexão entre esses boxes a partir do processo de interação.
 
-<<<<<<< HEAD
+
 ![Exemplo de diagrama de fluxo](images/diargramaClasse.png.jpg)
 =======
 ![Diagrama de Fluxo](images/DiagramaFluxo1.png)
