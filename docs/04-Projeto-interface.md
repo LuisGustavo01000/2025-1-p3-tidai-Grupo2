@@ -1,4 +1,3 @@
-
 # Projeto de interface
 
 <span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
@@ -12,8 +11,6 @@ Visão geral da interação do usuário pelas telas do sistema e protótipo inte
 Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de navegação do usuário na aplicação. Essa técnica serve para alinhar os caminhos e as possíveis ações que o usuário pode realizar junto com os membros da equipe.
 
 ![Userflow](images/userflowTotal.png)
-
-
 
 
 > **Links úteis**:
@@ -42,16 +39,7 @@ São protótipos usados no design de interface para sugerir a estrutura de um si
 ![Dashboard](images/wireframes/Dashboard.png)
 ![Perfil adm](images/wireframes/perfilADM.png)
  
-> **Links úteis**:
-> - [Protótipos vs wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
-
-
+ 
 ## Interface do sistema
 
 Visão geral da interação do usuário por meio das telas do sistema. 
