@@ -12,12 +12,6 @@ Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapea
 
 ![Userflow](images/userflowTotal.png)
 
-
-> **Links úteis**:
-> - [User flow: o quê é e como fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User flow vs site maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 user flow tools & templates for smooth](https://www.mockplus.com/blog/post/user-flow-tools)
-
 ### Diagrama de fluxo
 
 O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo, muitas vezes sem a necessidade de desenhar o design das telas da interface. Isso permite que o design das interações seja bem planejado e tenha impacto na qualidade do design do wireframe interativo que será desenvolvido logo em seguida.
@@ -44,4 +38,19 @@ São protótipos usados no design de interface para sugerir a estrutura de um si
 
 Visão geral da interação do usuário por meio das telas do sistema. 
 
-> Apresente as principais interfaces da plataforma em sua versão final.
+![Home](./images/Telas%20Front/home.png)
+
+![Login](./images/Telas%20Front/Login.png)
+
+![Cadastro](./images/Telas%20Front/Cadastro.png)
+
+![Pagiana de Usuario](./images/Telas%20Front/PaginaUsuario.png)
+
+![Perfil Usuario](./images/Telas%20Front/PerfilUsuario.png)
+
+![Conteudo](./images/Telas%20Front/Conteudo.png)
+
+![Alterar usuario ](./images/Telas%20Front/Alterar%20usuario.png)
+
+![Alterar Administrador ](./images/Telas%20Front/Alterar%20Admin.png)
+
