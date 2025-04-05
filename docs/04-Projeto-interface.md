@@ -11,7 +11,7 @@ Visão geral da interação do usuário pelas telas do sistema e protótipo inte
 
 Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de navegação do usuário na aplicação. Essa técnica serve para alinhar os caminhos e as possíveis ações que o usuário pode realizar junto com os membros da equipe.
 
-
+![Userflow](images/userflowTotal.png)
 
 
 
@@ -27,11 +27,8 @@ O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema 
 
 O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, internamente, a indicação dos principais elementos de interface — tais como menus e acessos — e funcionalidades, como editar, pesquisar, filtrar e configurar, além da conexão entre esses boxes a partir do processo de interação.
 
-<<<<<<< HEAD
 ![Exemplo de diagrama de fluxo](images/diargramaClasse.png.jpg)
-=======
 ![Diagrama de Fluxo](images/DiagramaFluxo1.png)
->>>>>>> a3e60d09af1d9f08e8c45f8d9b74c4f7f892b179
 
 
 ## Wireframes
