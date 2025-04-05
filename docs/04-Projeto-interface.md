@@ -31,7 +31,7 @@ O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, intername
 ![Exemplo de diagrama de fluxo](images/diargramaClasse.png.jpg)
 =======
 ![Diagrama de Fluxo](images/DiagramaFluxo1.png)
->>>>>>> a3e60d09af1d9f08e8c45f8d9b74c4f7f892b179
+
 
 
 ## Wireframes
