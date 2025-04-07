@@ -29,7 +29,7 @@ header .logo .logo-img {
 }
 
 header .nav-content {
-    flex: 2; 
+    flex: 2;
     display: flex;
     justify-content: flex-end;
 }
@@ -37,7 +37,8 @@ header .nav-content {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 20px; /* Espaço entre os itens */
+    gap: 20px;
+    /* Espaço entre os itens */
 }
 
 header nav ul li {
@@ -49,7 +50,7 @@ header nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    padding: 8px 12px;
+    padding: 5px 10px;
     border-radius: 5px;
     transition: background 0.3s ease;
 }
@@ -58,8 +59,13 @@ header nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-header nav ul li button {
-    background-color: #4CAF50;
+header nav ul li:last-child a:hover {
+    background-color: transparent;
+}
+
+
+header nav ul li a.login-button {
+    background-color: #5e5e5e;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -67,16 +73,22 @@ header nav ul li button {
     border-radius: 5px;
     font-size: 16px;
     transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-header nav ul li button:hover {
+header nav ul li a.login-button:hover {
     background-color: #45a049;
 }
+
+
+
 
 /* Responsividade */
 @media (max-width: 768px) {
     header .logo {
-        display: none; /* Esconde a logo */
+        display: none;
+        /* Esconde a logo */
     }
 
     header {
@@ -95,8 +107,10 @@ header nav ul li button:hover {
 
     header nav ul {
         display: flex;
-        flex-wrap: wrap; /* Permite que os itens quebrem linha se necessário */
-        justify-content: center; /* Centraliza os itens */
+        flex-wrap: wrap;
+        /* Permite que os itens quebrem linha se necessário */
+        justify-content: center;
+        /* Centraliza os itens */
         align-items: center;
         padding: 0;
         gap: 10px;
@@ -133,7 +147,7 @@ header nav ul li button:hover {
 }
 
 .card {
-    background: white;
+    background: #cbdfe0;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -170,6 +184,7 @@ header nav ul li button:hover {
 table {
     width: 100%;
     border-collapse: collapse;
+    margin: auto;
 }
 
 th, td {
@@ -183,6 +198,10 @@ th {
     color: white;
 }
 
+td{
+    background-color: #cbdfe0;
+}
+
 .income {
     color: green;
     font-weight: bold;
@@ -193,19 +212,26 @@ th {
     font-weight: bold;
 }
 
+
 footer {
     background-color: #2d3e50;
     color: white;
     padding: 10px 10px;
-        margin-top: auto;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+
 }
 
 footer .footer-content {
     display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
     margin: 0 auto;
-    text-align: center;
 }
 
 footer .footer-section {
@@ -216,18 +242,20 @@ footer .footer-section {
 footer .footer-section h4 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #4CAF50; 
+    color: #4CAF50;
 }
 
 footer .footer-links .link-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px 20px; /* espaço entre os links */
+    gap: 8px 20px;
+    /* espaço entre os links */
 }
 
 footer .footer-links .link-list a {
-    width: 45%; /* força duas colunas (50% - gap) */
+    width: 45%;
+    /* força duas colunas (50% - gap) */
     text-decoration: none;
     text-align: center;
 }
@@ -239,16 +267,13 @@ footer .copyright {
     color: #ccc;
 }
 
-a {
+footer a {
     color: white;
     text-decoration: none !important;
 }
 
-a:hover {
-    color: #4CAF50;/* Verde */
+footer a:hover {
+    color: #4CAF50;
+    /* Verde */
     text-decoration: underline !important;
-}
-
-header a:hover{
-    color: white;
 }

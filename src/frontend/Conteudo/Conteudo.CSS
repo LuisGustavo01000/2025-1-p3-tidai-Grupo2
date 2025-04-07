@@ -1,110 +1,144 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
-    color: #333;
-  }
-  
-  /* Header */
-  header {
-    background-color: #2d3e50;
-    padding: 15px 20px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+header {
+  background-color: #2d3e50;
+  padding: 15px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  flex: 1;
+}
+
+header .logo .logo-img {
+  width: 120px;
+  height: auto;
+}
+
+header .nav-content {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  /* Espaço entre os itens */
+}
+
+header nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+header nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+header nav ul li:last-child a:hover {
+  background-color: transparent;
+}
+
+
+header nav ul li a.login-button {
+  background-color: #5e5e5e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+header nav ul li a.login-button:hover {
+  background-color: #45a049;
+}
+
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
   header .logo {
-    flex: 1;
-  }
-  
-  header .logo .logo-img {
-    width: 120px;
-    height: auto;
-  }
-  
-  header .nav-content {
-    flex: 2;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  header nav ul li {
-    display: flex;
-    align-items: center;
-  }
-  
-  header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-  }
-  
-  header nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  /* Botão de login */
-  .login-button {
-    background-color: #4CAF50;
-    color: white !important;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-  }
-  
-  /* Responsividade do header */
-  @media (max-width: 768px) {
-    header .logo {
       display: none;
-    }
-    header {
+      /* Esconde a logo */
+  }
+
+  header {
+      display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       padding: 10px 0;
-    }
-    header .nav-content {
+  }
+
+  header .nav-content {
       display: flex;
       justify-content: center;
       width: 100%;
-    }
-    header nav ul {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
   }
+
+  header nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      /* Permite que os itens quebrem linha se necessário */
+      justify-content: center;
+      /* Centraliza os itens */
+      align-items: center;
+      padding: 0;
+      gap: 10px;
+      list-style: none;
+  }
+
+  header nav ul li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+}
+
+
+
   
-  /* Conteúdo */
   .content {
     display: flex;
     justify-content: space-between;
     padding: 20px;
     gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 15%;
   }
   
   .left-panel, .right-panel {
     width: 48%;
-    background: white;
+    background: #cbdfe0;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -117,6 +151,12 @@
       width: 100%;
     }
   }
+
+  .left-panel #addContent{
+    border-radius: 15px;
+    padding: 5px;
+  }
+
   .image-gallery {
     display: flex;
     gap: 10px;
@@ -126,7 +166,7 @@
   .image-box {
     width: 80px;
     height: 80px;
-    background: #ccc;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,7 +183,7 @@
   .grid-item {
     width: 80px;
     height: 80px;
-    background: #ddd;
+    background: white;
     border-radius: 10px;
   }
   
@@ -180,64 +220,69 @@
     font-size: 20px;
   }
   
-  /* Footer */
+
+
   footer {
     background-color: #2d3e50;
     color: white;
-    padding: 20px 0;
-  }
-  
-  footer .footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 10px 10px;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     text-align: center;
+
+}
+
+footer .footer-content {
+    display: flex;
     flex-wrap: wrap;
-  }
-  
-  footer .footer-section {
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+footer .footer-section {
     flex: 1;
     padding: 10px;
-  }
-  
-  footer .footer-section h4 {
+}
+
+footer .footer-section h4 {
     font-size: 18px;
     margin-bottom: 10px;
     color: #4CAF50;
-  }
-  
-  footer .footer-links .link-list {
+}
+
+footer .footer-links .link-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px 20px;
-  }
-  
-  footer .footer-links .link-list a {
+    /* espaço entre os links */
+}
+
+footer .footer-links .link-list a {
     width: 45%;
+    /* força duas colunas (50% - gap) */
     text-decoration: none;
     text-align: center;
-  }
-  
-  footer .footer-copyright {
+}
+
+
+footer .copyright {
     font-size: 14px;
     margin-top: 15px;
     color: #ccc;
-  }
-  
-  /* Links */
-  a {
+}
+
+footer a {
     color: white;
     text-decoration: none !important;
-  }
-  
-  a:hover {
+}
+
+footer a:hover {
     color: #4CAF50;
+    /* Verde */
     text-decoration: underline !important;
-  }
-  
-  header a:hover {
-    color: white;
-  }
-  
+}

@@ -29,7 +29,7 @@ header .logo .logo-img {
 }
 
 header .nav-content {
-    flex: 2; 
+    flex: 2;
     display: flex;
     justify-content: flex-end;
 }
@@ -37,7 +37,8 @@ header .nav-content {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 20px; /* Espaço entre os itens */
+    gap: 20px;
+    /* Espaço entre os itens */
 }
 
 header nav ul li {
@@ -49,7 +50,7 @@ header nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    padding: 8px 12px;
+    padding: 5px 10px;
     border-radius: 5px;
     transition: background 0.3s ease;
 }
@@ -58,8 +59,13 @@ header nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-header nav ul li button {
-    background-color: #4CAF50;
+header nav ul li:last-child a:hover {
+    background-color: transparent;
+}
+
+
+header nav ul li a.login-button {
+    background-color: #5e5e5e;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -67,16 +73,22 @@ header nav ul li button {
     border-radius: 5px;
     font-size: 16px;
     transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-header nav ul li button:hover {
+header nav ul li a.login-button:hover {
     background-color: #45a049;
 }
+
+
+
 
 /* Responsividade */
 @media (max-width: 768px) {
     header .logo {
-        display: none; /* Esconde a logo */
+        display: none;
+        /* Esconde a logo */
     }
 
     header {
@@ -95,8 +107,10 @@ header nav ul li button:hover {
 
     header nav ul {
         display: flex;
-        flex-wrap: wrap; /* Permite que os itens quebrem linha se necessário */
-        justify-content: center; /* Centraliza os itens */
+        flex-wrap: wrap;
+        /* Permite que os itens quebrem linha se necessário */
+        justify-content: center;
+        /* Centraliza os itens */
         align-items: center;
         padding: 0;
         gap: 10px;
@@ -116,32 +130,37 @@ header nav ul li button:hover {
 
 
 .hero {
-    background-color: #1e2d3b; 
+    background-color: #1e2d3b;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 5px;
 }
 
 .hero h1 {
     font-size: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .hero p {
     font-size: 20px;
-    margin-bottom: 30px;
 }
 
 .carousel {
-    min-height: 350px; /* Mantém um tamanho fixo para o carrossel */
-    overflow: hidden; /* Impede que imagens maiores causem problemas */
-    padding: 10px 30px;
+    min-height: 350px;
+    overflow: hidden;
+    padding: 10px 80px;
+}
+
+@media (max-width: 768px) {
+    .carousel{
+        display: none;
+    }
 }
 
 .carousel img {
-    width: 100%;  /* Garante que as imagens preencham o contêiner */
-    height: 350px; /* Altura fixa para evitar mudanças bruscas */
-    object-fit: cover; /* Mantém a proporção e corta o excesso */
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
 }
 
 .about {
@@ -153,22 +172,22 @@ header nav ul li button:hover {
 .about h2 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #2d3e50; 
+    color: #2d3e50;
 }
 
 .about p {
     font-size: 18px;
     line-height: 1.6;
-    color: #666; 
+    color: #666;
 }
 
 .services {
     display: flex;
-    flex-direction: column; /* Organiza os itens em coluna */
-    align-items: center; /* Centraliza os itens horizontalmente */
+    flex-direction: column;
+    align-items: center;
     padding: 50px 0;
     background-color: #ffffff;
-    text-align: center; /* Centraliza o texto do h2 */
+    text-align: center;
 }
 
 .services h2 {
@@ -179,9 +198,9 @@ header nav ul li button:hover {
 
 .service-card-container {
     display: flex;
-    flex-wrap: wrap; /* Permite quebrar linha */
-    justify-content: center; /* Centraliza os cards */
-    gap: 20px; /* Espaço entre os cards */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     width: 100%;
     max-width: 1000px;
 }
@@ -189,9 +208,9 @@ header nav ul li button:hover {
 .service-card {
     background-color: #f1f1f1;
     padding: 20px;
-    flex: 1 1 300px; /* Flexível, com largura mínima de 300px */
-    max-width: 30%; /* Garante no máx. 3 por linha */
+    flex: 1 1 300px;
     text-align: center;
+    max-width: 250px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
@@ -199,22 +218,28 @@ header nav ul li button:hover {
 
 
 .service-card:hover {
-    background-color: #e2e2e2;
+    background-color: #cbdfe0;
     transform: scale(1.05);
     transition: 0.3s;
 }
 
+@media (max-width: 768px) {
+    .service-card-container {
+        flex-wrap: wrap;
+    }
+}
+
 
 .blog {
-    padding: 50px 20px;
+    padding: 30px 20px;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #cbdfe0;
 }
 
 .blog h2 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #2d3e50; 
+    color: #2d3e50;
 }
 
 .blog-post {
@@ -224,13 +249,13 @@ header nav ul li button:hover {
 .blog-post h3 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #4CAF50; 
+    color: #4CAF50;
 }
 
 .blog-post p {
     font-size: 18px;
     line-height: 1.6;
-    color: #666; 
+    color: #666;
 }
 
 
@@ -244,14 +269,17 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
+    text-align: center;
+
 }
 
 footer .footer-content {
     display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
     margin: 0 auto;
-    text-align: center;
 }
 
 footer .footer-section {
@@ -262,18 +290,20 @@ footer .footer-section {
 footer .footer-section h4 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #4CAF50; 
+    color: #4CAF50;
 }
 
 footer .footer-links .link-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px 20px; /* espaço entre os links */
+    gap: 8px 20px;
+    /* espaço entre os links */
 }
 
 footer .footer-links .link-list a {
-    width: 45%; /* força duas colunas (50% - gap) */
+    width: 45%;
+    /* força duas colunas (50% - gap) */
     text-decoration: none;
     text-align: center;
 }
@@ -285,16 +315,13 @@ footer .copyright {
     color: #ccc;
 }
 
-a {
+footer a {
     color: white;
     text-decoration: none !important;
 }
 
-a:hover {
-    color: #4CAF50;/* Verde */
+footer a:hover {
+    color: #4CAF50;
+    /* Verde */
     text-decoration: underline !important;
-}
-
-header a:hover{
-    color: white;
 }
