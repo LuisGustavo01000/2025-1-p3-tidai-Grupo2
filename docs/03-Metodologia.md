@@ -59,7 +59,8 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 - Desenvolvedor _front-end_: Gabriel Henrique, Kauan Maia e Luis Gustavo 
 - Desenvolvedor _back-end_: Christiano, Allan e Thiago
 - Testes: Christiano e Allan
-- Protótipos: Gabriel Henrique, Kauan Maia e Luis Gustavo, Allan Junio, Thiago Marques e Christiano
+- Protótipos: Gabriel Henrique, Kauan Maia e Luis Gustavo
+- wireframes desktop: Allan
 - Diagrama de classes: Allan, Thiago e Luiz 
 
 ####  Quadro de tarefas
@@ -95,6 +96,8 @@ Atualizado em: 21/04/2024
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoK        | Script de login  |  01/01/2024    | 04/04/2024 | ❌    |       |
 | Allan        | Wireframes desktop  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Allan        | Diagrama de classes  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+
 
 
 Legenda:
