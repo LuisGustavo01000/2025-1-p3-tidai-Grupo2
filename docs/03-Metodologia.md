@@ -61,7 +61,7 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 - Testes: Christiano e Allan
 - Protótipos: Gabriel Henrique, Kauan Maia e Luis Gustavo
 - wireframes desktop: Allan
-- Diagrama de classes: Allan, Thiago e Luiz 
+- Diagrama de classes: Allan, Thiago e Luis Gustavo
 
 ####  Quadro de tarefas
 
@@ -87,16 +87,21 @@ Atualizado em: 23/02/2025
 
 #### Sprint 2
 
-Atualizado em: 21/04/2024
+Atualizado em: 07/04/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 04/04/2024 | ❌    |       |
-| Allan        | Wireframes desktop  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Luis Gustavo       | Página inicial   |  17/03/2025  | 28/03/2025 | ✔️    | 28/03/2025      |
+| Luis Gustavo        | CSS unificado    | 17/03/2024     | 28/03/2025 |   ✔️ |      28/03/2025           |
+| Luis Gustavo       | Página de login  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
+| Luis Gustavo       | Página do Usuário  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
+| Luis Gustavo       | Páginas de Alterações  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
+| Luis Gustavo       | Página de Curiosidades   | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
+| Luis Gustavo       | Script de login  |  01/01/2025    | 08/04/2025 | 📝   |       |
+| Allan, Luis Gustavo      | Wireframes desktop  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Allan, Luis Gustavo      | Userflow   |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 | Allan        | Diagrama de classes  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Luis Gustavo        | Diagrama de fluxo  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
 
 
 
