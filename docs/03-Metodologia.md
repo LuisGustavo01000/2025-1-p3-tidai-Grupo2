@@ -99,9 +99,10 @@ Atualizado em: 07/04/2025
 | Luis Gustavo       | Página de Curiosidades   | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
 | Luis Gustavo       | Script de login  |  01/01/2025    | 08/04/2025 | 📝   |       |
 | Allan, Luis Gustavo      | Wireframes desktop  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
-| Allan, Luis Gustavo      | Userflow   |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
-| Allan        | Diagrama de classes  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Allan, Luis Gustavo , Thiago     | Userflow   |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Allan, Thiago        | Diagrama de classes  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 | Luis Gustavo        | Diagrama de fluxo  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
+| Thiago        | Desenvolvimento Diagrama DER  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
 
 
 
