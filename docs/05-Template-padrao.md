@@ -8,7 +8,7 @@ A estrutura da página principal segue um layout moderno e responsivo, com um me
 
 A identidade visual é mantida através de ícones ilustrativos e tipografia limpa, oferecendo uma experiência agradável e confiável para o usuário.
 
-![Template padrão da aplicação](images/TelasFront/home.png)
+![Template padrão da aplicação](./images/Telas%20Front/home.png)
 > **Links úteis**:
 >
 > - [CSS website layout (W3Schools)](https://www.w3schools.com/css/css_website_layout.asp)
