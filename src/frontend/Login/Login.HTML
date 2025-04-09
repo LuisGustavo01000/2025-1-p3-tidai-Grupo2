@@ -10,48 +10,51 @@
     <script defer src="login.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="../Home/Home.html">
-                <img src="../../img/LogoCashWiseTransparente2.png" alt="CashWise Logo" class="logo-img">
-            </a>
+    <main>
+        <header>
+            <div class="logo">
+                <a href="../Home/Home.html">
+                    <img src="../../img/LogoCashWiseTransparente2.png" alt="CashWise Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-content">
+                <nav>
+                    <ul>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+    
+        <section class="login-section">
+            <div class="cabeca">
+            <div class="login-container"> 
+                <h3>Entre na sua conta</h2> 
+                <form action="home.html" method="POST">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Value" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="Value" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Logar</button>
+                    <div class="links">
+                        <a href="#">Esqueceu a senha?</a><p>
+                    <a href="../Cadastro/Cadastro.html">Não tem login? Clique aqui</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="nav-content">
-            <nav>
-                <ul>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Serviços</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-
-    <section class="login-section">
-        <div class="cabeca">
-        <div class="login-container"> 
-            <h3>Entre na sua conta</h2> 
-            <form action="home.html" method="POST">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Value" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" name="password" placeholder="Value" required>
-                </div>
-                <button type="submit" class="submit-btn">Logar</button>
-                <div class="links">
-                    <a href="#">Esqueceu a senha?</a><p>
-                <a href="../Cadastro/Cadastro.html">Não tem login? Clique aqui</a>
-                    </p>
-                </div>
-            </form>
-        </div>
-    </div>
-    </section>
+        </section>
+    </main>
+    
 
     
     <footer>
