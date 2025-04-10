@@ -63,6 +63,7 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 - wireframes desktop: Allan
 - Diagrama de classes: Allan, Thiago e Luis Gustavo
 - Diagrama DER: Thiago Marques
+- Template padrão da aplicação: Christiano e Allan
 
 ####  Quadro de tarefas
 
@@ -105,7 +106,7 @@ Atualizado em: 07/04/2025
 | Luis Gustavo        | Diagrama de fluxo  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
 | Thiago        | Desenvolvimento Diagrama DER  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
 | Christiano        | Estrutura back-end do projeto  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
-
+| Allan e Christiano        | Template padrão da aplicação  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 
 
 Legenda:
