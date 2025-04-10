@@ -57,11 +57,12 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 #### Sprint 2
 - _Scrum master_: Luis Gustavo
 - Desenvolvedor _front-end_: Gabriel Henrique, Kauan Maia e Luis Gustavo 
-- Desenvolvedor _back-end_: Christiano, Allan e Thiago
-- Testes: Christiano e Allan
+- Criação estrutura back-end: Christiano e Allan
+- - Testes: Christiano 
 - Protótipos: Gabriel Henrique, Kauan Maia e Luis Gustavo
 - wireframes desktop: Allan
 - Diagrama de classes: Allan, Thiago e Luis Gustavo
+- Diagrama DER: Thiago Marques
 
 ####  Quadro de tarefas
 
@@ -98,11 +99,12 @@ Atualizado em: 07/04/2025
 | Luis Gustavo       | Páginas de Alterações  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
 | Luis Gustavo       | Página de Curiosidades   | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
 | Luis Gustavo       | Script de login  |  01/01/2025    | 08/04/2025 | 📝   |       |
-| Allan, Luis Gustavo      | Wireframes desktop  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Allan, Luis Gustavo e Christiano     | Wireframes desktop  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 | Allan, Luis Gustavo , Thiago     | Userflow   |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 | Allan, Thiago        | Diagrama de classes  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 | Luis Gustavo        | Diagrama de fluxo  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
 | Thiago        | Desenvolvimento Diagrama DER  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
+| Christiano        | Estrutura back-end do projeto  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 
 
 
