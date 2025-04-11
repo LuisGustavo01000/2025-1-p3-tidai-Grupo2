@@ -61,6 +61,7 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 - - Testes: Christiano 
 - Protótipos: Gabriel Henrique, Kauan Maia e Luis Gustavo
 - wireframes desktop: Allan
+- Userflow: Kauan
 - Diagrama de classes: Allan, Thiago e Luis Gustavo
 - Diagrama DER: Thiago Marques
 - Template padrão da aplicação: Christiano e Allan
@@ -94,14 +95,15 @@ Atualizado em: 07/04/2025
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Luis Gustavo       | Página inicial   |  17/03/2025  | 28/03/2025 | ✔️    | 28/03/2025      |
-| Luis Gustavo        | CSS unificado    | 17/03/2024     | 28/03/2025 |   ✔️ |      28/03/2025           |
+| Luis Gustavo , Kauan      | CSS  | 17/03/2024     | 28/03/2025 |   ✔️ |      28/03/2025           |
 | Luis Gustavo       | Página de login  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
 | Luis Gustavo       | Página do Usuário  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
-| Luis Gustavo       | Páginas de Alterações  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
-| Luis Gustavo       | Página de Curiosidades   | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
+| Luis Gustavo , Kauan     | Páginas de Alterações  | 17/03/2024     | 28/03/2025 | ✔️     |        28/03/2025         |
+| Luis Gustavo , Kauan      | Página de Conteúdo   | 17/03/2024     | 28/03/2025 | ✔️     |        11/04/2025         |
+| Kauan Maia         | Estilização e Responsividade | 26/03/2024     | 04/04/2025 | ✔️     |        04/04/2025         |
 | Luis Gustavo       | Script de login  |  01/01/2025    | 08/04/2025 | 📝   |       |
 | Allan, Luis Gustavo e Christiano     | Wireframes desktop  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
-| Allan, Luis Gustavo , Thiago     | Userflow   |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
+| Allan, Luis Gustavo , Thiago , Kauan     | Userflow   |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 | Allan, Thiago        | Diagrama de classes  |  24/03/2025    | 04/04/2025 | ✔️    | 04/04/2025    |
 | Luis Gustavo        | Diagrama de fluxo  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
 | Thiago        | Desenvolvimento Diagrama DER  | 13/03/2025    | 17/03/2025 | ✔️    | 17/03/2025    |
@@ -130,7 +132,7 @@ Os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a 
 | Repositório de código fonte         | GitHub                             | https://github.com/ICEI-PUC-Minas-PCO-ADS-TI/2025-1-p3-tidai-Grupo2/tree/main                         |
 | Documentos do projeto               | GitHub                             |https://github.com/ICEI-PUC-Minas-PCO-ADS-TI/2025-1-p3-tidai-Grupo2/tree/main                          |
 | Projeto de interface                | Figma                              | https://www.figma.com/design/HOKK8Z1TzB6bPkutBZjCTI/Untitled?node-id=1-2965&t=PMBLbvdI94FArAoD-0                    |
-| Projeto de interface - Userflow     | Mockplus                             | https://rp.mockplus.com/run/TwvtDUYRSm/i88ReQcp8lcps=expand&rps=expand&nav=1&ha=0&la=0&fc=1&dt=iphoneX&out=0&rt=1&as=true  
+| Projeto de interface - Userflow     | Figma                             | https://www.figma.com/proto/qX1Zd1OEn1wMz0MxEkUkeb/TIADAI-_-Templates?node-id=89-434&t=hhgH5FbL4xym4Rt3-1  
 | Gerenciamento do projeto            | GitHub Projects                    |https://github.com/ICEI-PUC-Minas-PCO-ADS-TI/2025-1-p3-tidai-Grupo2/projects?query=is%3Aopen                          |
 | Hospedagem                          | Azure                           | http://....                            |
  
