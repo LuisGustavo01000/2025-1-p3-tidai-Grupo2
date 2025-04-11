@@ -30,25 +30,31 @@
     </div>
 </header>
 
-  <main>
-    <section class="profile-edit">
+<main>
+  <section class="profile-edit">
+    <div class="profile-info-container">
       <div class="profile-picture">
         <img id="profileImage" src="../../img/userPlaceholder.png" alt="Foto do usuário">
         <button id="changeImage">Alterar imagem ✎</button>
         <input type="file" id="imageInput" accept="image/*" hidden>
       </div>
-      <div class="form-group">
-        <input type="text" id="newName" placeholder="Novo nome">
+      <div class="profile-form">
+        <p>Nome</p>
+        <div class="form-group">
+          <input type="text" id="newName" placeholder="Novo nome">
+        </div>
+        <div class="form-group">
+          <input type="password" id="newPassword" placeholder="Nova senha">
+        </div>
+        <div class="form-group">
+          <input type="password" id="confirmPassword" placeholder="Confirmar senha">
+        </div>
+        <button id="saveChanges">SALVAR ALTERAÇÕES</button>
       </div>
-      <div class="form-group">
-        <input type="password" id="newPassword" placeholder="Nova senha">
-      </div>
-      <div class="form-group">
-        <input type="password" id="confirmPassword" placeholder="Confirmar senha">
-      </div>
-      <button id="saveChanges">SALVAR ALTERAÇÕES</button>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
+
 
   
 
