@@ -1,3 +1,5 @@
+/* usuario.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +10,9 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f1f1f1;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -17,36 +22,24 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-header .logo {
-    flex: 1;
-}
-
-header .logo .logo-img {
+.logo-img {
     width: 120px;
     height: auto;
 }
 
-header .nav-content {
-    flex: 2;
-    display: flex;
-    justify-content: flex-end;
-}
-
-header nav ul {
+.nav-content ul {
     list-style: none;
     display: flex;
     gap: 20px;
-    /* Espaço entre os itens */
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
 }
 
-header nav ul li {
-    display: flex;
-    align-items: center;
-}
-
-header nav ul li a {
+.nav-content ul li a {
     color: white;
     text-decoration: none;
     font-size: 16px;
@@ -55,94 +48,35 @@ header nav ul li a {
     transition: background 0.3s ease;
 }
 
-header nav ul li a:hover {
+.nav-content ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-header nav ul li:last-child a:hover {
-    background-color: transparent;
-}
-
-
-header nav ul li a.login-button {
+.login-button {
     background-color: #5e5e5e;
     color: white;
-    border: none;
     padding: 10px 20px;
-    cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
     transition: background 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
 }
 
-header nav ul li a.login-button:hover {
+.login-button:hover {
     background-color: #45a049;
 }
 
-
-
-
-/* Responsividade */
-@media (max-width: 768px) {
-    header .logo {
-        display: none;
-        /* Esconde a logo */
-    }
-
-    header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 10px 0;
-    }
-
-    header .nav-content {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    header nav ul {
-        display: flex;
-        flex-wrap: wrap;
-        /* Permite que os itens quebrem linha se necessário */
-        justify-content: center;
-        /* Centraliza os itens */
-        align-items: center;
-        padding: 0;
-        gap: 10px;
-        list-style: none;
-    }
-
-    header nav ul li {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-
-
-
 .dashboard {
-    display: block;
     padding: 20px;
-    width: 80%;
+    width: 90%;
     max-width: 1000px;
-    margin:auto
-}
-
-.dashboard header {
-    text-align: center;
-    margin-bottom: 20px;
+    margin: auto;
 }
 
 .dashboard-cards {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
     margin-bottom: 30px;
 }
 
@@ -152,7 +86,8 @@ header nav ul li a.login-button:hover {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 30%;
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 250px;
 }
 
 .card h3 {
@@ -165,7 +100,6 @@ header nav ul li a.login-button:hover {
     font-weight: bold;
     color: #4CAF50;
 }
-
 
 .chart-section {
     text-align: center;
@@ -184,22 +118,18 @@ header nav ul li a.login-button:hover {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: auto;
 }
 
 th, td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: center;
+    background-color: #cbdfe0;
 }
 
 th {
     background-color: #333;
     color: white;
-}
-
-td{
-    background-color: #cbdfe0;
 }
 
 .income {
@@ -212,20 +142,15 @@ td{
     font-weight: bold;
 }
 
-
 footer {
     background-color: #2d3e50;
     color: white;
-    padding: 10px 10px;
-    position: static;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    padding: 20px 10px;
     text-align: center;
-
+    margin-top: auto;
 }
 
-footer .footer-content {
+.footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -234,59 +159,76 @@ footer .footer-content {
     margin: 0 auto;
 }
 
-footer .footer-section {
+.footer-section {
     flex: 1;
     padding: 10px;
+    min-width: 200px;
 }
 
-footer .footer-section h4 {
+.footer-section h4 {
     font-size: 18px;
     margin-bottom: 10px;
     color: #4CAF50;
 }
 
-footer .footer-links .link-list {
+.footer-links .link-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px 20px;
-    /* espaço entre os links */
 }
 
-footer .footer-links .link-list a {
+.footer-links .link-list a {
     width: 45%;
-    /* força duas colunas (50% - gap) */
     text-decoration: none;
     text-align: center;
-}
-
-
-footer .copyright {
-    font-size: 14px;
-    margin-top: 15px;
-    color: #ccc;
-}
-
-footer a {
     color: white;
-    text-decoration: none !important;
 }
 
-footer a:hover {
+.footer-links .link-list a:hover {
     color: #4CAF50;
-    /* Verde */
-    text-decoration: underline !important;
+    text-decoration: underline;
 }
 
-html, body {
-    height: 100%;
-}
-  
-body {
-    display: flex;
-    flex-direction: column;
-}
-  
-footer {
-    margin-top: auto;
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .dashboard-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    td {
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+    }
+
+    td::before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        content: attr(data-label);
+    }
 }

@@ -2,67 +2,56 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cash Wise - Conteúdos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cash Wise – Conteúdos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-  <link rel="stylesheet" href="Conteudo.CSS">
-  <script defer src="Conteudo.JS"></script>
+  <link rel="stylesheet" href="Conteudo.css">
+  <script defer src="Conteudo.js"></script>
 </head>
 <body>
-<main>
+
   <header>
     <div class="logo">
-        <a href="../Home/Home.html">
-            <img src="../../img/LogoCashWiseTransparente2.png" alt="CashWise Logo" class="logo-img">
-        </a>
+      <a href="../Home/Home.html">
+        <img src="../../img/LogoCashWiseTransparente2.png" alt="CashWise Logo" class="logo-img">
+      </a>
     </div>
     <div class="nav-content">
-        <nav>
-            <ul>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="../Login/Login.HTML" class="login-button">Login</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <ul>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Serviços</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="../Login/Login.HTML" class="login-button">Login</a></li>
+        </ul>
+      </nav>
     </div>
-</header>
+  </header>
 
-  <main>
-    <section class="content">
-      <div class="left-panel">
-        <h2>Conteúdos <button id="addContent">➕</button></h2>
-        <p>Inserir conteúdos financeiros</p>
-        <div class="image-gallery">
-          <div class="image-box">imagens</div>
-          <div class="image-box">imagens</div>
-          <div class="image-box">imagens</div>
+  <main class="content">
+    <aside class="content-sidebar">
+      <h2>➕ Adicionar Conteúdo</h2>
+      <form id="contentForm">
+        <div class="form-group">
+          <label for="contentTitle">Título</label>
+          <input type="text" id="contentTitle" placeholder="Ex: Como poupar no mês" required>
         </div>
-      </div>
-      <div class="right-panel">
-        <h2>Conteúdos</h2>
-        <div class="image-grid">
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item highlight"></div>
+        <div class="form-group">
+          <label for="contentDesc">Descrição</label>
+          <textarea id="contentDesc" rows="3" placeholder="Descrição breve" required></textarea>
         </div>
+        <button type="submit" class="btn-add">Adicionar</button>
+      </form>
+    </aside>
+
+    <section class="content-main">
+      <h2>Lista de Conteúdos</h2>
+      <div class="cards-grid" id="cardsGrid">
+        <!-- cards serão inseridos aqui via JS -->
       </div>
     </section>
   </main>
-
-  <div id="modal" class="custom-modal">
-    <div class="custom-modal-content">
-      <span class="close">&times;</span>
-      <h2>Adicionar Conteúdo</h2>
-      <input type="text" placeholder="Título do conteúdo" id="contentTitle">
-      <textarea placeholder="Descrição"></textarea>
-      <button id="saveContent">Salvar</button>
-    </div>
-  </div>
-</main>
- 
 
   <footer>
     <div class="footer-content">
@@ -78,7 +67,7 @@
       <div class="footer-section footer-contacts">
         <h4>Contato</h4>
         <p>Email: contato@cashwise.com</p>
-        <p>Telefone: (00) 1234-5678</p>
+        <p>Telefone: (00) 1234‑5678</p>
       </div>
       <div class="footer-section footer-copyright">
         <p>2025 CashWise &copy; TIADAI</p>
