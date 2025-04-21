@@ -7,11 +7,18 @@ namespace YourProject.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Nome { get; set; }
+        
+        [Required]
+        public string Nome { get; set; } = string.Empty;
+        
         public double Valor { get; set; }
         public DateTime Prazo { get; set; }
-        public string Status { get; set; }
-        public Pessoa Usuario { get; set; }
+        
+        [Required]
+        public string Status { get; set; } = string.Empty;
+        
+        [Required]
+        public Pessoa Usuario { get; set; } = null!;
 
         public void AddMeta() { }
         public void AtualizarMeta() { }

@@ -1,10 +1,40 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
-  headers: {
-    'Content-Type': 'application/json'
+class Api {
+  private static instance: Api;
+  private api: AxiosInstance;
+
+  private constructor() {
+    this.api = axios.create({
+      baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    this.setupInterceptors();
   }
-});
 
-export default api;
+  private setupInterceptors(): void {
+    this.api.interceptors.response.use(
+      response => response,
+      error => {
+        console.error('API Error:', error);
+        return Promise.reject(error);
+      }
+    );
+  }
+
+  public static getInstance(): Api {
+    if (!Api.instance) {
+      Api.instance = new Api();
+    }
+    return Api.instance;
+  }
+
+  public getAxiosInstance(): AxiosInstance {
+    return this.api;
+  }
+}
+
+export default Api.getInstance().getAxiosInstance();

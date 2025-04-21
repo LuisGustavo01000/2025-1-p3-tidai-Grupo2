@@ -8,11 +8,19 @@ namespace YourProject.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Descricao { get; set; }
+        
+        [Required]
+        public string Descricao { get; set; } = string.Empty;
+        
         public double Valor { get; set; }
-        public string Tipo { get; set; } // "Receita" ou "Despesa"
+        
+        [Required]
+        public string Tipo { get; set; } = string.Empty; // "Receita" ou "Despesa"
+        
         public DateTime Data { get; set; }
-        public Pessoa Usuario { get; set; }
+        
+        [Required]
+        public Pessoa Usuario { get; set; } = null!;
 
         public void RegistrarTransacao() { }
         public void ExcluirTransacao() { }

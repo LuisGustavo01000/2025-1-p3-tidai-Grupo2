@@ -7,7 +7,10 @@ namespace YourProject.Models
     {
         [Key]
         public int Id { get; set; }
-        public Pessoa Usuario { get; set; }
+        
+        [Required]
+        public Pessoa Usuario { get; set; } = null!;
+        
         public double SaldoTotal { get; set; }
         public double InvestimentoTotal { get; set; }
 

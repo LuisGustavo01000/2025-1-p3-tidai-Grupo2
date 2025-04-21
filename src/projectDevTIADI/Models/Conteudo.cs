@@ -7,10 +7,18 @@ namespace YourProject.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Titulo { get; set; }
-        public string Descricao { get; set; }
-        public string Tipo { get; set; } // "Receita" ou "Economia"
-        public string Nivel { get; set; } // "Iniciante" ou "Avançado"
+        
+        [Required]
+        public string Titulo { get; set; } = string.Empty;
+        
+        [Required]
+        public string Descricao { get; set; } = string.Empty;
+        
+        [Required]
+        public string Tipo { get; set; } = string.Empty; // "Receita" ou "Economia"
+        
+        [Required]
+        public string Nivel { get; set; } = string.Empty; // "Iniciante" ou "Avançado"
 
         public void GetId() { }
         public void GetConteudo() { }

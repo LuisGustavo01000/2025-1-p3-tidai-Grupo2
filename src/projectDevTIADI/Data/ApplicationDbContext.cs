@@ -10,11 +10,12 @@ namespace YourProject.Data
         {
         }
 
-        public DbSet<Pessoa> Pessoas { get; set; }
-        public DbSet<Conteudo> Conteudos { get; set; }
-        public DbSet<Dashboard> Dashboards { get; set; }
-        public DbSet<Transacao> Transacoes { get; set; }
-        public DbSet<MetaFinanceira> MetasFinanceiras { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Conteudo> Conteudos { get; set; } = null!;
+        public DbSet<Dashboard> Dashboards { get; set; } = null!;
+        public DbSet<Transacao> Transacoes { get; set; } = null!;
+        public DbSet<MetaFinanceira> MetasFinanceiras { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
