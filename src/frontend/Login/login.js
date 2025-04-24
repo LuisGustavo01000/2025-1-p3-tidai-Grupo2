@@ -41,6 +41,7 @@ function validateSignup() {
         return false;
     }
 
+
     return true;
 }
 
