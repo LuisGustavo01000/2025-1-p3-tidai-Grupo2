@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cash Wise – Conteúdos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
   <link rel="stylesheet" href="Conteudo.css">
   <script defer src="Conteudo.js"></script>
 </head>
@@ -28,29 +29,109 @@
     </div>
   </header>
 
-  <main class="content">
-    <aside class="content-sidebar">
-      <h2>➕ Adicionar Conteúdo</h2>
-      <form id="contentForm">
-        <div class="form-group">
-          <label for="contentTitle">Título</label>
-          <input type="text" id="contentTitle" placeholder="Ex: Como poupar no mês" required>
+  <section class="conteudos">
+    <div class="destaque">
+      <h2>Explore o Mundo das Finanças</h2>
+      <p>Conheça conceitos, estratégias e dicas para transformar sua relação com o dinheiro.</p>
+      <section class="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="../../img/investimentoimagem1.webp" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="../../img/investimentoimagem2.webp" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="../../img/investimentoimagem3.webp" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="../../img/investimentoimagem4.webp" alt="fourth slide">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="form-group">
-          <label for="contentDesc">Descrição</label>
-          <textarea id="contentDesc" rows="3" placeholder="Descrição breve" required></textarea>
-        </div>
-        <button type="submit" class="btn-add">Adicionar</button>
-      </form>
-    </aside>
-
-    <section class="content-main">
-      <h2>Lista de Conteúdos</h2>
-      <div class="cards-grid" id="cardsGrid">
-        <!-- cards serão inseridos aqui via JS -->
-      </div>
     </section>
-  </main>
+
+    </div>
+  
+    <div class="grid-conteudos">
+      <div class="item">
+        <a href="https://www.investopedia.com/terms/i/investment.asp" target="_blank">
+          <img src="../../img/OQinvestimento" alt="Investimentos">
+          <h3>O que é Investimento?</h3>
+          <p>Aprenda o que significa investir, quais são os principais tipos de investimento e como começar.</p>
+        </a>
+      </div>
+  
+      <div class="item">
+        <a href="https://www.tesourodireto.com.br/" target="_blank">
+          <img src="../../img/TesouroDireto.webp" alt="Tesouro Direto">
+          <h3>Tesouro Direto</h3>
+          <p>Entenda como investir em títulos públicos e garantir rendimentos seguros e confiáveis.</p>
+        </a>
+      </div>
+  
+      <div class="item">
+        <a href="https://blog.itau.com.br/artigos/como-fazer-orcamento-pessoal" target="_blank">
+          <img src="../../img/Itau.avif" alt="Orçamento Pessoal">
+          <h3>Como Fazer um Orçamento Pessoal</h3>
+          <p>Controle suas finanças com planejamento e disciplina. Saiba como criar seu orçamento ideal.</p>
+        </a>
+      </div>
+  
+      <div class="item">
+        <a href="https://www.bcb.gov.br/pre/surel/reladmbc/2013/o-banco-central-do-brasil-e-a-sociedade/cidadania-e-sistema-financeiro/educacao-financeira.html" target="_blank">
+          <img src="../../img/Central.jpg" alt="Educação Financeira Banco Central">
+          <h3>Educação Financeira (Banco Central)</h3>
+          <p>Programa oficial do Banco Central com materiais educativos para todos os níveis de conhecimento.</p>
+        </a>
+      </div>
+    </div>
+  
+    <div class="secao-secundaria">
+      <h2>Outros Conteúdos</h2>
+      <div class="linha-secundaria">
+        <div class="mini-item">
+          <a href="https://www.infomoney.com.br/guias/como-investir-em-acoes/" target="_blank">
+            <img src="../../img/Infomoney.webp">
+            <p>Guia de Ações - Infomoney</p>
+          </a>
+        </div>
+  
+        <div class="mini-item">
+          <a href="https://blog.nubank.com.br/juros-compostos/" target="_blank">
+            <img src="../../img/nubank.jpg" alt="Juros Compostos">
+            <p>O que são Juros Compostos - Nubank</p>
+          </a>
+        </div>
+  
+        <div class="mini-item">
+          <a href="https://valorinveste.globo.com/objetivo/hora-de-investir/" target="_blank">
+            <img src="../../img/valorinveste.webp" alt="Como Investir - Valor Investe">
+            <p>Como começar a investir - Valor Investe</p>
+          </a>
+        </div>
+  
+        <div class="mini-item">
+          <a href="https://www.cnnbrasil.com.br/economia/financas/inflacao-o-que-e-e-como-ela-impacta-os-investimentos-e-os-salarios/">
+            <img src="../../img/cnnmoney.webp" alt="Inflação Explicada CNN Brasil">
+            <p>Entenda o que é Inflação - CNN Brasil</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 
   <footer>
     <div class="footer-content">
