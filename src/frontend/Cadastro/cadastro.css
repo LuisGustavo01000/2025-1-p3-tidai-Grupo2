@@ -29,7 +29,7 @@ header .logo .logo-img {
 }
 
 header .nav-content {
-    flex: 2; 
+    flex: 2;
     display: flex;
     justify-content: flex-end;
 }
@@ -37,12 +37,7 @@ header .nav-content {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 20px; /* Espaço entre os itens */
-}
-
-header nav ul li {
-    display: flex;
-    align-items: center;
+    gap: 20px;
 }
 
 header nav ul li a {
@@ -58,68 +53,34 @@ header nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-header nav ul li button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background 0.3s ease;
-}
-
-header nav ul li button:hover {
-    background-color: #45a049;
-}
-
-/* Responsividade */
 @media (max-width: 768px) {
     header .logo {
-        display: none; /* Esconde a logo */
+        display: none;
     }
-
     header {
-        display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
         padding: 10px 0;
     }
-
     header .nav-content {
-        display: flex;
-        justify-content: center;
         width: 100%;
-    }
-
-    header nav ul {
-        display: flex;
-        flex-wrap: wrap; /* Permite que os itens quebrem linha se necessário */
-        justify-content: center; /* Centraliza os itens */
-        align-items: center;
-        padding: 0;
-        gap: 10px;
-        list-style: none;
-    }
-
-    header nav ul li {
-        display: flex;
         justify-content: center;
-        align-items: center;
+    }
+    header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 }
-
 
 .signup-section {
     background-color: #cbdfe0;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 15%;
+    margin: 5% auto 15%;
 }
 
 .signup-container h2 {
@@ -130,6 +91,7 @@ header nav ul li button:hover {
 
 .input-group {
     margin-bottom: 20px;
+    margin: auto;
 }
 
 .input-group label {
@@ -139,20 +101,20 @@ header nav ul li button:hover {
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
-    width: calc(100% - 22px); 
+    width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+input:focus {
     border-color: #4CAF50;
     outline: none;
 }
 
 button.submit-btn {
-    background-color: #333; 
+    background-color: #333;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -164,7 +126,7 @@ button.submit-btn {
 }
 
 button.submit-btn:hover {
-    background-color: #4CAF50; 
+    background-color: #4CAF50;
     transition: background 0.3s ease;
 }
 
@@ -173,27 +135,21 @@ button.submit-btn:hover {
 }
 
 .links a {
-    color: #4CAF50;/* Verde */
+    color: #4CAF50;
     text-decoration: none !important;
 }
 
 .links a:hover {
-
     text-decoration: underline !important;
 }
-
-
 
 footer {
     background-color: #2d3e50;
     color: white;
     padding: 10px 10px;
     position: static;
-    left: 0;
-    bottom: 0;
     width: 100%;
     text-align: center;
-
 }
 
 footer .footer-content {
@@ -205,62 +161,16 @@ footer .footer-content {
     margin: 0 auto;
 }
 
-footer .footer-section {
-    flex: 1;
-    padding: 10px;
-}
-
 footer .footer-section h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
     color: #4CAF50;
-}
-
-footer .footer-links .link-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px 20px;
-    /* espaço entre os links */
-}
-
-footer .footer-links .link-list a {
-    width: 45%;
-    /* força duas colunas (50% - gap) */
-    text-decoration: none;
-    text-align: center;
-}
-
-
-
-footer .copyright {
-    font-size: 14px;
-    margin-top: 15px;
-    color: #ccc;
-}
-
-footer a {
-    color: white;
-    text-decoration: none !important;
-}
-
-footer a:hover {
-    color: #4CAF50;
-    /* Verde */
-    text-decoration: underline !important;
 }
 
 html, body {
     height: 100%;
-}
-  
-body {
     display: flex;
     flex-direction: column;
 }
-  
+
 footer {
     margin-top: auto;
 }
-
-

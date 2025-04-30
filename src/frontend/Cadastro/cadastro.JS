@@ -1,23 +1,3 @@
-
-function validateLogin() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    if (email === "" || password === "") {
-        alert("Por favor, preencha todos os campos.");
-        return false;
-    }
-
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!emailRegex.test(email)) {
-        alert("Por favor, insira um email válido.");
-        return false;
-    }
-
-    return true;
-}
-
-
 function validateSignup() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -29,6 +9,16 @@ function validateSignup() {
         return false;
     }
 
+    if (password.length < 8) {
+        alert("A senha deve ter no mínimo 8 caracteres.");
+        return false;
+    }
+
+    const numberRegex = /\d/;
+    if (!numberRegex.test(password)) {
+        alert("A senha deve conter pelo menos um número.");
+        return false;
+    }
 
     if (password !== confirmPassword) {
         alert("As senhas não coincidem.");
@@ -45,14 +35,9 @@ function validateSignup() {
 }
 
 
-document.getElementById('login-form')?.addEventListener('submit', function(event) {
-    if (!validateLogin()) {
-        event.preventDefault();
-    }
-});
-
 document.getElementById('signup-form')?.addEventListener('submit', function(event) {
-    if (!validateSignup()) {
-        event.preventDefault();
+    event.preventDefault();
+    if (validateSignup()) {
+        window.location.href = "../Home/Home.html";
     }
 });
