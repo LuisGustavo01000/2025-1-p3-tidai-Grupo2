@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cash Wise – Conteúdos</title>
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-  <link rel="stylesheet" href="Conteudo.css">
-  <script defer src="Conteudo.js"></script>
-</head>
 
+  <!-- CSS e JS próprios -->
+  <link rel="stylesheet" href="Conteudo.css" />
+  <script src="Conteudo.js" defer></script>
+</head>
 <body>
 
-  <header>
-    <div class="logo">
-      <a href="../Home/Home.html">
-        <img src="../../img/LogoCashWiseTransparente2.png" alt="CashWise Logo" class="logo-img">
+  <!-- ===== Cabeçalho padronizado ============================= -->
+  <header class="navbar navbar-expand-md navbar-dark bg-primary px-3">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="../Home/Home.html">
+        <img src="../../img/LogoCashWiseTransparente2.png" alt="CashWise Logo" width="120" class="img-fluid">
       </a>
-    </div>
-    <div class="nav-content">
-      <nav>
-        <ul>
-          <li><a href="#">Serviços</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li><a href="../Login/Login.HTML" class="login-button">Login</a></li>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <nav id="menu" class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav gap-md-2 text-center">
+          <li class="nav-item"><a class="nav-link" href="#">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
+          <li class="nav-item"><a class="btn btn-success ms-md-2 mt-2 mt-md-0" href="../Login/Login.HTML">Login</a></li>
         </ul>
       </nav>
     </div>
   </header>
+  <!-- ========================================================= -->
 
+  <!-- ===== Conteúdo principal ================================ -->
   <section class="conteudos">
+
+    <!-- Destaque + carrossel --------------------------------- -->
     <div class="destaque">
       <h2>Explore o Mundo das Finanças</h2>
       <p>Conheça conceitos, estratégias e dicas para transformar sua relação com o dinheiro.</p>
@@ -79,14 +90,14 @@
                 </div>
               </a>
             </div>
+
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Próximo</span>
           </button>
@@ -94,10 +105,25 @@
       </section>
     </div>
 
+    <!-- Formulário para adicionar novos conteúdos -------------- -->
+    <form id="contentForm" class="row gy-2 gx-2 align-items-end mb-4">
+      <div class="col-12 col-md">
+        <input type="text" id="contentTitle" name="contentTitle" class="form-control" placeholder="Título do conteúdo" required>
+      </div>
+      <div class="col-12 col-md">
+        <input type="text" id="contentDesc" name="contentDesc" class="form-control" placeholder="Breve descrição (opcional)">
+      </div>
+      <div class="col-12 col-md-auto">
+        <button type="submit" class="btn btn-success w-100">Adicionar</button>
+      </div>
+    </form>
+
+    <!-- Grade de conteúdos ------------------------------------- -->
     <div class="grid-conteudos">
+
       <div class="item">
         <a href="https://www.investopedia.com/terms/i/investment.asp" target="_blank">
-          <img src="../../img/OQinvestimento" alt="Investimentos">
+          <img src="../../img/OQinvestimento.webp" alt="Investimentos">
           <h3>O que é Investimento?</h3>
           <p>Aprenda o que significa investir, quais são os principais tipos de investimento e como começar.</p>
         </a>
@@ -120,51 +146,54 @@
       </div>
 
       <div class="item">
-        <a href="https://www.bcb.gov.br/pre/surel/reladmbc/2013/o-banco-central-do-brasil-e-a-sociedade/cidadania-e-sistema-financeiro/educacao-financeira.html"
-          target="_blank">
+        <a href="https://www.bcb.gov.br/pre/surel/reladmbc/2013/o-banco-central-do-brasil-e-a-sociedade/cidadania-e-sistema-financeiro/educacao-financeira.html" target="_blank">
           <img src="../../img/Central.jpg" alt="Educação Financeira Banco Central">
           <h3>Educação Financeira (Banco Central)</h3>
           <p>Programa oficial do Banco Central com materiais educativos para todos os níveis de conhecimento.</p>
         </a>
       </div>
-    </div>
 
+    </div><!-- /.grid-conteudos -->
+
+    <!-- Linha secundária --------------------------------------- -->
     <div class="secao-secundaria">
       <h2>Outros Conteúdos</h2>
       <div class="linha-secundaria">
+
         <div class="mini-item">
           <a href="https://www.infomoney.com.br/guias/como-investir-em-acoes/" target="_blank">
-            <img src="../../img/Infomoney.webp">
-            <p>Guia de Ações - Infomoney</p>
+            <img src="../../img/Infomoney.webp" alt="Guia de Ações Infomoney">
+            <p>Guia de Ações - InfoMoney</p>
           </a>
         </div>
 
         <div class="mini-item">
           <a href="https://blog.nubank.com.br/juros-compostos/" target="_blank">
-            <img src="../../img/nubank.jpg" alt="Juros Compostos">
+            <img src="../../img/nubank.jpg" alt="Juros Compostos Nubank">
             <p>O que são Juros Compostos - Nubank</p>
           </a>
         </div>
 
         <div class="mini-item">
           <a href="https://valorinveste.globo.com/objetivo/hora-de-investir/" target="_blank">
-            <img src="../../img/valorinveste.webp" alt="Como Investir - Valor Investe">
+            <img src="../../img/valorinveste.webp" alt="Como Investir Valor Investe">
             <p>Como começar a investir - Valor Investe</p>
           </a>
         </div>
 
         <div class="mini-item">
-          <a
-            href="https://www.cnnbrasil.com.br/economia/financas/inflacao-o-que-e-e-como-ela-impacta-os-investimentos-e-os-salarios/">
-            <img src="../../img/cnnmoney.webp" alt="Inflação Explicada CNN Brasil">
+          <a href="https://www.cnnbrasil.com.br/economia/financas/inflacao-o-que-e-e-como-ela-impacta-os-investimentos-e-os-salarios/" target="_blank">
+            <img src="../../img/cnnmoney.webp" alt="Inflação CNN Brasil">
             <p>Entenda o que é Inflação - CNN Brasil</p>
           </a>
         </div>
-      </div>
+
+      </div><!-- /.linha-secundaria -->
     </div>
-  </section>
 
+  </section><!-- /.conteudos -->
 
+  <!-- ===== Rodapé ============================================ -->
   <footer>
     <div class="footer-content">
       <div class="footer-section footer-links">
@@ -179,7 +208,7 @@
       <div class="footer-section footer-contacts">
         <h4>Contato</h4>
         <p>Email: contato@cashwise.com</p>
-        <p>Telefone: (00) 1234‑5678</p>
+        <p>Telefone: (00) 1234-5678</p>
       </div>
       <div class="footer-section footer-copyright">
         <p>2025 CashWise &copy; TIADAI</p>
@@ -188,5 +217,4 @@
   </footer>
 
 </body>
-
 </html>

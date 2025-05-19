@@ -1,39 +1,60 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("modal");
-    const modalContent = document.querySelector(".modal-content");
-    const editButton = document.getElementById("editProfile");
-    const closeButton = document.querySelector(".close");
-    const saveButton = document.getElementById("saveProfile");
-    const userName = document.getElementById("user-name");
-    const userAge = document.getElementById("user-age");
-    const userPeriod = document.getElementById("user-period");
-    
+/* PerfilU.js – agora alternando a classe d-flex */
 
-    editButton.addEventListener("click", () => {
-        modal.style.display = "flex";
-    });
-    
+document.addEventListener('DOMContentLoaded', () => {
 
-    closeButton.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-    
+  const $ = id => document.getElementById(id);
 
-    modal.addEventListener("click", (e) => {
-        if (!modalContent.contains(e.target)) {
-            modal.style.display = "none";
-        }
-    });
-    
-    saveButton.addEventListener("click", () => {
-        const newName = document.getElementById("editName").value;
-        const newAge = document.getElementById("editAge").value;
-        const newPeriod = document.getElementById("editPeriod").value;
-        
-        if (newName) userName.textContent = newName;
-        if (newAge) userAge.textContent = `${newAge} anos`;
-        if (newPeriod) userPeriod.textContent = newPeriod;
-        
-        modal.style.display = "none";
-    });
+  /* elementos */
+  const modal        = $('modal');
+  const modalContent = modal.querySelector('.modal-content');
+  const btnEdit  = $('editProfile');
+  const btnClose = modal.querySelector('.close');
+  const btnSave  = $('saveProfile');
+
+  const spanName   = $('user-name');
+  const spanAge    = $('user-age');
+  const spanPeriod = $('user-period');
+
+  const inName   = $('editName');
+  const inAge    = $('editAge');
+  const inPeriod = $('editPeriod');
+
+  /* helpers */
+  const showModal = () => {
+    inName.value   = spanName.textContent.trim();
+    inAge.value    = spanAge.textContent.replace(/\D/g,'');
+    inPeriod.value = spanPeriod.textContent.trim();
+
+    modal.classList.add('d-flex');   /* mostra */
+    inName.focus();
+  };
+
+  const hideModal = () => { modal.classList.remove('d-flex'); };
+
+  const saveProfile = () => {
+    const name   = inName.value.trim();
+    const age    = parseInt(inAge.value.trim(),10);
+    const period = inPeriod.value.trim();
+
+    if (name)   spanName.textContent = name;
+    if (!isNaN(age) && age > 0) spanAge.textContent = `${age} anos`;
+    if (period) spanPeriod.textContent = period;
+
+    hideModal();
+  };
+
+  /* bindings */
+  btnEdit .addEventListener('click', showModal);
+  btnClose.addEventListener('click', hideModal);
+  btnSave .addEventListener('click', saveProfile);
+
+  /* fecha clicando fora */
+  modal.addEventListener('click', e=>{
+    if(!modalContent.contains(e.target)) hideModal();
+  });
+
+  /* fecha no ESC */
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape' && modal.classList.contains('d-flex')) hideModal();
+  });
 });
