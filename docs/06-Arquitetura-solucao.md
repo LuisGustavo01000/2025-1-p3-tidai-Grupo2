@@ -97,10 +97,10 @@ Apresente também uma figura explicando como as tecnologias estão relacionadas 
 
 | **Dimensão**   | **Tecnologia**  |
 | ---            | ---             |
-| Front-end      | HTML + CSS + JS + React |
-| Back-end       | Node.js         |
+| Front-end      | HTML + CSS + JS |
+| Back-end       | C#         |
 | SGBD           | MySQL           |
-| Deploy         | Vercel          |
+| Deploy         | AWS          |
 
 
 ## Hospedagem
@@ -115,13 +115,39 @@ Explique como a hospedagem e o lançamento da plataforma foram realizados.
 
 ## Qualidade de software
 
-Conceituar qualidade é uma tarefa complexa, mas ela pode ser vista como um método gerencial que, por meio de procedimentos disseminados por toda a organização, busca garantir um produto final que satisfaça às expectativas dos stakeholders.
+Para assegurar que a aplicação atenda às expectativas dos usuários, adotamos práticas com base na norma ISO/IEC 25010, que define características essenciais de qualidade em software.
 
-No contexto do desenvolvimento de software, qualidade pode ser entendida como um conjunto de características a serem atendidas, de modo que o produto de software atenda às necessidades de seus usuários. Entretanto, esse nível de satisfação nem sempre é alcançado de forma espontânea, devendo ser continuamente construído. Assim, a qualidade do produto depende fortemente do seu respectivo processo de desenvolvimento.
+🔹 Funcionalidade (Adequação Funcional)
+A aplicação oferece funcionalidades completas para gerenciar receitas, despesas e investimentos com precisão.
+Prática: Desenvolvimento orientado a testes para validar os cálculos e operações financeiras.
 
-A norma internacional ISO/IEC 25010, que é uma atualização da ISO/IEC 9126, define oito características e 30 subcaracterísticas de qualidade para produtos de software. Com base nessas características e nas respectivas subcaracterísticas, identifique as subcaracterísticas que sua equipe utilizará como base para nortear o desenvolvimento do projeto de software, considerando alguns aspectos simples de qualidade. Justifique as subcaracterísticas escolhidas pelo time e elenque as métricas que permitirão à equipe avaliar os objetos de interesse.
+🔹 Confiabilidade (Reliability)
+A arquitetura é robusta, garantindo disponibilidade mesmo em falhas ou picos de acesso.
+Prática: Monitoramento contínuo e mecanismos de redundância.
 
-> **Links úteis**:
-> - [ISO/IEC 25010:2011 - Systems and Software Engineering — Systems and Software Quality Requirements and Evaluation (SQuaRE) — System and Software Quality Models](https://www.iso.org/standard/35733.html/)
-> - [Análise sobre a ISO 9126 – NBR 13596](https://www.tiespecialistas.com.br/analise-sobre-iso-9126-nbr-13596/)
-> - [Qualidade de software - Engenharia de Software](https://www.devmedia.com.br/qualidade-de-software-engenharia-de-software-29/18209)
+🔹 Usabilidade (Usability)
+A interface é responsiva e intuitiva, atendendo usuários com diferentes perfis.
+Prática: Testes de usabilidade e coleta de feedback para melhorias constantes.
+
+🔹 Eficiência de Desempenho (Performance Efficiency)
+O desempenho da aplicação é otimizado para garantir respostas rápidas.
+Prática: Implementação de caching e otimização de consultas.
+
+🔹 Manutenibilidade (Maintainability)
+O código é modular e bem documentado, facilitando atualizações.
+Prática: Boas práticas de programação e testes automatizados.
+
+🔹 Segurança (Security)
+Os dados são protegidos por autenticação forte e criptografia.
+Prática: Monitoramento de vulnerabilidades e aplicação de atualizações de segurança.
+
+🔹 Compatibilidade (Compatibility)
+A aplicação funciona em diversos dispositivos e navegadores.
+Prática: Testes multiplataforma durante o desenvolvimento.
+
+🔹 Portabilidade (Portability)
+É possível implantar a aplicação em diferentes ambientes, como servidores locais e nuvem.
+Prática: Uso de contêineres para facilitar a migração.
+
+
+
