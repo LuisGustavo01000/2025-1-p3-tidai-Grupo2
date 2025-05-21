@@ -10,12 +10,12 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ##  Modelo de dados
 
-![diagramaDer](images/Banco/DER.png)
+![diagramaDer](images/DER.png)
 
 
 ### Esquema relacional
 
-![ER](images/Banco/ER.png)
+![ER](images/ER.png)
 
 
 ### Modelo físico
