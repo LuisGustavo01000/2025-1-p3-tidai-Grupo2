@@ -8,8 +8,15 @@ body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 
+header{
+  background:#2d3e50;color:#f8f2f2;
+  padding:15px 20px;display:flex;justify-content:space-between;align-items:center;
+}
+
 /* ===== Navegação & botões ==================================== */
-.navbar{background:var(--cw-primary);}
+.navbar {
+  background: #2d3e50;;
+}
 .nav-link{color:#fff!important;}
 .nav-link:hover{opacity:.8;}
 .btn-success{background:#45a049;border:none;}
@@ -46,5 +53,4 @@ body{
 }
 
 /* ===== Rodapé =============================================== */
-footer{background:var(--cw-primary);}
-footer a:hover{text-decoration:underline;}
+footer{background:#2d3e50;color:#fff;padding:10px 10px;margin-top:auto;text-align:center;}

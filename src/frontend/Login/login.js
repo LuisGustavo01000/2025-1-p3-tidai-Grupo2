@@ -13,14 +13,30 @@ function validateLogin() {
         return false;
     }
 
-    return true;
+   
+    const adminLogin = {
+        email: "admin@example.com",
+        password: "admin123"
+    };
+
+    const userLogin = {
+        email: "usuario@example.com",
+        password: "usuario123"
+    };
+
+    if (email === adminLogin.email && password === adminLogin.password) {
+        window.location.href = "../Alterar Administrador/AlterarA.HTML";
+        return false; 
+    } else if (email === userLogin.email && password === userLogin.password) {
+        window.location.href = "../Página do Usuario/Usuario.html";
+        return false; 
+    } else {
+        alert("Email ou senha incorretos.");
+        return false;
+    }
 }
 
 document.getElementById('login-form')?.addEventListener('submit', function(event) {
     event.preventDefault(); 
-
-    if (validateLogin()) {
-
-        window.location.href = "../Home/Home.html";
-    }
+    validateLogin();
 });

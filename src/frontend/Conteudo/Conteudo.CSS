@@ -9,7 +9,7 @@ body{
 
 /* ===== Cabeçalho ============================================ */
 header{
-  background:#2d3e50;color:#fff;
+  background:#2d3e50;color:#f8f2f2;
   padding:15px 20px;display:flex;justify-content:space-between;align-items:center;
 }
 .logo{flex:1;}

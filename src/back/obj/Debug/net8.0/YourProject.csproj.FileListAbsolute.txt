@@ -124,3 +124,6 @@ C:\Users\allan\OneDrive\Área de Trabalho\TIADI\src\back\obj\Debug\net8.0\refint
 C:\Users\allan\OneDrive\Área de Trabalho\TIADI\src\back\obj\Debug\net8.0\YourProject.pdb
 C:\Users\allan\OneDrive\Área de Trabalho\TIADI\src\back\obj\Debug\net8.0\YourProject.genruntimeconfig.cache
 C:\Users\allan\OneDrive\Área de Trabalho\TIADI\src\back\obj\Debug\net8.0\ref\YourProject.dll
+C:\Users\Luiz\Desktop\Nova pasta (4)\2025-1-p3-tidai-Grupo2\src\back\obj\Debug\net8.0\YourProject.dll
+C:\Users\Luiz\Desktop\Nova pasta (4)\2025-1-p3-tidai-Grupo2\src\back\obj\Debug\net8.0\refint\YourProject.dll
+C:\Users\Luiz\Desktop\Nova pasta (4)\2025-1-p3-tidai-Grupo2\src\back\obj\Debug\net8.0\YourProject.pdb

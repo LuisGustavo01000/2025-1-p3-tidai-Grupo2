@@ -7,7 +7,7 @@
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f1f1f1;
-  color:#333;
+  color:#2d3e50;
 }
 
 /* ===== Navbar / botões ====================================== */
@@ -26,4 +26,15 @@ body{
 /* responsivo */
 @media(max-width:576px){
   .profile-info-container{flex-direction:column!important;align-items:center;}
+}
+
+footer {
+  background: #444a54 !important;
+  color: #fff !important;
+}
+footer a {
+  color: #fff !important;
+}
+footer a:hover {
+  text-decoration: underline;
 }
