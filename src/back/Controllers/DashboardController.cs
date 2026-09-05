@@ -1,15 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
 using YourProject.Data;
+using YourProject.Dtos;
+using YourProject.Extensions;
+using YourProject.Models;
 
 namespace YourProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -20,79 +21,83 @@ namespace YourProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Dashboard>>> GetDashboards()
+        public async Task<ActionResult<IEnumerable<DashboardResponse>>> GetDashboards()
         {
-            return await _context.Dashboards.Include(d => d.Usuario).ToListAsync();
+            var usuarioId = User.GetUsuarioId();
+
+            var dashboards = await _context.Dashboards
+                .Where(d => d.Usuario.Id == usuarioId)
+                .ToListAsync();
+
+            return dashboards.Select(ToResponse).ToList();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Dashboard>> GetDashboard(int id)
+        public async Task<ActionResult<DashboardResponse>> GetDashboard(int id)
         {
+            var usuarioId = User.GetUsuarioId();
+
             var dashboard = await _context.Dashboards
-                .Include(d => d.Usuario)
-                .FirstOrDefaultAsync(d => d.Id == id);
+                .FirstOrDefaultAsync(d => d.Id == id && d.Usuario.Id == usuarioId);
 
             if (dashboard == null)
             {
                 return NotFound();
             }
 
-            return dashboard;
+            return ToResponse(dashboard);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Dashboard>> CreateDashboard(Dashboard dashboard)
+        public async Task<ActionResult<DashboardResponse>> CreateDashboard(DashboardRequest request)
         {
+            var usuarioId = User.GetUsuarioId();
+            var usuario = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            var dashboard = new Dashboard
+            {
+                SaldoTotal = request.SaldoTotal,
+                InvestimentoTotal = request.InvestimentoTotal,
+                Usuario = usuario
+            };
+
             _context.Dashboards.Add(dashboard);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetDashboard), new { id = dashboard.Id }, dashboard);
+            return CreatedAtAction(nameof(GetDashboard), new { id = dashboard.Id }, ToResponse(dashboard));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDashboard(int id, Dashboard dashboard)
+        public async Task<IActionResult> UpdateDashboard(int id, DashboardRequest request)
         {
-            if (id != dashboard.Id)
-            {
-                return BadRequest();
-            }
+            var usuarioId = User.GetUsuarioId();
 
-            _context.Entry(dashboard).State = EntityState.Modified;
+            var dashboard = await _context.Dashboards
+                .FirstOrDefaultAsync(d => d.Id == id && d.Usuario.Id == usuarioId);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DashboardExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
-            }
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDashboard(int id)
-        {
-            var dashboard = await _context.Dashboards.FindAsync(id);
             if (dashboard == null)
             {
                 return NotFound();
             }
 
-            _context.Dashboards.Remove(dashboard);
+            dashboard.SaldoTotal = request.SaldoTotal;
+            dashboard.InvestimentoTotal = request.InvestimentoTotal;
+
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool DashboardExists(int id)
+        private static DashboardResponse ToResponse(Dashboard d) => new()
         {
-            return _context.Dashboards.Any(e => e.Id == id);
-        }
+            Id = d.Id,
+            SaldoTotal = d.SaldoTotal,
+            InvestimentoTotal = d.InvestimentoTotal
+        };
     }
 }

@@ -1,0 +1,96 @@
+/*
+ * Tema visual único do CashWise.
+ *
+ * Antes: cada página definia sua própria paleta (--cw-primary/--cw-accent
+ * repetidos 7 vezes, com valores levemente diferentes), o navbar da tela de
+ * Admin usava uma cor diferente do resto do site, e o Login tinha um bug de
+ * contraste (texto do menu quase invisível sobre o próprio fundo escuro).
+ *
+ * Este arquivo é a única fonte de verdade da paleta e deve ser importado
+ * em toda página, depois do CSS específico da página, para garantir
+ * consistência de marca em todo o site.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700&display=swap');
+
+:root {
+  /* Paleta CashWise */
+  --cw-ink: #122A26;          /* fundo escuro: navbar, footer */
+  --cw-ink-2: #1B3B35;        /* variação mais clara do ink, para hover/detalhes */
+  --cw-accent: #146B48;       /* verde principal (CTAs, links de destaque) */
+  --cw-accent-hover: #0F5738; /* verde em hover/active */
+  --cw-accent-rgb: 20, 107, 72;
+  --cw-gold: #C6902E;         /* destaque secundário, usar com moderação */
+  --cw-mint: #3FD69A;         /* versão clara do accent, só para texto sobre fundo escuro (--cw-ink) */
+
+  /* Mantidos por compatibilidade: várias páginas ainda usam var(--cw-primary)/var(--cw-accent) */
+  --cw-primary: var(--cw-ink);
+
+  /* Sobrescreve as variáveis do Bootstrap consumidas por .text-success */
+  --bs-success: var(--cw-accent);
+  --bs-success-rgb: var(--cw-accent-rgb);
+  --bs-link-color: var(--cw-accent);
+  --bs-link-hover-color: var(--cw-accent-hover);
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand {
+  font-family: 'Sora', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+}
+
+/* Navbar e rodapé — mesma cor em todas as páginas, sobrescrevendo
+   qualquer valor divergente definido localmente (ex.: #444a54 na tela
+   de Admin, ou o #2d3e50 duplicado nas demais). */
+.navbar,
+header.navbar,
+footer,
+.custom-dark {
+  background-color: var(--cw-ink) !important;
+}
+
+/* Corrige o bug de contraste do Login (texto do menu na mesma cor do fundo)
+   e garante que todo link de navegação seja sempre legível sobre o navbar escuro. */
+.navbar .nav-link,
+.nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.navbar .nav-link:hover,
+.nav-link:hover {
+  color: #fff !important;
+  opacity: 1;
+}
+
+/* Botões primários (Entrar, Cadastrar, Salvar...) — cobre tanto quem usa
+   as variáveis do Bootstrap quanto quem sobrescrevia com "background" fixo. */
+.btn-success {
+  --bs-btn-bg: var(--cw-accent);
+  --bs-btn-border-color: var(--cw-accent);
+  --bs-btn-hover-bg: var(--cw-accent-hover);
+  --bs-btn-hover-border-color: var(--cw-accent-hover);
+  --bs-btn-active-bg: var(--cw-accent-hover);
+  --bs-btn-active-border-color: var(--cw-accent-hover);
+  --bs-btn-focus-shadow-rgb: var(--cw-accent-rgb);
+  --bs-btn-disabled-bg: var(--cw-accent);
+  --bs-btn-disabled-border-color: var(--cw-accent);
+  background-color: var(--cw-accent) !important;
+  border-color: var(--cw-accent) !important;
+  transition: background-color .15s ease, border-color .15s ease, transform .1s ease;
+}
+.btn-success:hover,
+.btn-success:focus {
+  background-color: var(--cw-accent-hover) !important;
+  border-color: var(--cw-accent-hover) !important;
+}
+.btn-success:active {
+  transform: translateY(1px);
+}
+
+/* Foco acessível consistente com a marca, no lugar do azul padrão do navegador */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--cw-gold);
+  outline-offset: 2px;
+}

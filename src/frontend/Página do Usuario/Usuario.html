@@ -7,6 +7,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
   <link rel="stylesheet" href="usuario.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <script src="../js/api.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="usuario.js" defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -28,8 +32,8 @@
         <li class="nav-item"><a class="nav-link" href="../Home/Home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="../Perfil Usuario/PerfilU.html">Perfil</a></li>
         <li class="nav-item"><a class="nav-link" href="../Conteudo/Conteudo.HTML">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="../Home/Home.html">Sair</a></li>
-       
+        <li class="nav-item"><a class="nav-link" href="../Home/Home.html" id="logout-link">Sair</a></li>
+
       </ul>
     </nav>
   </div>
@@ -44,7 +48,7 @@
       <article class="card text-center shadow-sm h-100">
         <div class="card-body">
           <h3 class="h6 text-muted">Saldo Atual</h3>
-          <p class="display-6 text-success mb-0">R$ 12.350,00</p>
+          <p id="stat-saldo" class="display-6 text-success mb-0">R$ 0,00</p>
         </div>
       </article>
     </div>
@@ -52,8 +56,8 @@
     <div class="col-sm-6 col-lg-4">
       <article class="card text-center shadow-sm h-100">
         <div class="card-body">
-          <h3 class="h6 text-muted">Investimentos</h3>
-          <p class="display-6 text-success mb-0">R$ 8.750,00</p>
+          <h3 class="h6 text-muted">Metas Ativas</h3>
+          <p id="stat-metas" class="display-6 text-success mb-0">0</p>
         </div>
       </article>
     </div>
@@ -62,7 +66,7 @@
       <article class="card text-center shadow-sm h-100">
         <div class="card-body">
           <h3 class="h6 text-muted">Gastos do Mês</h3>
-          <p class="display-6 text-danger mb-0">R$ 2.500,00</p>
+          <p id="stat-gastos-mes" class="display-6 text-danger mb-0">R$ 0,00</p>
         </div>
       </article>
     </div>
@@ -80,12 +84,37 @@
         class="img-fluid rounded shadow-sm"
         >
     </div>
+    <p class="text-muted small text-center mt-2">Gráfico ilustrativo — ainda não gerado a partir dos seus dados reais.</p>
     </section>
 
   
 <section class="mb-5">
+  <h2 class="mb-3">Nova Transação</h2>
+
+  <form id="nova-transacao-form" class="row g-2 align-items-end mb-4">
+    <div class="col-12 col-md-4">
+      <label for="descricao" class="form-label small text-muted">Descrição</label>
+      <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Ex.: Salário, Mercado..." required>
+    </div>
+    <div class="col-6 col-md-3">
+      <label for="valor" class="form-label small text-muted">Valor (R$)</label>
+      <input type="number" id="valor" name="valor" class="form-control" min="0.01" step="0.01" required>
+    </div>
+    <div class="col-6 col-md-3">
+      <label for="tipo" class="form-label small text-muted">Tipo</label>
+      <select id="tipo" name="tipo" class="form-select" required>
+        <option value="Receita">Receita</option>
+        <option value="Despesa">Despesa</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-2">
+      <button type="submit" class="btn btn-success w-100">Adicionar</button>
+    </div>
+  </form>
+
   <h2 class="mb-3">Últimas Transações</h2>
 
+  <div id="transacoes-erro" class="alert alert-danger d-none" role="alert"></div>
 
   <div class="table-responsive-sm">
     <table class="table align-middle table-striped">
@@ -97,14 +126,10 @@
           <th class="d-none d-sm-table-cell">Tipo</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="transacoes-tbody">
         <tr>
-          <td>20/03/2025</td>
-          <td class="d-none d-md-table-cell">Salário</td>
-          <td class="text-success fw-bold">+R$ 5 000,00</td>
-          <td class="d-none d-sm-table-cell">Receita</td>
+          <td colspan="4" class="text-center text-muted">Carregando...</td>
         </tr>
-      
       </tbody>
     </table>
   </div>

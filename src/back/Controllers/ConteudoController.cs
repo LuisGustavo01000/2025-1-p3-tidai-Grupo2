@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YourProject.Models;
@@ -38,6 +39,7 @@ namespace YourProject.Controllers
             return conteudo;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Conteudo>> CreateConteudo(Conteudo conteudo)
         {
@@ -47,6 +49,7 @@ namespace YourProject.Controllers
             return CreatedAtAction(nameof(GetConteudo), new { id = conteudo.Id }, conteudo);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateConteudo(int id, Conteudo conteudo)
         {
@@ -73,6 +76,7 @@ namespace YourProject.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConteudo(int id)
         {

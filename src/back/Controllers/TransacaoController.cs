@@ -1,15 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
 using YourProject.Data;
+using YourProject.Dtos;
+using YourProject.Extensions;
+using YourProject.Models;
 
 namespace YourProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class TransacaoController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -19,40 +20,73 @@ namespace YourProject.Controllers
             _context = context;
         }
 
+        // GET: api/Transacao (somente as transações do usuário autenticado)
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Transacao>>> GetTransacoes()
+        public async Task<ActionResult<IEnumerable<TransacaoResponse>>> GetTransacoes()
         {
-            return await _context.Transacoes.Include(t => t.Usuario).ToListAsync();
+            var usuarioId = User.GetUsuarioId();
+
+            var transacoes = await _context.Transacoes
+                .Where(t => t.Usuario.Id == usuarioId)
+                .OrderByDescending(t => t.Data)
+                .ToListAsync();
+
+            return transacoes.Select(ToResponse).ToList();
         }
 
+        // GET: api/Transacao/5 (só se pertencer ao usuário autenticado)
         [HttpGet("{id}")]
-        public async Task<ActionResult<Transacao>> GetTransacao(int id)
+        public async Task<ActionResult<TransacaoResponse>> GetTransacao(int id)
         {
+            var usuarioId = User.GetUsuarioId();
+
             var transacao = await _context.Transacoes
-                .Include(t => t.Usuario)
-                .FirstOrDefaultAsync(t => t.Id == id);
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
 
             if (transacao == null)
             {
                 return NotFound();
             }
 
-            return transacao;
+            return ToResponse(transacao);
         }
 
+        // POST: api/Transacao (o dono é sempre o usuário do token, nunca um valor vindo do corpo)
         [HttpPost]
-        public async Task<ActionResult<Transacao>> CreateTransacao(Transacao transacao)
+        public async Task<ActionResult<TransacaoResponse>> CreateTransacao(TransacaoRequest request)
         {
+            var usuarioId = User.GetUsuarioId();
+            var usuario = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            var transacao = new Transacao
+            {
+                Descricao = request.Descricao,
+                Valor = request.Valor,
+                Tipo = request.Tipo,
+                Data = request.Data ?? DateTime.UtcNow,
+                Usuario = usuario
+            };
+
             _context.Transacoes.Add(transacao);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetTransacao), new { id = transacao.Id }, transacao);
+            return CreatedAtAction(nameof(GetTransacao), new { id = transacao.Id }, ToResponse(transacao));
         }
 
+        // DELETE: api/Transacao/5 (só se pertencer ao usuário autenticado)
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTransacao(int id)
         {
-            var transacao = await _context.Transacoes.FindAsync(id);
+            var usuarioId = User.GetUsuarioId();
+
+            var transacao = await _context.Transacoes
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
+
             if (transacao == null)
             {
                 return NotFound();
@@ -63,5 +97,14 @@ namespace YourProject.Controllers
 
             return NoContent();
         }
+
+        private static TransacaoResponse ToResponse(Transacao t) => new()
+        {
+            Id = t.Id,
+            Descricao = t.Descricao,
+            Valor = t.Valor,
+            Tipo = t.Tipo,
+            Data = t.Data
+        };
     }
 }

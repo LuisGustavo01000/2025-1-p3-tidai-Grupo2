@@ -1,6 +1,6 @@
 /*  cadastro.js
  *  – Valida o formulário de cadastro
- *  – Exibe alertas simples e redireciona em caso de sucesso
+ *  – Envia o cadastro para a API real do CashWise (POST /api/Auth/register)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,11 +8,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('signup-form');
   if (!form) return;
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    if (validateSignup()) {
-      /* redireciona após cadastro simulado */
-      window.location.href = '../Home/Home.html';
+
+    if (!validateSignup()) {
+      return;
+    }
+
+    const nome = form.name.value.trim();
+    const email = form.email.value.trim();
+    const senha = form.password.value.trim();
+
+    const botao = form.querySelector('button[type="submit"]');
+    if (botao) {
+      botao.disabled = true;
+      botao.dataset.textoOriginal = botao.textContent;
+      botao.textContent = 'Cadastrando...';
+    }
+
+    try {
+      const response = await apiFetch('/Auth/register', {
+        method: 'POST',
+        body: JSON.stringify({ nome, email, senha }),
+      });
+
+      if (!response.ok) {
+        const mensagem = await extrairMensagemDeErro(
+          response,
+          'Não foi possível concluir o cadastro. Tente novamente.'
+        );
+        alert(mensagem);
+        return;
+      }
+
+      alert('Cadastro realizado com sucesso! Faça login para continuar.');
+      window.location.href = '../Login/Login.HTML';
+    } catch (erro) {
+      alert('Não foi possível conectar ao servidor do CashWise. Verifique se a API está rodando.');
+    } finally {
+      if (botao) {
+        botao.disabled = false;
+        botao.textContent = botao.dataset.textoOriginal;
+      }
     }
   });
 
@@ -49,8 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
 
-    /* você pode enviar dados para o servidor aqui */
-    alert('Cadastro realizado com sucesso!');
     return true;
   }
 });

@@ -1,8 +1,9 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using YourProject.Data;
-using YourProject.Services;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 
 
 builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
 
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -21,23 +23,44 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 
-builder.Services.AddScoped<DatabaseService>();
-builder.Services.AddScoped<TransacaoService>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<MetaFinanceiraService>();
-builder.Services.AddScoped<DashboardService>();
-
+var origensPermitidas = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>() ?? Array.Empty<string>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        builder =>
+    options.AddPolicy("Frontend",
+        policy =>
         {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
+            policy.WithOrigins(origensPermitidas)
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
         });
 });
+
+
+var jwtSection = builder.Configuration.GetSection("Jwt");
+var jwtKey = jwtSection["Key"]
+    ?? throw new InvalidOperationException("Jwt:Key não configurada em appsettings.json.");
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = jwtSection["Issuer"],
+            ValidateAudience = true,
+            ValidAudience = jwtSection["Audience"],
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+            ClockSkew = TimeSpan.FromSeconds(30)
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -84,6 +107,27 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+// Aplica migrations pendentes automaticamente ao subir.
+// Conveniente para dev/Docker local; em produção (Fase 11) isso deve
+// virar um passo explícito de deploy, não algo automático a cada boot.
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // Testes de integração usam o provider InMemory, que não suporta Migrate().
+    if (db.Database.IsRelational())
+    {
+        db.Database.Migrate();
+    }
+    else
+    {
+        db.Database.EnsureCreated();
+    }
+}
+
+// Qualquer exceção não tratada vira um ProblemDetails consistente (application/problem+json)
+// em vez de uma página de erro HTML ou um 500 vazio.
+app.UseExceptionHandler();
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -95,8 +139,12 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
-app.UseCors("AllowAll");
+app.UseCors("Frontend");
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// Torna a classe Program visível para o WebApplicationFactory<Program> dos testes de integração.
+public partial class Program { }

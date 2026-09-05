@@ -1,0 +1,44 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cashwise-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: bd_cashwise
+    ports:
+      - "3306:3306"
+    volumes:
+      - cashwise-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./src/back
+    container_name: cashwise-api
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=mysql;Port=3306;Database=bd_cashwise;User=root;Password=;"
+    ports:
+      - "5284:5284"
+
+  frontend:
+    image: nginx:alpine
+    container_name: cashwise-frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    volumes:
+      - ./src/frontend:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+
+volumes:
+  cashwise-mysql-data:

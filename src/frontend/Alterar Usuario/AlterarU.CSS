@@ -1,9 +1,5 @@
 /* ===== Reset & base ========================================= */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --cw-primary:#2d3e50;
-  --cw-accent:#4CAF50;
-}
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f1f1f1;
