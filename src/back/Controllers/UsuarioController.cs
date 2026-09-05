@@ -63,6 +63,29 @@ namespace YourProject.Controllers
             return NoContent();
         }
 
+        // PUT: api/Usuario/me/senha
+        [HttpPut("me/senha")]
+        public async Task<IActionResult> AlterarSenha(AlterarSenhaRequest request)
+        {
+            var usuarioId = User.GetUsuarioId();
+            var usuario = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(request.SenhaAtual, usuario.Senha))
+            {
+                return Unauthorized(new { mensagem = "Senha atual incorreta." });
+            }
+
+            usuario.Senha = BCrypt.Net.BCrypt.HashPassword(request.NovaSenha);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // DELETE: api/Usuario/me
         [HttpDelete("me")]
         public async Task<IActionResult> DeleteMe()

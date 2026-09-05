@@ -8,6 +8,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script> 
   <link rel="stylesheet" href="AlterarU.css" />
   <link rel="stylesheet" href="../css/theme.css" />
+  <script src="../js/api.js" defer></script>
+  <script src="../js/auth.js" defer></script>
   <script src="AlterarU.js" defer></script>
 </head>
 
@@ -29,8 +31,9 @@
         <ul class="navbar-nav gap-md-2 text-center">
           <li class="nav-item"><a class="nav-link" href="../Perfil Usuario/PerfilU.html">Perfil</a></li>
            <li class="nav-item"><a class="nav-link" href="../Página do Usuario/Usuario.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Metas Financeiras/Metas.html">Metas</a></li>
           <li class="nav-item"><a class="nav-link" href="../Conteudo/Conteudo.HTML">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="../Home/Home.html">Sair</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Home/Home.html" id="logout-link">Sair</a></li>
         
         </ul>
       </nav>
@@ -38,42 +41,62 @@
   </header>
 
  
-  <main class="flex-grow-1 d-flex align-items-center justify-content-center py-5">
-    <section class="profile-edit bg-light rounded shadow p-4" style="max-width:700px;width:100%;">
+  <main class="flex-grow-1 py-5">
+    <div class="container" style="max-width:700px;">
 
-      <h2 class="h5 text-center mb-4">Alterar Perfil</h2>
-
-      <div class="profile-info-container">
-
-       
-        <div class="profile-picture text-center">
+      <section class="profile-edit bg-light rounded shadow p-4 mb-4">
+        <div class="profile-picture text-center mb-4">
           <img id="profileImage" src="../../img/userPlaceholder.png" alt="Foto do usuário">
-          <button id="changeImage" class="btn btn-sm btn-primary mt-2">Alterar imagem ✎</button>
+          <button id="changeImage" type="button" class="btn btn-sm btn-primary mt-2">Alterar imagem ✎</button>
           <input type="file" id="imageInput" accept="image/*" hidden>
+          <p class="text-muted small mt-2 mb-0">Pré-visualização local — ainda não é salva no servidor.</p>
         </div>
 
+        <h2 class="h5 mb-3">Dados da conta</h2>
 
-        <div class="profile-form flex-grow-1">
+        <div id="dados-feedback" class="alert d-none" role="alert"></div>
+
+        <form id="dados-form">
           <div class="form-group mb-3">
             <label class="form-label fw-bold" for="newName">Nome</label>
-            <input type="text" id="newName" class="form-control" placeholder="Novo nome">
+            <input type="text" id="newName" name="nome" class="form-control" required>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label fw-bold" for="newEmail">E-mail</label>
+            <input type="email" id="newEmail" name="email" class="form-control" required>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Salvar dados</button>
+        </form>
+      </section>
+
+      <section class="profile-edit bg-light rounded shadow p-4">
+        <h2 class="h5 mb-3">Alterar senha</h2>
+
+        <div id="senha-feedback" class="alert d-none" role="alert"></div>
+
+        <form id="senha-form">
+          <div class="form-group mb-3">
+            <label class="form-label fw-bold" for="currentPassword">Senha atual</label>
+            <input type="password" id="currentPassword" name="senhaAtual" class="form-control" required>
           </div>
 
           <div class="form-group mb-3">
             <label class="form-label fw-bold" for="newPassword">Nova senha</label>
-            <input type="password" id="newPassword" class="form-control" placeholder="Nova senha">
+            <input type="password" id="newPassword" name="novaSenha" class="form-control" minlength="8" required>
           </div>
 
           <div class="form-group mb-4">
-            <label class="form-label fw-bold" for="confirmPassword">Confirmar senha</label>
-            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirmar senha">
+            <label class="form-label fw-bold" for="confirmPassword">Confirmar nova senha</label>
+            <input type="password" id="confirmPassword" class="form-control" minlength="8" required>
           </div>
 
-          <button id="saveChanges" class="btn btn-success w-100">Salvar alterações</button>
-        </div>
+          <button type="submit" class="btn btn-success w-100">Alterar senha</button>
+        </form>
+      </section>
 
-      </div>
-    </section>
+    </div>
   </main>
 
 

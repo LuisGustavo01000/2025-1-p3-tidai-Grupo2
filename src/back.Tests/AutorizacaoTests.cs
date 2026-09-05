@@ -10,7 +10,7 @@ namespace YourProject.Tests
         [Theory]
         [InlineData("/api/Transacao")]
         [InlineData("/api/MetaFinanceira")]
-        [InlineData("/api/Dashboard")]
+        [InlineData("/api/Dashboard/resumo")]
         [InlineData("/api/Usuario/me")]
         public async Task EndpointFinanceiro_SemToken_Retorna401(string caminho)
         {

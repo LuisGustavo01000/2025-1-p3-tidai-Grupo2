@@ -36,7 +36,8 @@ services:
     depends_on:
       - api
     volumes:
-      - ./src/frontend:/usr/share/nginx/html:ro
+      - ./src/frontend:/usr/share/nginx/html
+      - ./src/img:/usr/share/nginx/html/img:ro
     ports:
       - "8080:80"
 

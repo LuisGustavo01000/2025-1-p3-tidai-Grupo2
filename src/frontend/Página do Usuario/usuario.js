@@ -1,8 +1,9 @@
 /*
- * Dashboard real do CashWise: carrega transações e metas do usuário
- * autenticado via API, calcula saldo/gastos do mês no próprio navegador
- * (não existe endpoint de agregação no backend ainda — ver observações
- * passadas ao usuário) e permite registrar uma nova transação.
+ * Dashboard real do CashWise: transações e resumo (saldo, gastos do mês,
+ * metas ativas) vêm da API. O cálculo do resumo é feito no backend
+ * (GET /Dashboard/resumo) — antes era feito aqui no navegador, sem
+ * nenhum teste cobrindo; agora é o mesmo endpoint que a suíte de testes
+ * do backend valida.
  */
 document.addEventListener('DOMContentLoaded', () => {
   exigirLogin();
@@ -58,31 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .join('');
   }
 
-  function calcularResumo(transacoes) {
-    const agora = new Date();
-    let saldo = 0;
-    let gastosMes = 0;
-
-    for (const t of transacoes) {
-      const valor = Number(t.valor) || 0;
-      const ehReceita = t.tipo?.toLowerCase() === 'receita';
-
-      saldo += ehReceita ? valor : -valor;
-
-      const dataTransacao = new Date(t.data);
-      const mesmoMes =
-        dataTransacao.getMonth() === agora.getMonth() &&
-        dataTransacao.getFullYear() === agora.getFullYear();
-
-      if (!ehReceita && mesmoMes) {
-        gastosMes += valor;
-      }
-    }
-
-    statSaldo.textContent = formatarMoeda(saldo);
-    statSaldo.classList.toggle('text-success', saldo >= 0);
-    statSaldo.classList.toggle('text-danger', saldo < 0);
-    statGastosMes.textContent = formatarMoeda(gastosMes);
+  function renderizarResumo(resumo) {
+    statSaldo.textContent = formatarMoeda(resumo.saldoTotal);
+    statSaldo.classList.toggle('text-success', resumo.saldoTotal >= 0);
+    statSaldo.classList.toggle('text-danger', resumo.saldoTotal < 0);
+    statGastosMes.textContent = formatarMoeda(resumo.gastosMes);
+    statMetas.textContent = resumo.metasAtivas;
   }
 
   async function carregarTransacoes() {
@@ -95,23 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const transacoes = await response.json();
-      renderizarTransacoes(transacoes);
-      calcularResumo(transacoes);
+      renderizarTransacoes(await response.json());
     } catch {
       mostrarErro('Não foi possível conectar ao servidor do CashWise.');
     }
   }
 
-  async function carregarMetas() {
+  async function carregarResumo() {
     try {
-      const response = await apiFetch('/MetaFinanceira');
+      const response = await apiFetch('/Dashboard/resumo');
       if (!response.ok) return;
 
-      const metas = await response.json();
-      statMetas.textContent = metas.length;
+      renderizarResumo(await response.json());
     } catch {
-      // Silencioso: metas são um dado secundário nesta tela.
+      // Silencioso: os cards ficam no valor inicial (R$ 0,00) se a API falhar.
     }
   }
 
@@ -144,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       form.reset();
-      await carregarTransacoes();
+      await Promise.all([carregarTransacoes(), carregarResumo()]);
     } catch {
       mostrarErro('Não foi possível conectar ao servidor do CashWise.');
     } finally {
@@ -159,5 +138,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   carregarTransacoes();
-  carregarMetas();
+  carregarResumo();
 });

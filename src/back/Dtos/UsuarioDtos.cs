@@ -21,4 +21,14 @@ namespace YourProject.Dtos
         [StringLength(100)]
         public string Email { get; set; } = string.Empty;
     }
+
+    public class AlterarSenhaRequest
+    {
+        [Required]
+        public string SenhaAtual { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100, MinimumLength = 8)]
+        public string NovaSenha { get; set; } = string.Empty;
+    }
 }

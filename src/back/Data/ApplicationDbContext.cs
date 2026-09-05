@@ -12,7 +12,6 @@ namespace YourProject.Data
 
         public DbSet<Usuario> Usuarios { get; set; } = null!;
         public DbSet<Conteudo> Conteudos { get; set; } = null!;
-        public DbSet<Dashboard> Dashboards { get; set; } = null!;
         public DbSet<Transacao> Transacoes { get; set; } = null!;
         public DbSet<MetaFinanceira> MetasFinanceiras { get; set; } = null!;
 
@@ -40,20 +39,6 @@ namespace YourProject.Data
                 entity.Property(t => t.Tipo).HasColumnName("TIPO_TRANS").HasMaxLength(20);
                 entity.Property(t => t.Data).HasColumnName("DATA_TRANS").HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
                 entity.Property<int>("UsuarioId").HasColumnName("USUARIOFK");
-            });
-
-            modelBuilder.Entity<Dashboard>(entity =>
-            {
-                entity.ToTable("DASHBOARD");
-                entity.Property(d => d.Id).HasColumnName("ID_DASH");
-                entity.Property(d => d.SaldoTotal).HasColumnName("SALDOTOTAL_DASH");
-                entity.Property(d => d.InvestimentoTotal).HasColumnName("INVESTIMENTOTOTAIS_DASH");
-                entity.Property<int>("UsuarioId").HasColumnName("USUARIOFK");
-
-                entity.HasOne(d => d.Usuario)
-                    .WithMany()
-                    .HasForeignKey("UsuarioId")
-                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<MetaFinanceira>(entity =>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Metas Financeiras – Cash Wise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+  <link rel="stylesheet" href="metas.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <script src="../js/api.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="metas.js" defer></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<header class="navbar navbar-expand-md navbar-dark px-3">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="../Home/Home.html">
+      <img src="../../img/LogoCashWiseTransparente2.png" alt="CashWise Logo" width="120" class="img-fluid" />
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <nav id="menu" class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav gap-md-2 text-center">
+        <li class="nav-item"><a class="nav-link" href="../Página do Usuario/Usuario.html">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="../Perfil Usuario/PerfilU.html">Perfil</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="Metas.html">Metas</a></li>
+        <li class="nav-item"><a class="nav-link" href="../Conteudo/Conteudo.HTML">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="../Home/Home.html" id="logout-link">Sair</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container my-4 flex-grow-1">
+
+  <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-4">
+    <h1 class="h3 mb-0">Minhas Metas Financeiras</h1>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNovaMeta">
+      + Nova meta
+    </button>
+  </div>
+
+  <div id="metas-erro" class="alert alert-danger d-none" role="alert"></div>
+
+  <div id="metas-vazio" class="text-center text-muted py-5 d-none">
+    <p class="mb-1">Você ainda não tem nenhuma meta cadastrada.</p>
+    <p class="small">Que tal começar com algo como "Viagem" ou "Reserva de emergência"?</p>
+  </div>
+
+  <div id="metas-grid" class="row g-3">
+    <div class="col-12 text-center text-muted py-5">Carregando suas metas...</div>
+  </div>
+
+</main>
+
+<!-- Modal: nova meta -->
+<div class="modal fade" id="modalNovaMeta" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="nova-meta-form">
+        <div class="modal-header">
+          <h2 class="modal-title h5">Nova meta financeira</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <div id="nova-meta-erro" class="alert alert-danger d-none" role="alert"></div>
+
+          <div class="mb-3">
+            <label for="meta-nome" class="form-label">Nome da meta</label>
+            <input type="text" id="meta-nome" name="nome" class="form-control" placeholder="Ex.: Viagem para a praia" maxlength="56" required>
+          </div>
+          <div class="mb-3">
+            <label for="meta-valor" class="form-label">Valor alvo (R$)</label>
+            <input type="number" id="meta-valor" name="valor" class="form-control" min="0.01" step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label for="meta-prazo" class="form-label">Prazo</label>
+            <input type="date" id="meta-prazo" name="prazo" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="meta-status" class="form-label">Status inicial</label>
+            <select id="meta-status" name="status" class="form-select" required>
+              <option value="Em andamento" selected>Em andamento</option>
+              <option value="Quase lá">Quase lá</option>
+              <option value="Concluída">Concluída</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success">Salvar meta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Template de um card de meta (clonado via JS) -->
+<template id="meta-card-template">
+  <div class="col-sm-6 col-lg-4">
+    <article class="card meta-card h-100 shadow-sm">
+      <div class="card-body d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h3 class="h6 mb-0 meta-nome"></h3>
+          <span class="badge meta-status-badge"></span>
+        </div>
+        <p class="display-6 fs-3 text-success mb-1 meta-valor"></p>
+        <p class="text-muted small mb-3 meta-prazo"></p>
+        <button type="button" class="btn btn-outline-danger btn-sm mt-auto meta-excluir">Excluir</button>
+      </div>
+    </article>
+  </div>
+</template>
+
+<footer class="text-white py-4 mt-auto">
+  <div class="container text-center text-md-start">
+    <div class="row gy-4">
+      <div class="col-12 col-md-4">
+        <h4 class="text-success">Links</h4>
+        <ul class="list-unstyled">
+          <li><a class="text-white text-decoration-none" href="../Home/Home.html">Início</a></li>
+          <li><a class="text-white text-decoration-none" href="../Conteudo/Conteudo.HTML">Blog</a></li>
+          <li><a class="text-white text-decoration-none" href="#">Contato</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-4">
+        <h4 class="text-success">Contato</h4>
+        <p class="mb-1">E-mail: contato@cashwise.com</p>
+        <p>Telefone: (00) 1234-5678</p>
+      </div>
+      <div class="col-12 col-md-4 d-flex align-items-end">
+        <p class="small mb-0">2025 &copy; Cash Wise – TIADAI</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

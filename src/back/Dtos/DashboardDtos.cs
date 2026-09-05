@@ -1,15 +1,11 @@
 namespace YourProject.Dtos
 {
-    public class DashboardRequest
+    public class DashboardResumoResponse
     {
         public double SaldoTotal { get; set; }
-        public double InvestimentoTotal { get; set; }
-    }
-
-    public class DashboardResponse
-    {
-        public int Id { get; set; }
-        public double SaldoTotal { get; set; }
-        public double InvestimentoTotal { get; set; }
+        public double TotalReceitas { get; set; }
+        public double TotalDespesas { get; set; }
+        public double GastosMes { get; set; }
+        public int MetasAtivas { get; set; }
     }
 }
