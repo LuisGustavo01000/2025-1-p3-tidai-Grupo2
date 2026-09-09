@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
 using YourProject.Data;
+using YourProject.Dtos;
+using YourProject.Extensions;
+using YourProject.Models;
 
 namespace YourProject.Controllers
 {
@@ -20,67 +19,98 @@ namespace YourProject.Controllers
             _context = context;
         }
 
+        // GET: api/Conteudo — leitura pública, qualquer um pode ler os artigos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Conteudo>>> GetConteudos()
+        public async Task<ActionResult<IEnumerable<ConteudoResponse>>> GetConteudos()
         {
-            return await _context.Conteudos.ToListAsync();
+            var conteudos = await _context.Conteudos
+                .Include(c => c.Usuario)
+                .OrderByDescending(c => c.DataPublicacao)
+                .ToListAsync();
+
+            return conteudos.Select(ToResponse).ToList();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Conteudo>> GetConteudo(int id)
+        public async Task<ActionResult<ConteudoResponse>> GetConteudo(int id)
         {
-            var conteudo = await _context.Conteudos.FindAsync(id);
+            var conteudo = await _context.Conteudos
+                .Include(c => c.Usuario)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             if (conteudo == null)
             {
                 return NotFound();
             }
 
-            return conteudo;
+            return ToResponse(conteudo);
         }
 
+        // POST: api/Conteudo — exige login; o autor é sempre quem está autenticado
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<Conteudo>> CreateConteudo(Conteudo conteudo)
+        public async Task<ActionResult<ConteudoResponse>> CreateConteudo(ConteudoRequest request)
         {
+            var usuarioId = User.GetUsuarioId();
+            var usuario = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            var conteudo = new Conteudo
+            {
+                Titulo = request.Titulo,
+                Descricao = request.Descricao,
+                Tipo = request.Tipo,
+                Nivel = request.Nivel,
+                DataPublicacao = DateTime.UtcNow,
+                UsuarioFk = usuarioId,
+                Usuario = usuario
+            };
+
             _context.Conteudos.Add(conteudo);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetConteudo), new { id = conteudo.Id }, conteudo);
+            return CreatedAtAction(nameof(GetConteudo), new { id = conteudo.Id }, ToResponse(conteudo));
         }
 
+        // PUT: api/Conteudo/5 — só o autor pode editar o próprio conteúdo
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateConteudo(int id, Conteudo conteudo)
+        public async Task<IActionResult> UpdateConteudo(int id, ConteudoRequest request)
         {
-            if (id != conteudo.Id)
+            var usuarioId = User.GetUsuarioId();
+
+            var conteudo = await _context.Conteudos
+                .FirstOrDefaultAsync(c => c.Id == id && c.UsuarioFk == usuarioId);
+
+            if (conteudo == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(conteudo).State = EntityState.Modified;
+            conteudo.Titulo = request.Titulo;
+            conteudo.Descricao = request.Descricao;
+            conteudo.Tipo = request.Tipo;
+            conteudo.Nivel = request.Nivel;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ConteudoExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
+        // DELETE: api/Conteudo/5 — só o autor pode excluir o próprio conteúdo
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConteudo(int id)
         {
-            var conteudo = await _context.Conteudos.FindAsync(id);
+            var usuarioId = User.GetUsuarioId();
+
+            var conteudo = await _context.Conteudos
+                .FirstOrDefaultAsync(c => c.Id == id && c.UsuarioFk == usuarioId);
+
             if (conteudo == null)
             {
                 return NotFound();
@@ -92,9 +122,15 @@ namespace YourProject.Controllers
             return NoContent();
         }
 
-        private bool ConteudoExists(int id)
+        private static ConteudoResponse ToResponse(Conteudo c) => new()
         {
-            return _context.Conteudos.Any(e => e.Id == id);
-        }
+            Id = c.Id,
+            Titulo = c.Titulo,
+            Descricao = c.Descricao,
+            Tipo = c.Tipo,
+            Nivel = c.Nivel,
+            DataPublicacao = c.DataPublicacao,
+            AutorNome = c.Usuario?.Nome ?? string.Empty
+        };
     }
 }

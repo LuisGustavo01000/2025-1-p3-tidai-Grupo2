@@ -68,6 +68,7 @@ namespace YourProject.Controllers
                 Descricao = request.Descricao,
                 Valor = request.Valor,
                 Tipo = request.Tipo,
+                Categoria = string.IsNullOrWhiteSpace(request.Categoria) ? "Outros" : request.Categoria,
                 Data = request.Data ?? DateTime.UtcNow,
                 Usuario = usuario
             };
@@ -104,6 +105,7 @@ namespace YourProject.Controllers
             Descricao = t.Descricao,
             Valor = t.Valor,
             Tipo = t.Tipo,
+            Categoria = t.Categoria,
             Data = t.Data
         };
     }

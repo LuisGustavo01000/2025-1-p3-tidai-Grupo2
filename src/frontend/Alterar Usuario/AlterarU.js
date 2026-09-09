@@ -7,6 +7,7 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
   exigirLogin();
+  montarNav('nav-links');
 
   const profileImage = document.getElementById('profileImage');
   const imageInput = document.getElementById('imageInput');
@@ -22,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const inputSenhaAtual = document.getElementById('currentPassword');
   const inputNovaSenha = document.getElementById('newPassword');
   const inputConfirmarSenha = document.getElementById('confirmPassword');
-
-  const logoutLink = document.getElementById('logout-link');
 
   function mostrarFeedback(box, mensagem, tipo = 'danger') {
     box.textContent = mensagem;
@@ -126,12 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } finally {
       botao.disabled = false;
     }
-  });
-
-  logoutLink?.addEventListener('click', (event) => {
-    event.preventDefault();
-    logout();
-    window.location.href = '../Login/Login.HTML';
   });
 
   carregarDadosAtuais();

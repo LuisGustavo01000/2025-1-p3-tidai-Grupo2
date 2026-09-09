@@ -7,6 +7,7 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
   exigirLogin();
+  montarNav('nav-links', 'metas');
 
   const grid = document.getElementById('metas-grid');
   const vazio = document.getElementById('metas-vazio');
@@ -16,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const novaMetaForm = document.getElementById('nova-meta-form');
   const novaMetaErro = document.getElementById('nova-meta-erro');
   const modalEl = document.getElementById('modalNovaMeta');
-  const logoutLink = document.getElementById('logout-link');
 
   function formatarMoeda(valor) {
     return Number(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -158,12 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } finally {
       botao.disabled = false;
     }
-  });
-
-  logoutLink?.addEventListener('click', (event) => {
-    event.preventDefault();
-    logout();
-    window.location.href = '../Login/Login.HTML';
   });
 
   carregarMetas();

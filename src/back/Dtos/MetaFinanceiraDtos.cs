@@ -8,7 +8,7 @@ namespace YourProject.Dtos
         [StringLength(56)]
         public string Nome { get; set; } = string.Empty;
 
-        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "O valor deve ser maior que zero.")]
         public double Valor { get; set; }
 
         [Required]

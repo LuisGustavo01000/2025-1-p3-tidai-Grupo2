@@ -37,8 +37,19 @@ namespace YourProject.Data
                 entity.Property(t => t.Descricao).HasColumnName("DESCRICAO_CONT");
                 entity.Property(t => t.Valor).HasColumnName("VALOR_TRANS");
                 entity.Property(t => t.Tipo).HasColumnName("TIPO_TRANS").HasMaxLength(20);
+                entity.Property(t => t.Categoria).HasColumnName("CATEGORIA_TRANS").HasMaxLength(30).HasDefaultValue("Outros");
                 entity.Property(t => t.Data).HasColumnName("DATA_TRANS").HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
                 entity.Property<int>("UsuarioId").HasColumnName("USUARIOFK");
+            });
+
+            modelBuilder.Entity<Conteudo>(entity =>
+            {
+                entity.Property(c => c.DataPublicacao).HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                entity.HasOne(c => c.Usuario)
+                    .WithMany()
+                    .HasForeignKey(c => c.UsuarioFk)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<MetaFinanceira>(entity =>

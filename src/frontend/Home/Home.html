@@ -8,6 +8,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
   <link rel="stylesheet" href="Home.css" />
   <link rel="stylesheet" href="../css/theme.css" />
+  <script src="../js/api.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/nav.js" defer></script>
+  <script src="Home.js" defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -23,11 +27,9 @@
     </button>
 
     <nav id="menu-principal" class="collapse navbar-collapse justify-content-end">
-      <ul class="navbar-nav gap-md-2 text-center">
+      <ul class="navbar-nav gap-md-2 text-center align-items-center" id="nav-links">
         <li class="nav-item"><a class="nav-link" href="../Conteudo/Conteudo.HTML">Blog</a></li>
-        <li class="nav-item">
-          <a class="btn btn-success ms-md-2 mt-2 mt-md-0" href="../Login/Login.HTML">Login</a>
-        </li>
+        <li class="nav-item"><a class="btn btn-success ms-md-2 mt-2 mt-md-0" href="../Login/Login.HTML">Entrar</a></li>
       </ul>
     </nav>
   </div>
@@ -38,7 +40,11 @@
   <section class="hero text-center text-white d-flex flex-column justify-content-center">
     <div class="container py-5">
       <h1 class="display-5 fw-bold">Gerencie seu dinheiro com inteligência</h1>
-      <p class="lead mb-0">Invista com sabedoria e alcance a sua independência financeira.</p>
+      <p class="lead mb-4">Controle receitas, despesas e metas em um só lugar — sem planilhas, sem complicação.</p>
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-2">
+        <a href="../Cadastro/Cadastro.html" class="btn btn-success btn-lg px-4">Começar agora</a>
+        <a href="#beneficios" class="btn btn-outline-light btn-lg px-4">Conhecer o Cash Wise</a>
+      </div>
     </div>
   </section>
 
@@ -46,10 +52,10 @@
     <div class="container">
       <div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active"><img src="../../img/investimentoimagem1.webp" class="d-block w-100 rounded" alt=""></div>
-          <div class="carousel-item"><img src="../../img/investimentoimagem2.webp" class="d-block w-100 rounded" alt=""></div>
-          <div class="carousel-item"><img src="../../img/investimentoimagem3.webp" class="d-block w-100 rounded" alt=""></div>
-          <div class="carousel-item"><img src="../../img/investimentoimagem4.webp" class="d-block w-100 rounded" alt=""></div>
+          <div class="carousel-item active"><img src="../../img/investimentoimagem1.webp" class="d-block w-100 rounded" alt="Pessoa analisando gráficos de investimento em um notebook"></div>
+          <div class="carousel-item"><img src="../../img/investimentoimagem2.webp" class="d-block w-100 rounded" alt="Planejamento financeiro em um caderno com calculadora"></div>
+          <div class="carousel-item"><img src="../../img/investimentoimagem3.webp" class="d-block w-100 rounded" alt="Gráficos de crescimento financeiro em uma tela"></div>
+          <div class="carousel-item"><img src="../../img/investimentoimagem4.webp" class="d-block w-100 rounded" alt="Moedas e notas organizadas representando economia"></div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
           <span class="carousel-control-prev-icon"></span><span class="visually-hidden">Anterior</span>
@@ -61,70 +67,93 @@
     </div>
   </section>
 
- 
   <section class="py-5 bg-light text-center">
     <div class="container">
       <h2 class="mb-3">Sobre a Cash Wise</h2>
-      <p class="lead">Cash Wise é uma plataforma digital que oferece ferramentas e recursos para ajudar você a gerenciar suas finanças,
-         realizar investimentos e alcançar sua independência financeira de forma inteligente e prática.</p>
+      <p class="lead">Cash Wise é uma plataforma digital que ajuda você a organizar suas finanças, entender para onde vai o seu
+        dinheiro e planejar seus próximos passos — de forma simples e sem depender de planilhas.</p>
     </div>
   </section>
 
-  
+  <section class="py-5 text-center" id="beneficios">
+    <div class="container">
+      <h2 class="mb-2">O que você faz com o Cash Wise</h2>
+      <p class="text-muted mb-4">Tudo o que existe aqui embaixo já está funcionando — não é promessa.</p>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <article class="service-card h-100 p-4 rounded shadow-sm">
+            <h3 class="h6 fw-bold">Controle de receitas e despesas</h3>
+            <p class="mb-0 small">Registre cada entrada e saída, organizada por categoria, e veja seu saldo em tempo real.</p>
+          </article>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <article class="service-card h-100 p-4 rounded shadow-sm">
+            <h3 class="h6 fw-bold">Metas financeiras</h3>
+            <p class="mb-0 small">Defina um valor e um prazo, e acompanhe o quanto falta para chegar lá.</p>
+          </article>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <article class="service-card h-100 p-4 rounded shadow-sm">
+            <h3 class="h6 fw-bold">Calculadoras financeiras</h3>
+            <p class="mb-0 small">Simule orçamento, juros compostos e quanto guardar por mês para bater uma meta.</p>
+          </article>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <article class="service-card h-100 p-4 rounded shadow-sm">
+            <h3 class="h6 fw-bold">Relatórios com gráficos</h3>
+            <p class="mb-0 small">Veja receitas x despesas por mês e seus gastos por categoria, com filtro de período.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-light text-center" id="como-funciona">
+    <div class="container">
+      <h2 class="mb-5">Como funciona</h2>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-number mx-auto mb-3">1</div>
+          <h3 class="h6 fw-bold">Crie sua conta</h3>
+          <p class="small text-muted mb-0">Cadastro rápido, sem burocracia.</p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-number mx-auto mb-3">2</div>
+          <h3 class="h6 fw-bold">Registre suas movimentações</h3>
+          <p class="small text-muted mb-0">Cada receita e despesa, com categoria.</p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-number mx-auto mb-3">3</div>
+          <h3 class="h6 fw-bold">Acompanhe seus resultados</h3>
+          <p class="small text-muted mb-0">Saldo, gastos do mês e metas em um painel só.</p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-number mx-auto mb-3">4</div>
+          <h3 class="h6 fw-bold">Tome decisões melhores</h3>
+          <p class="small text-muted mb-0">Com relatórios e calculadoras a favor do seu bolso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="py-5 text-center">
     <div class="container">
-      <h2 class="mb-4">Serviços</h2>
-      <div class="row g-4">
-        <div class="col-sm-6 col-lg-4">
-          <article class="service-card h-100 p-4 rounded shadow-sm">
-            <h3 class="h5">Consultoria Financeira</h3>
-            <p class="mb-0">Orientações personalizadas para planejar seus investimentos e alcançar seus objetivos.</p>
-          </article>
-        </div>
-
-        <div class="col-sm-6 col-lg-4">
-          <article class="service-card h-100 p-4 rounded shadow-sm">
-            <h3 class="h5">Gestão de Investimentos</h3>
-            <p class="mb-0">Controle total de seus investimentos com ferramentas de análise e monitoramento.</p>
-          </article>
-        </div>
-
-        <div class="col-sm-6 col-lg-4">
-          <article class="service-card h-100 p-4 rounded shadow-sm">
-            <h3 class="h5">Educação Financeira</h3>
-            <p class="mb-0">Cursos, webinars e materiais educativos para aprimorar seus conhecimentos.</p>
-          </article>
-        </div>
+      <h2 class="mb-4">Do Blog</h2>
+      <div id="home-blog-erro" class="alert alert-light small d-none"></div>
+      <div class="row g-4 justify-content-center" id="home-blog-grid">
+        <div class="col-12 text-muted small">Carregando conteúdo do blog...</div>
       </div>
+      <a href="../Conteudo/Conteudo.HTML" class="btn btn-outline-secondary mt-4">Ver todos os artigos</a>
     </div>
   </section>
 
- 
-  <section class="py-5 bg-light text-center">
+  <section class="py-5 text-center text-white cta-final">
     <div class="container">
-      <h2 class="mb-4">Blog</h2>
-      <div class="row g-4 justify-content-center">
-        <div class="col-md-6 col-lg-4">
-          <article class="blog-post p-4 bg-white rounded shadow-sm h-100">
-            <h3 class="h5 text-success">Como começar a investir com pouco dinheiro</h3>
-            <p class="mb-0">Descubra como dar os primeiros passos no mundo dos investimentos mesmo com um orçamento limitado.</p>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <article class="blog-post p-4 bg-white rounded shadow-sm h-100">
-            <h3 class="h5 text-success">5 dicas para controlar seus gastos diários</h3>
-            <p class="mb-0">Estratégias simples para economizar dinheiro no seu dia a dia.</p>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <article class="blog-post p-4 bg-white rounded shadow-sm h-100">
-            <h3 class="h5 text-success">Investimentos de risco: como lidar com eles</h3>
-            <p class="mb-0">Entenda os tipos de investimento e como escolher os mais adequados ao seu perfil.</p>
-          </article>
-        </div>
-      </div>
+      <h2 class="mb-3">Comece a organizar sua vida financeira.</h2>
+      <a href="../Cadastro/Cadastro.html" class="btn btn-success btn-lg px-4">Começar agora</a>
     </div>
   </section>
 </main>
@@ -136,8 +165,8 @@
         <h4 class="text-success">Links</h4>
         <ul class="list-unstyled">
           <li><a class="text-white text-decoration-none" href="../Home/Home.html">Início</a></li>
-          <li><a class="text-white text-decoration-none" href="#">Sobre</a></li>
-          <li><a class="text-white text-decoration-none" href="#">Blog</a></li>
+          <li><a class="text-white text-decoration-none" href="#beneficios">Funcionalidades</a></li>
+          <li><a class="text-white text-decoration-none" href="../Conteudo/Conteudo.HTML">Blog</a></li>
           <li><a class="text-white text-decoration-none" href="#">Contato</a></li>
         </ul>
       </div>

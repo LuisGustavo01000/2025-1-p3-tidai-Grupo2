@@ -32,8 +32,8 @@ header {
 
 /* Hero ------------------------------------------------------------*/
 .hero {
-  background: #35597a; /* tom mais claro */
-  padding-block: clamp(2rem, 6vw, 4rem);
+  background: linear-gradient(135deg, var(--cw-ink, #122A26), var(--cw-ink-2, #1B3B35));
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
   color: #fff; /* garante contraste */
 }
 
@@ -63,9 +63,32 @@ header {
   transform: translateY(-4px);
 }
 
+/* Como funciona -----------------------------------------------------*/
+.step-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--cw-accent, #146B48);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* CTA final ---------------------------------------------------------*/
+.cta-final {
+  background: var(--cw-accent, #146B48);
+}
+
 /* Blog ------------------------------------------------------------*/
 .blog-post h3 {
   color: var(--cw-accent);
+}
+.blog-post:hover {
+  transform: translateY(-3px);
+  transition: transform .2s ease;
 }
 
 footer {

@@ -1,0 +1,32 @@
+*,*::before,*::after{box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;}
+
+.resultado-card{
+  background:var(--cw-accent-soft, #eef7f2);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:12px;
+  padding:1.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:.25rem;
+  height:100%;
+  justify-content:center;
+}
+.resultado-label{
+  font-size:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:#6c757d;
+}
+.resultado-valor{
+  font-size:2rem;
+  font-weight:700;
+  color:var(--cw-accent);
+}
+.resultado-card--sm{padding:1rem;}
+.resultado-valor--sm{font-size:1.35rem;}
+
+.nav-pills .nav-link.active{
+  background-color:var(--cw-accent) !important;
+}
+.nav-pills .nav-link{color:var(--cw-ink, #122a26);}

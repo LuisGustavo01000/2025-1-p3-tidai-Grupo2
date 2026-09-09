@@ -16,6 +16,9 @@ namespace YourProject.Models
         [Required]
         public string Tipo { get; set; } = string.Empty; // "Receita" ou "Despesa"
 
+        [Required]
+        public string Categoria { get; set; } = "Outros";
+
         public DateTime Data { get; set; }
 
         [Required]
