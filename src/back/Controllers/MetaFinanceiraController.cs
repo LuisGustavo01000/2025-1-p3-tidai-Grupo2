@@ -1,15 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
 using YourProject.Data;
+using YourProject.Dtos;
+using YourProject.Extensions;
+using YourProject.Models;
 
 namespace YourProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class MetaFinanceiraController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -20,57 +21,78 @@ namespace YourProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MetaFinanceira>>> GetMetasFinanceiras()
+        public async Task<ActionResult<IEnumerable<MetaFinanceiraResponse>>> GetMetasFinanceiras()
         {
-            return await _context.MetasFinanceiras.Include(m => m.Usuario).ToListAsync();
+            var usuarioId = User.GetUsuarioId();
+
+            var metas = await _context.MetasFinanceiras
+                .Where(m => m.Usuario.Id == usuarioId)
+                .ToListAsync();
+
+            return metas.Select(ToResponse).ToList();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<MetaFinanceira>> GetMetaFinanceira(int id)
+        public async Task<ActionResult<MetaFinanceiraResponse>> GetMetaFinanceira(int id)
         {
-            var metaFinanceira = await _context.MetasFinanceiras
-                .Include(m => m.Usuario)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var usuarioId = User.GetUsuarioId();
 
-            if (metaFinanceira == null)
+            var meta = await _context.MetasFinanceiras
+                .FirstOrDefaultAsync(m => m.Id == id && m.Usuario.Id == usuarioId);
+
+            if (meta == null)
             {
                 return NotFound();
             }
 
-            return metaFinanceira;
+            return ToResponse(meta);
         }
 
         [HttpPost]
-        public async Task<ActionResult<MetaFinanceira>> CreateMetaFinanceira(MetaFinanceira metaFinanceira)
+        public async Task<ActionResult<MetaFinanceiraResponse>> CreateMetaFinanceira(MetaFinanceiraRequest request)
         {
-            _context.MetasFinanceiras.Add(metaFinanceira);
+            var usuarioId = User.GetUsuarioId();
+            var usuario = await _context.Usuarios.FindAsync(usuarioId);
+
+            if (usuario == null)
+            {
+                return Unauthorized();
+            }
+
+            var meta = new MetaFinanceira
+            {
+                Nome = request.Nome,
+                Valor = request.Valor,
+                Prazo = request.Prazo,
+                Status = request.Status,
+                Usuario = usuario
+            };
+
+            _context.MetasFinanceiras.Add(meta);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetMetaFinanceira), new { id = metaFinanceira.Id }, metaFinanceira);
+            return CreatedAtAction(nameof(GetMetaFinanceira), new { id = meta.Id }, ToResponse(meta));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMetaFinanceira(int id, MetaFinanceira metaFinanceira)
+        public async Task<IActionResult> UpdateMetaFinanceira(int id, MetaFinanceiraRequest request)
         {
-            if (id != metaFinanceira.Id)
+            var usuarioId = User.GetUsuarioId();
+
+            var meta = await _context.MetasFinanceiras
+                .FirstOrDefaultAsync(m => m.Id == id && m.Usuario.Id == usuarioId);
+
+            if (meta == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(metaFinanceira).State = EntityState.Modified;
+            meta.Nome = request.Nome;
+            meta.Valor = request.Valor;
+            meta.Prazo = request.Prazo;
+            meta.Status = request.Status;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MetaFinanceiraExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -78,21 +100,29 @@ namespace YourProject.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMetaFinanceira(int id)
         {
-            var metaFinanceira = await _context.MetasFinanceiras.FindAsync(id);
-            if (metaFinanceira == null)
+            var usuarioId = User.GetUsuarioId();
+
+            var meta = await _context.MetasFinanceiras
+                .FirstOrDefaultAsync(m => m.Id == id && m.Usuario.Id == usuarioId);
+
+            if (meta == null)
             {
                 return NotFound();
             }
 
-            _context.MetasFinanceiras.Remove(metaFinanceira);
+            _context.MetasFinanceiras.Remove(meta);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MetaFinanceiraExists(int id)
+        private static MetaFinanceiraResponse ToResponse(MetaFinanceira m) => new()
         {
-            return _context.MetasFinanceiras.Any(e => e.Id == id);
-        }
+            Id = m.Id,
+            Nome = m.Nome,
+            Valor = m.Valor,
+            Prazo = m.Prazo,
+            Status = m.Status
+        };
     }
 }

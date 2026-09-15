@@ -1,0 +1,38 @@
+name: Backend tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restaurar dependências
+        run: dotnet restore back.Tests/YourProject.Tests.csproj
+
+      - name: Build
+        run: dotnet build back.Tests/YourProject.Tests.csproj --no-restore --configuration Release
+
+      - name: Testes
+        run: dotnet test back.Tests/YourProject.Tests.csproj --no-build --configuration Release --logger "trx" --results-directory ./test-results
+
+      - name: Publicar resultados dos testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: src/test-results

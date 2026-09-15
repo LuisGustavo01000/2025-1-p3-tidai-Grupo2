@@ -6,7 +6,13 @@
   <title>Dashboard – Cash Wise</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="usuario.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <script src="../js/api.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/nav.js" defer></script>
+  <script src="usuario.js" defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -24,13 +30,7 @@
     </button>
 
     <nav id="menu" class="collapse navbar-collapse justify-content-end">
-      <ul class="navbar-nav gap-md-2 text-center">
-        <li class="nav-item"><a class="nav-link" href="../Home/Home.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="../Perfil Usuario/PerfilU.html">Perfil</a></li>
-        <li class="nav-item"><a class="nav-link" href="../Conteudo/Conteudo.HTML">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="../Home/Home.html">Sair</a></li>
-       
-      </ul>
+      <ul class="navbar-nav gap-md-2 text-center align-items-center" id="nav-links"></ul>
     </nav>
   </div>
 </header>
@@ -44,7 +44,7 @@
       <article class="card text-center shadow-sm h-100">
         <div class="card-body">
           <h3 class="h6 text-muted">Saldo Atual</h3>
-          <p class="display-6 text-success mb-0">R$ 12.350,00</p>
+          <p id="stat-saldo" class="display-6 text-success mb-0">R$ 0,00</p>
         </div>
       </article>
     </div>
@@ -52,8 +52,8 @@
     <div class="col-sm-6 col-lg-4">
       <article class="card text-center shadow-sm h-100">
         <div class="card-body">
-          <h3 class="h6 text-muted">Investimentos</h3>
-          <p class="display-6 text-success mb-0">R$ 8.750,00</p>
+          <h3 class="h6 text-muted">Metas Ativas</h3>
+          <p id="stat-metas" class="display-6 text-success mb-0">0</p>
         </div>
       </article>
     </div>
@@ -62,7 +62,7 @@
       <article class="card text-center shadow-sm h-100">
         <div class="card-body">
           <h3 class="h6 text-muted">Gastos do Mês</h3>
-          <p class="display-6 text-danger mb-0">R$ 2.500,00</p>
+          <p id="stat-gastos-mes" class="display-6 text-danger mb-0">R$ 0,00</p>
         </div>
       </article>
     </div>
@@ -70,22 +70,81 @@
 
  
     <section class="my-5">
-    <h2 class="mb-4 text-center text-md-start">Resumo de Investimentos</h2>
+    <h2 class="mb-3">Relatório</h2>
 
+    <div class="d-flex flex-wrap align-items-end gap-2 mb-4 report-filtros">
+      <div>
+        <label for="filtro-de" class="form-label small text-muted mb-1">De</label>
+        <input type="date" id="filtro-de" class="form-control form-control-sm">
+      </div>
+      <div>
+        <label for="filtro-ate" class="form-label small text-muted mb-1">Até</label>
+        <input type="date" id="filtro-ate" class="form-control form-control-sm">
+      </div>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Períodos rápidos">
+        <button type="button" class="btn btn-outline-secondary" data-preset="30">30 dias</button>
+        <button type="button" class="btn btn-outline-secondary" data-preset="mes">Este mês</button>
+        <button type="button" class="btn btn-outline-secondary" data-preset="tudo">Tudo</button>
+      </div>
+    </div>
 
-    <div class="ratio ratio-16x9">
-        <img
-        src="../../img/graficoPlaceholder.png"
-        alt="Gráfico de Investimentos"
-        class="img-fluid rounded shadow-sm"
-        >
+    <div id="relatorio-vazio" class="text-center text-muted py-5 d-none">
+      Nenhuma transação no período selecionado.
+    </div>
+
+    <div class="row g-4" id="relatorio-graficos">
+      <div class="col-lg-7">
+        <h3 class="h6 text-muted">Receitas x Despesas por mês</h3>
+        <canvas id="grafico-mensal" height="220" role="img" aria-label="Gráfico de barras comparando receitas e despesas por mês"></canvas>
+      </div>
+      <div class="col-lg-5">
+        <h3 class="h6 text-muted">Despesas por categoria</h3>
+        <canvas id="grafico-categorias" height="220" role="img" aria-label="Gráfico de rosca com despesas agrupadas por categoria"></canvas>
+      </div>
     </div>
     </section>
 
   
 <section class="mb-5">
+  <h2 class="mb-3">Nova Transação</h2>
+
+  <form id="nova-transacao-form" class="row g-2 align-items-end mb-4">
+    <div class="col-12 col-md-4">
+      <label for="descricao" class="form-label small text-muted">Descrição</label>
+      <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Ex.: Salário, Mercado..." required>
+    </div>
+    <div class="col-6 col-md-3">
+      <label for="valor" class="form-label small text-muted">Valor (R$)</label>
+      <input type="number" id="valor" name="valor" class="form-control" min="0.01" step="0.01" required>
+    </div>
+    <div class="col-6 col-md-2">
+      <label for="tipo" class="form-label small text-muted">Tipo</label>
+      <select id="tipo" name="tipo" class="form-select" required>
+        <option value="Receita">Receita</option>
+        <option value="Despesa">Despesa</option>
+      </select>
+    </div>
+    <div class="col-6 col-md-2">
+      <label for="categoria" class="form-label small text-muted">Categoria</label>
+      <select id="categoria" name="categoria" class="form-select">
+        <option value="Moradia">Moradia</option>
+        <option value="Alimentação">Alimentação</option>
+        <option value="Transporte">Transporte</option>
+        <option value="Lazer">Lazer</option>
+        <option value="Saúde">Saúde</option>
+        <option value="Salário">Salário</option>
+        <option value="Educação">Educação</option>
+        <option value="Outros" selected>Outros</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-1">
+      <button type="submit" class="btn btn-success w-100">Adicionar</button>
+    </div>
+  </form>
+
   <h2 class="mb-3">Últimas Transações</h2>
 
+  <div id="transacoes-erro" class="alert alert-danger d-none" role="alert"></div>
 
   <div class="table-responsive-sm">
     <table class="table align-middle table-striped">
@@ -95,16 +154,13 @@
           <th class="d-none d-md-table-cell">Descrição</th>
           <th>Valor</th>
           <th class="d-none d-sm-table-cell">Tipo</th>
+          <th class="d-none d-md-table-cell">Categoria</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="transacoes-tbody">
         <tr>
-          <td>20/03/2025</td>
-          <td class="d-none d-md-table-cell">Salário</td>
-          <td class="text-success fw-bold">+R$ 5 000,00</td>
-          <td class="d-none d-sm-table-cell">Receita</td>
+          <td colspan="4" class="text-center text-muted">Carregando...</td>
         </tr>
-      
       </tbody>
     </table>
   </div>
