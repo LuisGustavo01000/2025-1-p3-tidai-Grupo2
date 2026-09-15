@@ -1,5 +1,5 @@
 /*
- * AterarU.js
+ * AlterarU.js
  * – Carrega os dados reais do usuário autenticado
  * – Salva nome/e-mail via PUT /api/Usuario/me
  * – Altera senha via PUT /api/Usuario/me/senha
