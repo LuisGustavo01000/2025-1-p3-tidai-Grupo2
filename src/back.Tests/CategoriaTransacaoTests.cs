@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     public class CategoriaTransacaoTests : TesteBase
     {

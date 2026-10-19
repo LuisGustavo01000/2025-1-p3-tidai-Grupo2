@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     public class TransacaoTests : TesteBase
     {
@@ -50,6 +50,67 @@ namespace YourProject.Tests
             var listaDeB = await clienteB.GetFromJsonAsync<List<TransacaoDto>>("/api/Transacao");
 
             Assert.Empty(listaDeB!);
+        }
+
+        [Fact]
+        public async Task AtualizarTransacao_PutPermaneceOwnerScoped()
+        {
+            var usuarioA = await CriarUsuarioAutenticadoAsync("Usuário A");
+            var usuarioB = await CriarUsuarioAutenticadoAsync("Usuário B");
+            var clienteA = ClienteAutenticadoComo(usuarioA);
+
+            var criada = await clienteA.PostAsJsonAsync("/api/Transacao", new
+            {
+                descricao = "Original",
+                valor = 100,
+                tipo = "Receita"
+            });
+            var transacao = await criada.Content.ReadFromJsonAsync<TransacaoDto>();
+
+            var clienteB = ClienteAutenticadoComo(usuarioB);
+            var acessoDeB = await clienteB.PutAsJsonAsync($"/api/Transacao/{transacao!.Id}", new
+            {
+                descricao = "Alterada por terceiro",
+                valor = 500,
+                tipo = "Despesa"
+            });
+
+            Assert.Equal(HttpStatusCode.NotFound, acessoDeB.StatusCode);
+            var atualizada = await clienteA.PutAsJsonAsync($"/api/Transacao/{transacao.Id}", new
+            {
+                descricao = "Atualizada",
+                valor = 150,
+                tipo = "Receita"
+            });
+
+            Assert.Equal(HttpStatusCode.OK, atualizada.StatusCode);
+            var resposta = await atualizada.Content.ReadFromJsonAsync<TransacaoDto>();
+            Assert.Equal("Atualizada", resposta!.Descricao);
+        }
+
+        [Fact]
+        public async Task AtualizarTransacao_PatchAtualizaApenasCamposInformados()
+        {
+            var usuario = await CriarUsuarioAutenticadoAsync();
+            var client = ClienteAutenticadoComo(usuario);
+            var criada = await client.PostAsJsonAsync("/api/Transacao", new
+            {
+                descricao = "Original",
+                valor = 100,
+                tipo = "Receita",
+                categoria = "Trabalho"
+            });
+            var transacao = await criada.Content.ReadFromJsonAsync<TransacaoDto>();
+
+            var resposta = await client.PatchAsJsonAsync($"/api/Transacao/{transacao!.Id}", new
+            {
+                valor = 125
+            });
+
+            Assert.Equal(HttpStatusCode.OK, resposta.StatusCode);
+            var atualizada = await resposta.Content.ReadFromJsonAsync<TransacaoDto>();
+            Assert.Equal("Original", atualizada!.Descricao);
+            Assert.Equal(125, atualizada.Valor);
         }
 
         private record TransacaoDto(int Id, string Descricao, double Valor, string Tipo, DateTime Data);

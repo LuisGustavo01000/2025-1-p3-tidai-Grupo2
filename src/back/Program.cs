@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using YourProject.Data;
+using CashWiseAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +18,25 @@ builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
 
 
+var isTesting = builder.Environment.IsEnvironment("Testing");
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrWhiteSpace(connectionString) && !isTesting)
+{
+    throw new InvalidOperationException(
+        "ConnectionStrings:DefaultConnection deve ser fornecida por configuração ou variável de ambiente.");
+}
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+{
+    if (isTesting)
+    {
+        options.UseInMemoryDatabase("CashWiseAPI-Testing");
+    }
+    else
+    {
+        options.UseMySql(connectionString!, new MySqlServerVersion(new Version(8, 0, 21)));
+    }
+});
 
 
 var origensPermitidas = builder.Configuration
@@ -40,8 +56,18 @@ builder.Services.AddCors(options =>
 
 
 var jwtSection = builder.Configuration.GetSection("Jwt");
-var jwtKey = jwtSection["Key"]
-    ?? throw new InvalidOperationException("Jwt:Key não configurada em appsettings.json.");
+var jwtKey = jwtSection["Key"];
+if (string.IsNullOrWhiteSpace(jwtKey) && !isTesting)
+{
+    throw new InvalidOperationException(
+        "Jwt:Key deve ser fornecida por configuração ou variável de ambiente fora do ambiente de testes.");
+}
+
+jwtKey ??= "cashwise-test-key-do-not-use-in-production";
+if (isTesting)
+{
+    jwtSection["Key"] = jwtKey;
+}
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

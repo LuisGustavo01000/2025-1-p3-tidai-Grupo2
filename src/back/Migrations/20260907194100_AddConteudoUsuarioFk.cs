@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace YourProject.Migrations
+namespace CashWiseAPI.Migrations
 {
     /// <inheritdoc />
     public partial class AddConteudoUsuarioFk : Migration

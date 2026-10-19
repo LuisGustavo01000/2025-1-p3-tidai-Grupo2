@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Headers;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     public class AutorizacaoTests : TesteBase
     {

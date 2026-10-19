@@ -26,6 +26,7 @@ services:
         condition: service_healthy
     environment:
       ConnectionStrings__DefaultConnection: "Server=mysql;Port=3306;Database=bd_cashwise;User=root;Password=;"
+      Jwt__Key: "${JWT_KEY:?Defina JWT_KEY antes de iniciar o Docker Compose}"
     ports:
       - "5284:5284"
 

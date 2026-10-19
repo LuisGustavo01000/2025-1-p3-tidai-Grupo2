@@ -1,11 +1,24 @@
 using System.Net;
 using System.Net.Http.Json;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     public class AuthTests : TesteBase
     {
         public AuthTests(CashWiseApiFactory factory) : base(factory) { }
+
+        [Fact]
+        public async Task RegistrarSenhaSemNumero_Retorna400()
+        {
+            var response = await Client.PostAsJsonAsync("/api/Auth/register", new
+            {
+                nome = "Usuário",
+                email = $"{Guid.NewGuid():N}@teste.com",
+                senha = "senhaSemNumero"
+            });
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
 
         [Fact]
         public async Task Register_ComDadosValidos_Retorna201ESemSenhaNaResposta()

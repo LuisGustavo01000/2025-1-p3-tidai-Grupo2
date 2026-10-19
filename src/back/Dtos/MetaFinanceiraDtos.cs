@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace YourProject.Dtos
+namespace CashWiseAPI.Dtos
 {
     public class MetaFinanceiraRequest
     {

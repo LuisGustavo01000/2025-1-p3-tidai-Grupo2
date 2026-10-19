@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using YourProject.Data;
+using CashWiseAPI.Data;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     /// <summary>
     /// Sobe a API inteira em memória para os testes de integração, trocando o
@@ -18,6 +18,7 @@ namespace YourProject.Tests
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            builder.UseEnvironment("Testing");
             builder.ConfigureServices(services =>
             {
                 var descriptor = services.SingleOrDefault(

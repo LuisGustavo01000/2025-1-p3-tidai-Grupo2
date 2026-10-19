@@ -4,11 +4,11 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using YourProject.Data;
-using YourProject.Dtos;
-using YourProject.Models;
+using CashWiseAPI.Data;
+using CashWiseAPI.Dtos;
+using CashWiseAPI.Models;
 
-namespace YourProject.Controllers
+namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

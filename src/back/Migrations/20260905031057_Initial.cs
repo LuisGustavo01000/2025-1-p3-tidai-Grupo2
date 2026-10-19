@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace YourProject.Migrations
+namespace CashWiseAPI.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

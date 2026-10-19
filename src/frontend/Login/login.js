@@ -8,7 +8,7 @@ function validarCamposLogin(email, senha) {
     return false;
   }
 
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   if (!emailRegex.test(email)) {
     exibirErro("Por favor, insira um email válido.");
     return false;

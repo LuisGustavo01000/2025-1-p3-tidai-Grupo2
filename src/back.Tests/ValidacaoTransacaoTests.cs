@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     /// <summary>
     /// Regressão para os achados 1 e 2 da auditoria de 2026-09-06:

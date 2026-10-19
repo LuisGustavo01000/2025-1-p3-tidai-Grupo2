@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Data;
-using YourProject.Dtos;
-using YourProject.Extensions;
-using YourProject.Models;
+using CashWiseAPI.Data;
+using CashWiseAPI.Dtos;
+using CashWiseAPI.Extensions;
+using CashWiseAPI.Models;
 
-namespace YourProject.Controllers
+namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

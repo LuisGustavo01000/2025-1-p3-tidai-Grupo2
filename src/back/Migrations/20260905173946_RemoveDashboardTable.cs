@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace YourProject.Migrations
+namespace CashWiseAPI.Migrations
 {
     /// <inheritdoc />
     public partial class RemoveDashboardTable : Migration

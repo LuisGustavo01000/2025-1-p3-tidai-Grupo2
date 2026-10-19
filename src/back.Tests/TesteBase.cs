@@ -1,14 +1,16 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     public abstract class TesteBase : IClassFixture<CashWiseApiFactory>
     {
         protected readonly HttpClient Client;
+        private readonly CashWiseApiFactory _factory;
 
         protected TesteBase(CashWiseApiFactory factory)
         {
+            _factory = factory;
             Client = factory.CreateClient();
         }
 
@@ -45,7 +47,7 @@ namespace YourProject.Tests
 
         protected HttpClient ClienteAutenticadoComo(UsuarioDeTeste usuario)
         {
-            var client = Client;
+            var client = _factory.CreateClient();
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", usuario.Token);
             return client;

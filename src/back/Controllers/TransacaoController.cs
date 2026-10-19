@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Data;
-using YourProject.Dtos;
-using YourProject.Extensions;
-using YourProject.Models;
+using CashWiseAPI.Data;
+using CashWiseAPI.Dtos;
+using CashWiseAPI.Extensions;
+using CashWiseAPI.Models;
 
-namespace YourProject.Controllers
+namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -77,6 +77,73 @@ namespace YourProject.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetTransacao), new { id = transacao.Id }, ToResponse(transacao));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TransacaoResponse>> UpdateTransacao(int id, TransacaoRequest request)
+        {
+            var usuarioId = User.GetUsuarioId();
+            var transacao = await _context.Transacoes
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
+
+            if (transacao == null)
+            {
+                return NotFound();
+            }
+
+            transacao.Descricao = request.Descricao;
+            transacao.Valor = request.Valor;
+            transacao.Tipo = request.Tipo;
+            transacao.Categoria = string.IsNullOrWhiteSpace(request.Categoria) ? "Outros" : request.Categoria;
+            transacao.Data = request.Data ?? transacao.Data;
+
+            await _context.SaveChangesAsync();
+            return Ok(ToResponse(transacao));
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<TransacaoResponse>> PatchTransacao(
+            int id,
+            PatchTransacaoRequest request)
+        {
+            var usuarioId = User.GetUsuarioId();
+            var transacao = await _context.Transacoes
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
+
+            if (transacao == null)
+            {
+                return NotFound();
+            }
+
+            if (request.Descricao is not null)
+            {
+                transacao.Descricao = request.Descricao;
+            }
+
+            if (request.Valor.HasValue)
+            {
+                transacao.Valor = request.Valor.Value;
+            }
+
+            if (request.Tipo is not null)
+            {
+                transacao.Tipo = request.Tipo;
+            }
+
+            if (request.Categoria is not null)
+            {
+                transacao.Categoria = string.IsNullOrWhiteSpace(request.Categoria)
+                    ? "Outros"
+                    : request.Categoria;
+            }
+
+            if (request.Data.HasValue)
+            {
+                transacao.Data = request.Data.Value;
+            }
+
+            await _context.SaveChangesAsync();
+            return Ok(ToResponse(transacao));
         }
 
         // DELETE: api/Transacao/5 (só se pertencer ao usuário autenticado)
