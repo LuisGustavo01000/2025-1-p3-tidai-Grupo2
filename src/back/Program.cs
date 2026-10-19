@@ -1,63 +1,100 @@
-using System.Reflection;
-using CashWiseAPI.Data;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using CashWiseAPI.Services;
+using CashWiseAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.WebHost.ConfigureKestrel((context, options) =>
 {
     options.Configure(context.Configuration.GetSection("Kestrel"));
 });
 
+
 builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
 
+
+var isTesting = builder.Environment.IsEnvironment("Testing");
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var useInMemory = builder.Environment.IsEnvironment("Testing") ||
-                  string.Equals(builder.Configuration["Database:Provider"], "InMemory", StringComparison.OrdinalIgnoreCase);
-
-if (useInMemory)
+if (string.IsNullOrWhiteSpace(connectionString) && !isTesting)
 {
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseInMemoryDatabase("CashWiseTests"));
+    throw new InvalidOperationException(
+        "ConnectionStrings:DefaultConnection deve ser fornecida por configuração ou variável de ambiente.");
 }
-else
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    if (string.IsNullOrWhiteSpace(connectionString))
+    if (isTesting)
     {
-        throw new InvalidOperationException("ConnectionStrings:DefaultConnection must be configured.");
+        options.UseInMemoryDatabase("CashWiseAPI-Testing");
     }
+    else
+    {
+        options.UseMySql(connectionString!, new MySqlServerVersion(new Version(8, 0, 21)));
+    }
+});
 
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36))));
-}
 
-builder.Services.AddScoped<DatabaseService>();
-builder.Services.AddScoped<TransacaoService>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<MetaFinanceiraService>();
-builder.Services.AddScoped<DashboardService>();
-
-var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
-    ?? new[] { "http://localhost:8080" };
+var origensPermitidas = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>() ?? Array.Empty<string>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AppCors", policy =>
-    {
-        policy.WithOrigins(allowedOrigins)
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
+    options.AddPolicy("Frontend",
+        policy =>
+        {
+            policy.WithOrigins(origensPermitidas)
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
 });
+
+
+var jwtSection = builder.Configuration.GetSection("Jwt");
+var jwtKey = jwtSection["Key"];
+if (string.IsNullOrWhiteSpace(jwtKey) && !isTesting)
+{
+    throw new InvalidOperationException(
+        "Jwt:Key deve ser fornecida por configuração ou variável de ambiente fora do ambiente de testes.");
+}
+
+jwtKey ??= "cashwise-test-key-do-not-use-in-production";
+if (isTesting)
+{
+    jwtSection["Key"] = jwtKey;
+}
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = jwtSection["Issuer"],
+            ValidateAudience = true,
+            ValidAudience = jwtSection["Audience"],
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+            ClockSkew = TimeSpan.FromSeconds(30)
+        };
+    });
+
+builder.Services.AddAuthorization();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Financial Management API",
+    c.SwaggerDoc("v1", new OpenApiInfo 
+    { 
+        Title = "Financial Management API", 
         Version = "v1",
         Description = "API for managing financial transactions and user data",
         Contact = new OpenApiContact
@@ -71,7 +108,7 @@ builder.Services.AddSwaggerGen(c =>
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header using the ******",
+        Description = "JWT Authorization header using the Bearer scheme.",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
@@ -92,21 +129,31 @@ builder.Services.AddSwaggerGen(c =>
             Array.Empty<string>()
         }
     });
-
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
-    if (File.Exists(xmlPath))
-    {
-        c.IncludeXmlComments(xmlPath);
-    }
 });
 
-if (!builder.Environment.IsEnvironment("Testing") && string.IsNullOrWhiteSpace(builder.Configuration["Jwt:Key"]))
+var app = builder.Build();
+
+// Aplica migrations pendentes automaticamente ao subir.
+// Conveniente para dev/Docker local; em produção (Fase 11) isso deve
+// virar um passo explícito de deploy, não algo automático a cada boot.
+using (var scope = app.Services.CreateScope())
 {
-    throw new InvalidOperationException("Jwt:Key must be configured outside test environments.");
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // Testes de integração usam o provider InMemory, que não suporta Migrate().
+    if (db.Database.IsRelational())
+    {
+        db.Database.Migrate();
+    }
+    else
+    {
+        db.Database.EnsureCreated();
+    }
 }
 
-var app = builder.Build();
+// Qualquer exceção não tratada vira um ProblemDetails consistente (application/problem+json)
+// em vez de uma página de erro HTML ou um 500 vazio.
+app.UseExceptionHandler();
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -118,10 +165,12 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
-app.UseCors("AppCors");
+app.UseCors("Frontend");
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
 
-public partial class Program;
+// Torna a classe Program visível para o WebApplicationFactory<Program> dos testes de integração.
+public partial class Program { }

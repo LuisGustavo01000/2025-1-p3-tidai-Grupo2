@@ -1,13 +1,16 @@
-using CashWiseAPI.Data;
-using CashWiseAPI.Models;
-using CashWiseAPI.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using CashWiseAPI.Data;
+using CashWiseAPI.Dtos;
+using CashWiseAPI.Extensions;
+using CashWiseAPI.Models;
 
 namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class TransacaoController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -17,49 +20,47 @@ namespace CashWiseAPI.Controllers
             _context = context;
         }
 
+        // GET: api/Transacao (somente as transações do usuário autenticado)
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Transacao>>> GetTransacoes()
+        public async Task<ActionResult<IEnumerable<TransacaoResponse>>> GetTransacoes()
         {
-            if (!TryGetUsuarioId(out var usuarioId, out var badRequest))
-            {
-                return badRequest;
-            }
+            var usuarioId = User.GetUsuarioId();
 
-            return await _context.Transacoes
-                .Where(t => t.UsuarioId == usuarioId)
+            var transacoes = await _context.Transacoes
+                .Where(t => t.Usuario.Id == usuarioId)
+                .OrderByDescending(t => t.Data)
                 .ToListAsync();
+
+            return transacoes.Select(ToResponse).ToList();
         }
 
+        // GET: api/Transacao/5 (só se pertencer ao usuário autenticado)
         [HttpGet("{id}")]
-        public async Task<ActionResult<Transacao>> GetTransacao(int id)
+        public async Task<ActionResult<TransacaoResponse>> GetTransacao(int id)
         {
-            if (!TryGetUsuarioId(out var usuarioId, out var badRequest))
-            {
-                return badRequest;
-            }
+            var usuarioId = User.GetUsuarioId();
 
             var transacao = await _context.Transacoes
-                .FirstOrDefaultAsync(t => t.Id == id && t.UsuarioId == usuarioId);
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
 
             if (transacao == null)
             {
                 return NotFound();
             }
 
-            return transacao;
+            return ToResponse(transacao);
         }
 
+        // POST: api/Transacao (o dono é sempre o usuário do token, nunca um valor vindo do corpo)
         [HttpPost]
-        public async Task<ActionResult<Transacao>> CreateTransacao(TransacaoCreateRequest request)
+        public async Task<ActionResult<TransacaoResponse>> CreateTransacao(TransacaoRequest request)
         {
-            if (!TryGetUsuarioId(out var usuarioId, out var badRequest))
-            {
-                return badRequest;
-            }
+            var usuarioId = User.GetUsuarioId();
+            var usuario = await _context.Usuarios.FindAsync(usuarioId);
 
-            if (!await _context.Pessoas.AnyAsync(p => p.Id == usuarioId))
+            if (usuario == null)
             {
-                return BadRequest("Usuário não encontrado.");
+                return Unauthorized();
             }
 
             var transacao = new Transacao
@@ -67,26 +68,23 @@ namespace CashWiseAPI.Controllers
                 Descricao = request.Descricao,
                 Valor = request.Valor,
                 Tipo = request.Tipo,
-                Data = request.Data == default ? DateTime.UtcNow : request.Data,
-                UsuarioId = usuarioId
+                Categoria = string.IsNullOrWhiteSpace(request.Categoria) ? "Outros" : request.Categoria,
+                Data = request.Data ?? DateTime.UtcNow,
+                Usuario = usuario
             };
 
             _context.Transacoes.Add(transacao);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetTransacao), new { id = transacao.Id }, transacao);
+            return CreatedAtAction(nameof(GetTransacao), new { id = transacao.Id }, ToResponse(transacao));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTransacao(int id, TransacaoUpdateRequest request)
+        public async Task<ActionResult<TransacaoResponse>> UpdateTransacao(int id, TransacaoRequest request)
         {
-            if (!TryGetUsuarioId(out var usuarioId, out var badRequest))
-            {
-                return badRequest;
-            }
-
+            var usuarioId = User.GetUsuarioId();
             var transacao = await _context.Transacoes
-                .FirstOrDefaultAsync(t => t.Id == id && t.UsuarioId == usuarioId);
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
 
             if (transacao == null)
             {
@@ -94,49 +92,49 @@ namespace CashWiseAPI.Controllers
             }
 
             transacao.Descricao = request.Descricao;
-            transacao.Tipo = request.Tipo;
             transacao.Valor = request.Valor;
-            transacao.Data = request.Data == default ? transacao.Data : request.Data;
+            transacao.Tipo = request.Tipo;
+            transacao.Categoria = string.IsNullOrWhiteSpace(request.Categoria) ? "Outros" : request.Categoria;
+            transacao.Data = request.Data ?? transacao.Data;
 
             await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok(ToResponse(transacao));
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchTransacao(int id, TransacaoPatchRequest request)
+        public async Task<ActionResult<TransacaoResponse>> PatchTransacao(
+            int id,
+            PatchTransacaoRequest request)
         {
-            if (!TryGetUsuarioId(out var usuarioId, out var badRequest))
-            {
-                return badRequest;
-            }
-
+            var usuarioId = User.GetUsuarioId();
             var transacao = await _context.Transacoes
-                .FirstOrDefaultAsync(t => t.Id == id && t.UsuarioId == usuarioId);
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
 
             if (transacao == null)
             {
                 return NotFound();
             }
 
-            if (!string.IsNullOrWhiteSpace(request.Descricao))
+            if (request.Descricao is not null)
             {
                 transacao.Descricao = request.Descricao;
-            }
-
-            if (!string.IsNullOrWhiteSpace(request.Tipo))
-            {
-                if (request.Tipo is not ("Receita" or "Despesa"))
-                {
-                    return BadRequest("Tipo inválido. Use Receita ou Despesa.");
-                }
-
-                transacao.Tipo = request.Tipo;
             }
 
             if (request.Valor.HasValue)
             {
                 transacao.Valor = request.Valor.Value;
+            }
+
+            if (request.Tipo is not null)
+            {
+                transacao.Tipo = request.Tipo;
+            }
+
+            if (request.Categoria is not null)
+            {
+                transacao.Categoria = string.IsNullOrWhiteSpace(request.Categoria)
+                    ? "Outros"
+                    : request.Categoria;
             }
 
             if (request.Data.HasValue)
@@ -145,20 +143,17 @@ namespace CashWiseAPI.Controllers
             }
 
             await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok(ToResponse(transacao));
         }
 
+        // DELETE: api/Transacao/5 (só se pertencer ao usuário autenticado)
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTransacao(int id)
         {
-            if (!TryGetUsuarioId(out var usuarioId, out var badRequest))
-            {
-                return badRequest;
-            }
+            var usuarioId = User.GetUsuarioId();
 
             var transacao = await _context.Transacoes
-                .FirstOrDefaultAsync(t => t.Id == id && t.UsuarioId == usuarioId);
+                .FirstOrDefaultAsync(t => t.Id == id && t.Usuario.Id == usuarioId);
 
             if (transacao == null)
             {
@@ -171,19 +166,14 @@ namespace CashWiseAPI.Controllers
             return NoContent();
         }
 
-        private bool TryGetUsuarioId(out int usuarioId, out ActionResult badRequest)
+        private static TransacaoResponse ToResponse(Transacao t) => new()
         {
-            usuarioId = 0;
-            badRequest = BadRequest("Cabeçalho X-Usuario-Id é obrigatório.");
-
-            if (!Request.Headers.TryGetValue("X-Usuario-Id", out var usuarioIdHeader) ||
-                !int.TryParse(usuarioIdHeader, out usuarioId) || usuarioId <= 0)
-            {
-                return false;
-            }
-
-            badRequest = Ok();
-            return true;
-        }
+            Id = t.Id,
+            Descricao = t.Descricao,
+            Valor = t.Valor,
+            Tipo = t.Tipo,
+            Categoria = t.Categoria,
+            Data = t.Data
+        };
     }
 }

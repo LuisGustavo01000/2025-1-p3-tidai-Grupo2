@@ -1,5 +1,5 @@
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CashWiseAPI.Models
 {
@@ -14,24 +14,14 @@ namespace CashWiseAPI.Models
         public double Valor { get; set; }
 
         [Required]
-        public string Tipo { get; set; } = string.Empty;
+        public string Tipo { get; set; } = string.Empty; // "Receita" ou "Despesa"
+
+        [Required]
+        public string Categoria { get; set; } = "Outros";
 
         public DateTime Data { get; set; }
 
-        public int UsuarioId { get; set; }
-
-        [ForeignKey(nameof(UsuarioId))]
         [Required]
-        public Pessoa Usuario { get; set; } = null!;
-
-        public void RegistrarTransacao() { }
-        public void ExcluirTransacao() { }
-        public void GetId() { }
-        public void GetValor() { }
-        public void SetDescricao(string descricao) { }
-        public void GetDescricao() { }
-        public void SetValor(double valor) { }
-        public void GetTipo() { }
-        public void SetTipo(string tipo) { }
+        public Usuario Usuario { get; set; } = null!;
     }
 }

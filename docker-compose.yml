@@ -1,30 +1,46 @@
 services:
-  db:
+  mysql:
     image: mysql:8.0
+    container_name: cashwise-mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: bd_cashwise
+    ports:
+      - "3306:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - cashwise-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   api:
     build:
       context: ./src/back
-      dockerfile: Dockerfile
+    container_name: cashwise-api
     restart: unless-stopped
     depends_on:
-      - db
+      mysql:
+        condition: service_healthy
     environment:
-      ConnectionStrings__DefaultConnection: Server=db;Port=3306;Database=${MYSQL_DATABASE};User=${MYSQL_USER};Pwd=${MYSQL_PASSWORD}
-      Jwt__Key: ${Jwt__Key}
-      Cors__AllowedOrigins__0: ${Cors__AllowedOrigins__0}
-      Cors__AllowedOrigins__1: ${Cors__AllowedOrigins__1}
-      Database__Provider: ${Database__Provider}
+      ConnectionStrings__DefaultConnection: "Server=mysql;Port=3306;Database=bd_cashwise;User=root;Password=;"
+      Jwt__Key: "${JWT_KEY:?Defina JWT_KEY antes de iniciar o Docker Compose}"
     ports:
       - "5284:5284"
 
+  frontend:
+    image: nginx:alpine
+    container_name: cashwise-frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    volumes:
+      - ./src/frontend:/usr/share/nginx/html
+      - ./src/img:/usr/share/nginx/html/img:ro
+    ports:
+      - "8080:80"
+
 volumes:
-  mysql-data:
+  cashwise-mysql-data:

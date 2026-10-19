@@ -1,12 +1,15 @@
-using CashWiseAPI.Data;
-using CashWiseAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using CashWiseAPI.Data;
+using CashWiseAPI.Dtos;
+using CashWiseAPI.Extensions;
 
 namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -16,121 +19,46 @@ namespace CashWiseAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Dashboard>>> GetDashboards()
+        // GET: api/Dashboard/resumo
+        // Calculado sob demanda a partir das transações do usuário autenticado —
+        // não existe mais uma tabela "Dashboard" guardando um snapshot manual
+        // (ela existia, mas nunca era escrita por ninguém).
+        [HttpGet("resumo")]
+        public async Task<ActionResult<DashboardResumoResponse>> GetResumo()
         {
-            return await _context.Dashboards.Include(d => d.Usuario).ToListAsync();
-        }
+            var usuarioId = User.GetUsuarioId();
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Dashboard>> GetDashboard(int id)
-        {
-            var dashboard = await _context.Dashboards
-                .Include(d => d.Usuario)
-                .FirstOrDefaultAsync(d => d.Id == id);
+            var transacoes = await _context.Transacoes
+                .Where(t => t.Usuario.Id == usuarioId)
+                .ToListAsync();
 
-            if (dashboard == null)
-            {
-                return NotFound();
-            }
+            var agora = DateTime.UtcNow;
 
-            return dashboard;
-        }
+            var totalReceitas = transacoes
+                .Where(t => t.Tipo.Equals("Receita", StringComparison.OrdinalIgnoreCase))
+                .Sum(t => t.Valor);
 
-        [HttpGet("resumo/{usuarioId:int}")]
-        public async Task<ActionResult<DashboardResumoResponse>> GetResumo(int usuarioId, [FromQuery] DateTime? inicio, [FromQuery] DateTime? fim)
-        {
-            var inicioPeriodo = inicio ?? new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
-            var fimPeriodo = fim ?? inicioPeriodo.AddMonths(1).AddTicks(-1);
+            var totalDespesas = transacoes
+                .Where(t => t.Tipo.Equals("Despesa", StringComparison.OrdinalIgnoreCase))
+                .Sum(t => t.Valor);
 
-            var receitas = await _context.Transacoes
-                .Where(t => t.UsuarioId == usuarioId && t.Tipo == "Receita" && t.Data >= inicioPeriodo && t.Data <= fimPeriodo)
-                .SumAsync(t => (double?)t.Valor) ?? 0;
-
-            var despesas = await _context.Transacoes
-                .Where(t => t.UsuarioId == usuarioId && t.Tipo == "Despesa" && t.Data >= inicioPeriodo && t.Data <= fimPeriodo)
-                .SumAsync(t => (double?)t.Valor) ?? 0;
+            var gastosMes = transacoes
+                .Where(t => t.Tipo.Equals("Despesa", StringComparison.OrdinalIgnoreCase)
+                         && t.Data.Month == agora.Month
+                         && t.Data.Year == agora.Year)
+                .Sum(t => t.Valor);
 
             var metasAtivas = await _context.MetasFinanceiras
-                .Where(m => m.UsuarioId == usuarioId && (m.Status == "Em andamento" || m.Status == "Quase lá"))
-                .CountAsync();
+                .CountAsync(m => m.Usuario.Id == usuarioId);
 
-            return Ok(new DashboardResumoResponse
+            return new DashboardResumoResponse
             {
-                UsuarioId = usuarioId,
-                Inicio = inicioPeriodo,
-                Fim = fimPeriodo,
-                TotalReceitas = receitas,
-                TotalDespesas = despesas,
-                Saldo = receitas - despesas,
+                SaldoTotal = totalReceitas - totalDespesas,
+                TotalReceitas = totalReceitas,
+                TotalDespesas = totalDespesas,
+                GastosMes = gastosMes,
                 MetasAtivas = metasAtivas
-            });
+            };
         }
-
-        [HttpPost]
-        public async Task<ActionResult<Dashboard>> CreateDashboard(Dashboard dashboard)
-        {
-            _context.Dashboards.Add(dashboard);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetDashboard), new { id = dashboard.Id }, dashboard);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDashboard(int id, Dashboard dashboard)
-        {
-            if (id != dashboard.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(dashboard).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DashboardExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
-            }
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDashboard(int id)
-        {
-            var dashboard = await _context.Dashboards.FindAsync(id);
-            if (dashboard == null)
-            {
-                return NotFound();
-            }
-
-            _context.Dashboards.Remove(dashboard);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool DashboardExists(int id)
-        {
-            return _context.Dashboards.Any(e => e.Id == id);
-        }
-    }
-
-    public class DashboardResumoResponse
-    {
-        public int UsuarioId { get; set; }
-        public DateTime Inicio { get; set; }
-        public DateTime Fim { get; set; }
-        public double TotalReceitas { get; set; }
-        public double TotalDespesas { get; set; }
-        public double Saldo { get; set; }
-        public int MetasAtivas { get; set; }
     }
 }
