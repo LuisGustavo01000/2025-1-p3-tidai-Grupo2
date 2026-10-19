@@ -1,24 +1,26 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace YourProject.Models
+namespace CashWiseAPI.Models
 {
     public class Transacao
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required]
         public string Descricao { get; set; } = string.Empty;
-        
+
         public double Valor { get; set; }
-        
+
         [Required]
-        public string Tipo { get; set; } = string.Empty; // "Receita" ou "Despesa"
-        
+        public string Tipo { get; set; } = string.Empty;
+
         public DateTime Data { get; set; }
-        
+
+        public int UsuarioId { get; set; }
+
+        [ForeignKey(nameof(UsuarioId))]
         [Required]
         public Pessoa Usuario { get; set; } = null!;
 

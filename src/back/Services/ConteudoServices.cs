@@ -1,7 +1,7 @@
-using YourProject.Models;
+using CashWiseAPI.Models;
 using MySql.Data.MySqlClient;
 
-namespace YourProject.Services
+namespace CashWiseAPI.Services
 {
     public class ConteudoService
     {

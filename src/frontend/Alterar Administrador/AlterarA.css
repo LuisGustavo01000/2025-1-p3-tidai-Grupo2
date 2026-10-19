@@ -16,10 +16,10 @@ header{
 .navbar {
   background: #444a54;
 }
-.nav-link {
+.navbar .nav-link {
   color: #fff !important;
 }
-.nav-link:hover {
+.navbar .nav-link:hover {
   opacity: .8;
 }
 .btn-success {

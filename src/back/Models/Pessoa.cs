@@ -1,24 +1,24 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace YourProject.Models
+namespace CashWiseAPI.Models
 {
     public class Pessoa
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required]
         public string Nome { get; set; } = string.Empty;
-        
+
         [Required]
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
-        
+
         [Required]
+        [MinLength(8)]
+        [RegularExpression(@".*\d.*", ErrorMessage = "A senha deve conter pelo menos um número.")]
         public string Senha { get; set; } = string.Empty;
-        
+
         public List<Transacao> Transacoes { get; set; }
         public bool Endividado { get; set; }
 

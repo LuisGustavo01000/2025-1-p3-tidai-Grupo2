@@ -25,7 +25,7 @@ header {
   padding: 1rem 0;
 }
 
-.nav-link:hover {
+.navbar .nav-link:hover {
   opacity: .8;
 }
 

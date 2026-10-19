@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
-using YourProject.Data;
+using CashWiseAPI.Models;
+using CashWiseAPI.Data;
 
-namespace YourProject.Controllers
+namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

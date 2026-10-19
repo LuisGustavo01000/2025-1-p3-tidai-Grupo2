@@ -12,8 +12,8 @@ body{
 
 /* ===== Navbar / botões ====================================== */
 .navbar{background:var(--cw-primary);}
-.nav-link{color:#fff!important;}
-.nav-link:hover{opacity:.8;}
+.navbar .nav-link{color:#fff!important;}
+.navbar .nav-link:hover{opacity:.8;}
 .btn-success{background:#28a745;border:none;}
 .btn-primary{background:#007bff;border:none;}
 

@@ -11,8 +11,8 @@ a{text-decoration:none;}
 .navbar {
   background: #2d3e50;
 }
-.nav-link{color:#2d3e50!important;}
-.nav-link:hover{opacity:.8;}
+.navbar .nav-link{color:#2d3e50!important;}
+.navbar .nav-link:hover{opacity:.8;}
 .footer,
 footer {
   background: #2d3e50 !important;

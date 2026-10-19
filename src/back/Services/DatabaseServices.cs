@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using YourProject.Data;
-using YourProject.Models;
+using CashWiseAPI.Data;
+using CashWiseAPI.Models;
 
-namespace YourProject.Services
+namespace CashWiseAPI.Services
 {
     public class DatabaseService
     {

@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CashWiseAPI.Data;
+using CashWiseAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
-using YourProject.Data;
 
-namespace YourProject.Controllers
+namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -20,14 +16,12 @@ namespace YourProject.Controllers
             _context = context;
         }
 
-        // GET: api/User
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.Include(u => u.Transacoes).ToListAsync();
         }
 
-        // GET: api/User/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -43,23 +37,31 @@ namespace YourProject.Controllers
             return user;
         }
 
-        // POST: api/User
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            if (!SenhaValida(user.Senha))
+            {
+                return BadRequest("A senha deve ter no mínimo 8 caracteres e pelo menos um número.");
+            }
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
 
-        // PUT: api/User/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.Id)
             {
                 return BadRequest();
+            }
+
+            if (!SenhaValida(user.Senha))
+            {
+                return BadRequest("A senha deve ter no mínimo 8 caracteres e pelo menos um número.");
             }
 
             _context.Entry(user).State = EntityState.Modified;
@@ -74,16 +76,13 @@ namespace YourProject.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return NoContent();
         }
 
-        // DELETE: api/User/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -102,6 +101,11 @@ namespace YourProject.Controllers
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        private static bool SenhaValida(string senha)
+        {
+            return !string.IsNullOrEmpty(senha) && senha.Length >= 8 && senha.Any(char.IsDigit);
         }
     }
 }

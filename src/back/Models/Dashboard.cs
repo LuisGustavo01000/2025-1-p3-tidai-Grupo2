@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace YourProject.Models
+namespace CashWiseAPI.Models
 {
     public class Dashboard
     {

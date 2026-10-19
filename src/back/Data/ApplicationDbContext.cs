@@ -1,7 +1,7 @@
+using CashWiseAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
 
-namespace YourProject.Data
+namespace CashWiseAPI.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -24,6 +24,7 @@ namespace YourProject.Data
             modelBuilder.Entity<Pessoa>()
                 .HasMany(p => p.Transacoes)
                 .WithOne(t => t.Usuario)
+                .HasForeignKey(t => t.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Dashboard>()
@@ -34,6 +35,7 @@ namespace YourProject.Data
             modelBuilder.Entity<MetaFinanceira>()
                 .HasOne(m => m.Usuario)
                 .WithMany()
+                .HasForeignKey(m => m.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

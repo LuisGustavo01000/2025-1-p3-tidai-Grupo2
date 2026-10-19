@@ -11,17 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', e => {
     e.preventDefault();
     if (validateSignup()) {
-      /* redireciona após cadastro simulado */
       window.location.href = '../Home/Home.html';
     }
   });
 
-  /* ===== Funções de validação ===== */
   function validateSignup() {
-    const name            = form.name.value.trim();
-    const email           = form.email.value.trim();
-    const password        = form.password.value.trim();
-    const confirmPassword = form['confirm-password'].value.trim();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value;
+    const confirmPassword = form['confirm-password'].value;
 
     if (!name || !email || !password || !confirmPassword) {
       alert('Por favor, preencha todos os campos.');
@@ -49,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
 
-    /* você pode enviar dados para o servidor aqui */
     alert('Cadastro realizado com sucesso!');
     return true;
   }

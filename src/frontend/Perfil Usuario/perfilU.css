@@ -17,8 +17,8 @@ header{
 .navbar {
   background: #2d3e50;;
 }
-.nav-link{color:#fff!important;}
-.nav-link:hover{opacity:.8;}
+.navbar .nav-link{color:#fff!important;}
+.navbar .nav-link:hover{opacity:.8;}
 .btn-success{background:#45a049;border:none;}
 
 /* ===== Cartão de perfil ====================================== */

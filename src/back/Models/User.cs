@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace YourProject.Models
+namespace CashWiseAPI.Models
 {
     public class User
     {
@@ -20,6 +18,8 @@ namespace YourProject.Models
 
         [Required]
         [StringLength(100)]
+        [MinLength(8)]
+        [RegularExpression(@".*\d.*", ErrorMessage = "A senha deve conter pelo menos um número.")]
         public string Senha { get; set; } = string.Empty;
 
         public virtual ICollection<Transacao> Transacoes { get; set; }

@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using CashWiseAPI.Data;
+using CashWiseAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
-using YourProject.Data;
 
-namespace YourProject.Controllers
+namespace CashWiseAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -43,6 +40,11 @@ namespace YourProject.Controllers
         [HttpPost]
         public async Task<ActionResult<Pessoa>> CreatePessoa(Pessoa pessoa)
         {
+            if (!SenhaValida(pessoa.Senha))
+            {
+                return BadRequest("A senha deve ter no mínimo 8 caracteres e pelo menos um número.");
+            }
+
             _context.Pessoas.Add(pessoa);
             await _context.SaveChangesAsync();
 
@@ -55,6 +57,11 @@ namespace YourProject.Controllers
             if (id != pessoa.Id)
             {
                 return BadRequest();
+            }
+
+            if (!SenhaValida(pessoa.Senha))
+            {
+                return BadRequest("A senha deve ter no mínimo 8 caracteres e pelo menos um número.");
             }
 
             _context.Entry(pessoa).State = EntityState.Modified;
@@ -93,6 +100,11 @@ namespace YourProject.Controllers
         private bool PessoaExists(int id)
         {
             return _context.Pessoas.Any(e => e.Id == id);
+        }
+
+        private static bool SenhaValida(string senha)
+        {
+            return !string.IsNullOrEmpty(senha) && senha.Length >= 8 && senha.Any(char.IsDigit);
         }
     }
 }
