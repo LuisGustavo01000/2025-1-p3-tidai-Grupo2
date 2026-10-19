@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YourProject.Models
 {
-    [Table("CONTEUDO")] 
+    [Table("CONTEUDO")]
     public class Conteudo
     {
         [Key]
@@ -31,14 +31,7 @@ namespace YourProject.Models
 
         [Column("USUARIOFK")]
         public int UsuarioFk { get; set; }
-    
 
-
-    
-
-        public void GetId() { }
-        public void GetConteudo() { }
-        public void SetConteudo(string conteudo) { }
-        public void GetDescricaoConteudo(string conteudo) { }
+        public Usuario Usuario { get; set; } = null!;
     }
 }
