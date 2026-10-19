@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace YourProject.Extensions
+namespace CashWiseAPI.Extensions
 {
     public static class ClaimsPrincipalExtensions
     {

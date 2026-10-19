@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace YourProject.Dtos
+namespace CashWiseAPI.Dtos
 {
     public class TransacaoRequest
     {
@@ -28,5 +28,22 @@ namespace YourProject.Dtos
         public string Tipo { get; set; } = string.Empty;
         public string Categoria { get; set; } = string.Empty;
         public DateTime Data { get; set; }
+    }
+
+    public class PatchTransacaoRequest
+    {
+        [StringLength(200)]
+        public string? Descricao { get; set; }
+
+        [Range(0.01, double.MaxValue, ErrorMessage = "O valor deve ser maior que zero.")]
+        public double? Valor { get; set; }
+
+        [RegularExpression("(?i:^(Receita|Despesa)$)", ErrorMessage = "Tipo deve ser 'Receita' ou 'Despesa'.")]
+        public string? Tipo { get; set; }
+
+        [StringLength(30)]
+        public string? Categoria { get; set; }
+
+        public DateTime? Data { get; set; }
     }
 }

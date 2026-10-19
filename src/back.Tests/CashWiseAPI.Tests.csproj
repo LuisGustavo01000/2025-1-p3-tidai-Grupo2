@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\back\YourProject.csproj" />
+    <ProjectReference Include="..\back\CashWiseAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -22,13 +22,13 @@ jobs:
           dotnet-version: "8.0.x"
 
       - name: Restaurar dependências
-        run: dotnet restore back.Tests/YourProject.Tests.csproj
+        run: dotnet restore back.Tests/CashWiseAPI.Tests.csproj
 
       - name: Build
-        run: dotnet build back.Tests/YourProject.Tests.csproj --no-restore --configuration Release
+        run: dotnet build back.Tests/CashWiseAPI.Tests.csproj --no-restore --configuration Release
 
       - name: Testes
-        run: dotnet test back.Tests/YourProject.Tests.csproj --no-build --configuration Release --logger "trx" --results-directory ./test-results
+        run: dotnet test back.Tests/CashWiseAPI.Tests.csproj --no-build --configuration Release --logger "trx" --results-directory ./test-results
 
       - name: Publicar resultados dos testes
         if: always()

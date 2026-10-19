@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace YourProject.Dtos
+namespace CashWiseAPI.Dtos
 {
     public class UsuarioResponse
     {
@@ -27,8 +27,8 @@ namespace YourProject.Dtos
         [Required]
         public string SenhaAtual { get; set; } = string.Empty;
 
-[StringLength(100, MinimumLength = 8)]
-[RegularExpression(@".*\d.*", ErrorMessage = "A senha deve conter pelo menos um número.")]
-public string NovaSenha { get; set; } = string.Empty;
+        [StringLength(100, MinimumLength = 8)]
+        [RegularExpression(@".*\d.*", ErrorMessage = "A senha deve conter pelo menos um número.")]
+        public string NovaSenha { get; set; } = string.Empty;
     }
 }

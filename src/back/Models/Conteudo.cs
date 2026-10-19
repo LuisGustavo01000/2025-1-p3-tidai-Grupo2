@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace YourProject.Models
+namespace CashWiseAPI.Models
 {
     [Table("CONTEUDO")]
     public class Conteudo

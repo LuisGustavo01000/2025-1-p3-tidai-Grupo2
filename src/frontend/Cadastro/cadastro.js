@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nome = form.name.value.trim();
     const email = form.email.value.trim();
-    const senha = form.password.value.trim();
+    const senha = form.password.value;
 
     const botao = form.querySelector('button[type="submit"]');
     if (botao) {
@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function validateSignup() {
     const name            = form.name.value.trim();
     const email           = form.email.value.trim();
-    const password        = form.password.value.trim();
-    const confirmPassword = form['confirm-password'].value.trim();
+    const password        = form.password.value;
+    const confirmPassword = form['confirm-password'].value;
 
     if (!name || !email || !password || !confirmPassword) {
       alert('Por favor, preencha todos os campos.');

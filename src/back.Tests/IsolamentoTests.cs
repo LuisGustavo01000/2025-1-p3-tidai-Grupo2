@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     public class IsolamentoTests : TesteBase
     {

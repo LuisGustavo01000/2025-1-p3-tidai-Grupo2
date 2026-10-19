@@ -1,15 +1,15 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "back.Tests", "back.Tests", "{F917F6EA-EE5D-8BED-7D3F-29E9B3C135A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProject.Tests", "back.Tests\YourProject.Tests.csproj", "{E5F4B442-ECA6-4613-9F14-4775CA33F410}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashWiseAPI.Tests", "back.Tests\CashWiseAPI.Tests.csproj", "{E5F4B442-ECA6-4613-9F14-4775CA33F410}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "back", "back", "{11BF4459-C332-B9BD-164A-F44681F2EC0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProject", "back\YourProject.csproj", "{1AD02405-6FA8-42B2-9816-5E7B63334A6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashWiseAPI", "back\CashWiseAPI.csproj", "{1AD02405-6FA8-42B2-9816-5E7B63334A6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -79,6 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      const sessaoAtual = getUsuarioLogado();
+      salvarSessao({
+        token: getToken(),
+        usuarioId: sessaoAtual?.usuarioId,
+        nome: inputNome.value.trim(),
+        email: inputEmail.value.trim(),
+        expiraEmUtc: sessaoAtual?.expiraEmUtc,
+      });
       mostrarFeedback(dadosFeedback, 'Dados atualizados com sucesso!', 'success');
     } catch {
       mostrarFeedback(dadosFeedback, 'Não foi possível conectar ao servidor do CashWise.');
@@ -92,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
     senhaFeedback.classList.add('d-none');
 
-    const novaSenha = inputNovaSenha.value.trim();
-    const confirmar = inputConfirmarSenha.value.trim();
+    const novaSenha = inputNovaSenha.value;
+    const confirmar = inputConfirmarSenha.value;
 
     if (novaSenha !== confirmar) {
       mostrarFeedback(senhaFeedback, 'As senhas não coincidem.');

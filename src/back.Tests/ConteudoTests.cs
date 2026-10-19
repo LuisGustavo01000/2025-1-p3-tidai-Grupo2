@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 
-namespace YourProject.Tests
+namespace CashWiseAPI.Tests
 {
     /// <summary>
     /// Regressão para o achado 3/4 da auditoria de 2026-09-06: o dono do

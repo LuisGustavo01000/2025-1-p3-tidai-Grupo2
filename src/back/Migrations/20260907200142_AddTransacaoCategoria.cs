@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace YourProject.Migrations
+namespace CashWiseAPI.Migrations
 {
     /// <inheritdoc />
     public partial class AddTransacaoCategoria : Migration

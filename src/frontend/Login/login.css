@@ -6,7 +6,7 @@ a{text-decoration:none;}
 /* Cabeçalho e rodapé — cor definida centralmente em css/theme.css.
    (Aqui havia um bug: o texto do menu ficava na mesma cor do fundo,
    praticamente invisível — corrigido.) */
-.nav-link:hover{opacity:.8;}
+.navbar .nav-link:hover{opacity:.8;}
 .footer,
 footer {
   background: #2d3e50 !important;

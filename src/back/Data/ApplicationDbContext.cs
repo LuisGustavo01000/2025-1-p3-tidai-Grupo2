@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
+using CashWiseAPI.Models;
 
-namespace YourProject.Data
+namespace CashWiseAPI.Data
 {
     public class ApplicationDbContext : DbContext
     {

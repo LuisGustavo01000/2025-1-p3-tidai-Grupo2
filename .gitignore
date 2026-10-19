@@ -12,3 +12,9 @@ node_modules/
 
 # Ambiente local
 .env
+
+# Testes e cobertura
+TestResults/
+test-results/
+coverage/
+*.trx

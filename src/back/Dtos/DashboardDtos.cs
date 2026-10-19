@@ -1,4 +1,4 @@
-namespace YourProject.Dtos
+namespace CashWiseAPI.Dtos
 {
     public class DashboardResumoResponse
     {

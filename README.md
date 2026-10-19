@@ -42,6 +42,23 @@ A presente documentação descreve a especificação de um projeto de aplicaçã
 
 * <a href="src/README.md">Código</a>
 
+## Configuração local da API
+
+A API não mantém credenciais no repositório. Fora do ambiente de testes, configure:
+
+```powershell
+$env:ConnectionStrings__DefaultConnection = "Server=127.0.0.1;Port=3306;Database=bd_cashwise;User=root;Password=;"
+$env:Jwt__Key = "uma-chave-secreta-com-pelo-menos-32-caracteres"
+dotnet run --project .\src\back\CashWiseAPI.csproj
+```
+
+Para usar Docker Compose, defina `JWT_KEY` antes de iniciar:
+
+```powershell
+$env:JWT_KEY = "uma-chave-secreta-com-pelo-menos-32-caracteres"
+docker compose up --build
+```
+
 # Apresentação
 
 * <a href="presentation/README.md">Apresentação do projeto</a>
